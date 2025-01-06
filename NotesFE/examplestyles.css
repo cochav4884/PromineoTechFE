@@ -1,0 +1,11 @@
+.example {
+    color: gray;
+    background-color: blue;
+    border-style: dotted;
+    border-width: 3px;
+    border-color: red;
+    border-radius: 5px; /* The higher the px the rounded the edges*/
+    height: 200px;
+    text-align: center;
+}
+
