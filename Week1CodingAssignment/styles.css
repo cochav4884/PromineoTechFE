@@ -1,0 +1,109 @@
+/* css for index, about, & contact pages*/
+body {
+  background-image: url(https://images.unsplash.com/photo-1530396333989-24c5b8f805dd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-color: lavenderblush;
+}
+
+main {
+  background-color: aqua;
+}
+
+h1,
+h2,
+h3 {
+  text-align: center;
+  text-shadow: 2px 2px rgb(137, 175, 208);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+img {
+  padding-left: 30%;
+  padding-right: 30%;
+  width: 500px;
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+.image {
+  background-color: aliceblue;
+}
+
+a button {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: larger;
+  font-weight: bold;
+  color: black;
+}
+
+button,
+#click {
+  background-color: darkslateblue;
+  float: right;
+  padding: 5px;
+  margin: 5px;
+}
+
+button:hover,
+#click:hover {
+  background-color: cornflowerblue;
+}
+
+footer {
+  background-image: url(https://images.unsplash.com/photo-1530396333989-24c5b8f805dd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  padding: 20px;
+}
+
+footer p {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+#fbtn {
+  margin-right: 10px;
+}
+
+/* css for about page */
+table {
+  background-color: aliceblue;
+  width: 100%;
+}
+
+ul {
+  background-color: aliceblue;
+  width: 100%;
+}
+ul li {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+th,
+td {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: cornflowerblue;
+  color: rgb(51, 42, 31);
+}
+
+/* css for contact page */
+form {
+  background-color: aliceblue;
+  padding: 10px;
+}
+
+label {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+
+input {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  margin: 5px;
+}
