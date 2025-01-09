@@ -1,0 +1,23 @@
+{
+  "name": "promineotechfe",
+  "version": "1.0.0",
+  "description": "\"# PromineoTechFE\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cochav4884/PromineoTechFE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cochav4884/PromineoTechFE/issues"
+  },
+  "homepage": "https://github.com/cochav4884/PromineoTechFE#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.7.1"
+  }
+}
