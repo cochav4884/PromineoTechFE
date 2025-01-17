@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 04 Lab Operations pt.1</title>
+    <script src="wk04LabNotes.js"></script>
+  </head>
+  <body>
+    <h1>Vocabulary Terms</h1>
+    <div>
+      <h3>Comparison Operator</h3>
+      <p>Used to compare two values and returns a value of true or false.</p>
+        <ol>
+          <li>greater than (>)</li>
+          <li>less than (<)</li>
+          <li>greater than or equal to (>=)</li>
+          <li>less than or equal to (<=)</li>
+        </ol>
+        <ul>
+            <li>console.log(7 > 2);</li>
+            <li>prints: true
+                <p>7 is greater than 2</p>
+            </li>
+            <li>console.log(7 < 2);</li>
+            <li>prints: false
+                <p>7 is not less than 2</p>
+            </li>
+            <li>console.log(7 >= 2);</li>
+            <li>prints: true
+                <p>7 is greater than 2 but not equal to 2, since one of the statements is true the result is true.</p>
+            </li>
+            <li>console.log(7 <= 2);</li>
+            <li>prints: false
+                <p>7 is not less than and 7 is not equal to 2, since both statements are false, the result is false.</p>
+            </li>
+          </ul>
+      </div>
+      <h3>Equality Operator</h3>
+      <p>
+        An equlity operator is used to compare two vales for equality and
+        returns aboolean value of true or false.
+      </p>
+        <ol>
+          <li>
+            (==)
+            <p>
+              The double equals sign is used to check for loose equlity, which
+              means that the two values are equal in value but not necessarily
+              in type.
+            </p>
+          </li>
+          <li>
+            (===)
+            <p>
+              The triple equals sign is used to check fof strict equality, which
+              means that the two values are equal in value and type.
+            </p>
+          </li>
+        </ol>
+        <h3>Math Operations</h3>
+        <p>
+          JavaScript provides a set of bulit-in math operations that can be used
+          to perform calculations on numbers, such as:
+        </p>
+        <ol>
+          <li>addition (+)</li>
+          <li>subtratction (-)</li>
+          <li>multiplication (*)</li>
+          <li>division (/)</li>
+          <li>modulo (%); among others</li>
+        </ol>
+        <h3>Null</h3>
+        <p>
+          The Null type represents an intentional absence of any object value,
+          and has exactly one value: null. In JavaScript, null is a primitive
+          value and is not an object, but can be used where an object is
+          expected in JavaScript.
+        </p>
+        <h3>Number</h3>
+        <p>
+          A data type that represents both integers and floating-point numbers.
+        </p>
+        <h3>Strict Equality Operator</h3>
+        <p>
+          The Strict Equality Operator, or (===), is a comparison operator that
+          tests if two values are equal, without performing type coercion. If
+          the two values being copared are of different types, the result will
+          be false.
+        </p>
+        <h3>String</h3>
+        <p>
+          A data type that represents a sequence of characters. Strings can be
+          created using
+        </p>
+        <ol>
+          <li>single quotes (' ')</li>
+          <li>double quotes (" ")</li>
+        </ol>
+        <p>and can be concatenated using the addition (+) operator</p>
+        <h3>Type coercion</h3>
+        <p>
+          The automatic or implicit conversion of a value from one data type to
+          another by the programming language, often in order to perform an
+          operation or comparison.
+        </p>
+        <h3>Undefined</h3>
+        <p>The Undefined type represents a variable that has been declared but has not been assigned a value. It only has one value: undefined.</p>
+        <h3>Variable</h3>
+        <p>A container that holds a value, which can be a</p>
+        <ol>
+            <li>string</li>
+            <li>number</li>
+            <li>boolean</li>
+            <li>other data type</li>
+        </ol>
+        <h3>var</h3>
+        <p>A keyword that was orignally used to declare variables in JavaScript.</p>
+        <h3>let</h3>
+        <p>A keyword that is now used primarily in place of var to declare variables in a local scope.</p>
+        <h3>Variables</h3>
+        <p>In JavaScript, variables are used as storage containers for data that a program needs to use. A variable is declared using the keyword var and a name typically in lower camel case. The variable can be used to store a value, which can be changed or updated as needed during the execution of the program.</p>
+        <ol>
+            <li>areaOfRectangle
+                <p>naming your value to find the area of a rectangle</p>
+                <li>let length = 10;</li>
+                <li>let width = 5;</li>
+                <li>let areaOfRectangle = length * width;</li>
+                <li>result: 50</li>
+            </li>
+        </ol>
+        <h3>Concatenation</h3>
+        <p>In programming, the addition (+) operator can be used in the additon of numbers and also in the joining of strings. When strings are put together it is call concatenation and the addition (+) operator is then referred to as the concatenation operator.</p>
+        <ol>
+            <li>"Hello" and "World"</li>
+            <li>var greeting = "Hello";</li>
+            <li>var subject = "World";</li>
+            <li>var message = greeting + " " + subject;</li>
+            <li>console.log(message);</li>
+            <li>answer: Hello World</li>
+        </ol>
+        <p>Concatenation can get tricky when mixing data types. Adding a string and a number using the addition (+) operator, will result in a string.</p>
+        <ol>
+            <li>"5" + 3</li>
+            <li>var x = "5";</li>
+            <li>var y = 3;</li>
+            <li>console.log(x + y);</li>
+            <li>result: "53"</li>
+        </ol>
+        <ol>
+            <li>82 + "20"</li>
+            <li>var x = 82;</li>
+            <li>var y = "20";</li>
+            <li>console.log(x + y);</li>
+            <li>result: "8220"</li>
+        </ol>
+        <ol>
+            <li>"1053" + 21</li>
+            <li>var x = "1053";</li>
+            <li>var y + 21;</li>
+            <li>console.log(x + y);</li>
+            <li>result: "105321"</li>
+        </ol>
+        <p>Similarly, the expression 5 + "3" would result in a string as well & all other reverse as well.</p>
+        <ol>
+            <li>5 + "3"</li>
+            <li>var x = 5;</li>
+            <li>var y = "3";</li>
+            <li>console.log(x = y);</li>
+            <li>result: "53"</li>
+        </ol>
+        <ol>
+            <li>82 + "20"</li>
+            <li>var x = "82";</li>
+            <li>var y = 20;</li>
+            <li>console.log(x + y);</li>
+            <li>result: "8220"</li>
+        </ol>
+        <ol>
+            <li>1053 + "21"</li>
+            <li>var x = 1053;</li>
+            <li>var y + "21";</li>
+            <li>console.log(x + y);</li>
+            <li>result: "105321"</li>
+        </ol>
+        <p>Similarly, if you concatenate a number and a string such as 3 + "apples", the result is the string "3apples".</p>
+        <p>When you add an undefined value to a number in JavaScript, the result will be NaN (Not a Number). This is because undefined is not a number and cannot be added to a number.</p>
+        <ol>
+            <li>var a;
+                <p>this variable has been declared but not assigned a value, therefore it is undefined.</p>
+            </li>
+            <li>var b = 4;
+                <p>this is a number</p>
+            </li>
+            <li>console.log(a + b);
+                <p>this will result in NaN</p>
+            </li>
+            <li>result: NaN</li>
+        </ol>
+        <p>Concatenation can be useful in a variety of programming tasks, such as:</p>
+        <ol>
+            <li>building dynamic text strings for use in HTML or other text-based formats</li>
+            <li>generating output for logging or debugging purposes</li>
+        </ol>
+        <p>However, it's worth noting that these behaviors are well-defined and consistent within the language, and there are reasons why they are designed this way.</p>
+        <h3>console.log</h3>
+        <p>In JavaScript, the console is a built-in object that provides developers with a way to output messages and data to the console window. The most widely used console method is: console.log(). It is an essential tool for debugging and troubleshooting JavaScript code, and is widely used by developers to inspect and understand their programs.</p>
+        <ol>
+            <li>example: console.log("Hello, World!");</li>
+            <li>result printed message: Hello, World!</li>
+        </ol>
+        <h3>Reassign Variables</h3>
+        <p>Variables can be reassigned, or in other words, assigned to different values. For example:</p>
+        <ol>
+            <li>var myVariable = "Hello, world!";</li>
+            <li>console.log(myVariable);</li>
+            <li>result: Hello, world!</li>
+            <li>myVariable = "Goodbye, world!";</li>
+            <li>console.log(myVariable);</li>
+            <li>result is now: Goodbye, world!</li>
+        </ol>
+        <h3>Using span (refer to wk04LabNotes.js)</h3>
+        <p>
+            console.<span class="hljs-number">log</span>("Hello, World!"); 
+        </p>
+        <p><span class="hljs-keyword">var</span> length = <span class="hljs-number">10</span>; 
+            <span class="hljs-keyword">var</span> width = <span class="hljs-number">5</span>; 
+            <span class="hljs-keyword">var</span> areaOfRectangle = length * width; 
+        
+            <span class="hljs-built_in">console</span>.log(areaOfRectangle);   <span class="hljs-comment">// this will print: 50 </span>
+        </p>
+        <p>
+            console.<span class="hljs-built_in">log</span>(<span class="hljs-number">7</span> > <span class="hljs-number">2</span>);    <span class="hljs-comment">// prints True to the console</span>
+
+            console.<span class="hljs-built_in">log</span>(<span class="hljs-number">7</span> < <span class="hljs-number">2</span>);   <span class="hljs-comment">// prints False to the console</span>
+        </p>
+        <p>
+            <span class="hljs-comment">// Declare a variable, assign it a value, and print it to the console</span>
+            <span class="hljs-keyword">var</span> myVariable = <span class="hljs-string">"Hello, world!"</span>;
+            <span class="hljs-built_in">console</span>.log(myVariable);   <span class="hljs-comment">// this will print: Hello, world!</span>
+
+            <span class="hljs-comment">// Reassign the value of myVariable to "Goodbye, world!", notice the var keyword is missing</span>
+            myVariable = <span class="hljs-string">"Goodbye, world!"</span>;
+
+            <span class="hljs-comment">// Log the new value of myVariable to the console</span>
+            <span class="hljs-built_in">console</span>.log(myVariable); <span class="hljs-comment">// this will print: Goodbye, world!</span>
+        </p>
+        <h3>Examples of Variables</h3>
+        <p>String: A sequence of characters that represents text. Strings are enclosed in either single or double quotes.</p>
+        <ol>
+            <li>var greeting = "Hello, world!";</li>
+            <li>myName = "John";</li>
+            <li>console.log(myName);</li>
+            <li>prints: John</li>
+            <li>console.log(greeting);</li>
+            <li>prints: Hello, world!</li>
+        </ol>
+        <p>Number: A numeric value can be an integer or a floating-point number.</p>
+        <ol>
+            <li>var myAge = 38;</li>
+            <li>var temperature = 98.6;</li>
+            <li>console.log(myAge);</li>
+            <li>prints: 38</li>
+            <li>console.log(temperature);</li>
+            <li>prints: 98.6</li>
+        </ol>
+        <p>Boolean: A value that represents either true or false. Booleans are often used in conditional statements and logical operations.</p>
+        <ol>
+            <li>var isSunny = true;</li>
+            <li>var isRainy = false;</li>
+            <li>console.log(isRainy);</li>
+            <li>prints: false</li>
+            <li>console.log(isSunny);</li>
+            <li>prints: true</li>
+        </ol>
+        <p>Undefined: A value that is assigned to a variable that has not been initialized. Undefined is also returned by functions that do not have a return statement.</p>
+        <ol>
+            <li>var lastName;</li>
+            <li>console.log(lastName);</li>
+            <li>prints: undefined</li>
+        </ol>
+        <h3>Reassigning variables</h3>
+        <p>reassign current year 2015</p>
+        <ol>
+            <li>var currentYear = 2015;</li>
+            <li>console.log(currentYear);</li>
+            <li>prints: 2015</li>
+            <li>currentYear = 2025;</li>
+            <li>console.log(currentYear);</li>
+            <li>prints: 2025</li>
+        </ol>
+        <p>if tag is your favorite game choose your second favorite.</p>
+        <ol>
+            <li>var favoritGame = "tag";</li>
+            <li>console.log(typeof favoritGame);</li>
+            <li>console.log(favoritGame);</li>
+            <li>prints: string</li>
+            <li>favoritGame = "cards";</li>
+            <li>console.log(typeof favoritGame);</li>
+            <li>console.log(favoritGame);</li>
+            <li>prints: string</li>
+        </ol>
+        <p>Null: A value that represents the intentional absence of any object value. Null is oftern used to indicate a celiberate non-value.</p>
+        <ol>
+            <li>var y = null;</li>
+            <li>console.log(y);</li>
+            <li>prints: null</li>
+        </ol>
+        <p>Symbol: A unique and immutable value that may be used as the key of an Object property. Symbols are often used to create private members in Objects.</p>
+        <ol>
+            <li>const key1 = Symbol("key");</li>
+            <li>const key2 = Symbol("key2");</li>
+            <li>const obj = {};</li>
+            <li>obj[key1] = "value1";</li>
+            <li>obj[key2] = "value2";</li>
+            <!-- logs "value1" -->
+            <li>console.log(obj[key1]);</li>
+            <!-- Assuming you meant to close this line with ] -->
+            <li>console.log(obu[key2]);</li>
+        </ol>
+       <h3>BigInt</h3>
+       <p>A numeric value that can represent integers larger than 2^53 - 1. BigInts are denoted by: </p>
+       <ol>
+        <li>appending the letter "n" to the end of an integer literal</li>
+        <li>calling the  BigInt() function</li>
+        <li>let bigNumber = 9007199254740993n;</li>
+        <li>let largeNumber = BigInt(123456789012345678901234567890);</li>
+        <li>console.log(bigNumber);</li>
+        <li>console.log(largeNumber);</li>
+        <li>prints: 9007199254740993n and 123456789012345678901234567890</li>
+       </ol> 
+  </body>
+</html>
