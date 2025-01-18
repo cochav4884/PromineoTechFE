@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+    <script src="loops.js"></script>
+</head>
+<body>
+    <h1>Loops</h1>
+    <p>Let's say we need to do something over and over again until some condition is met. For example:
+        <ol>
+            <li>baking a cake
+                <p>recipe calls for 5 cups of flour</p>
+            </li>
+            <li>place 1 scoup of flour into mixing bowl</li>
+            <li>repeat</li>
+            <li>stop when you reach 5 scoups of flour</li>
+        </ol>
+        <p>
+            var cupsOfFlour = 0;
+
+            while (cupsOfFlour < 5) {
+            
+              console.log('Scooping a cup of flour into the bowl');
+            
+              cupsOfFlour += 1;
+            
+              console.log('There are ' + cupsOfFlour + ' cups of flour in the bowl'); 
+            
+            } 
+        </p>
+        <p>for (var cupsOfFlour = 0; cupsOfFlour < 5; cupsOfFlour++) {
+
+            console.log('Scooping a cup of flour into the bowl');
+          
+            console.log('There are ' + cupsOfFlour + ' cups of flour in the bowl'); 
+          
+          }
+          
+          </p>
+          <h3>For Loop - prints 0 to 9</h3>
+          <p>
+            for (var i = 0; i < 10; i++) {
+
+                console.log(i);
+              
+              }
+          </p>
+          <h3>If Statement inside For Loop</h3>
+          <p>
+            for (var i = 0; i < 100; i++) {
+
+                if (i % 3 == 0) {
+              
+                  console.log(i);
+              
+                }
+              
+              }
+          </p>
+          <h3>Do While Loop</h3>
+          <p>
+            let i = 10;
+
+            do {
+
+               i++;
+
+                console.log(i);
+
+            } while (i < 3);
+          </p>
+    </p>
+   
+</body>
+</html>
