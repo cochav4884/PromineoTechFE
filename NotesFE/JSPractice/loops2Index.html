@@ -25,5 +25,134 @@
         Template literals are extremely useful, and you will learn much more about them in Week 7.  Specifically in the Week 7: Weekly Videos and Curriculum Tile under 2. ES6 Template Literals  
     </p>
 
+    <h1>Modulo</h1>
+    <p>The Modulo (%) is a mathematical operator t hat returns the remainder of dividing one number by another. In JavaScript, the modulo operator works with integers (both positive and negative numbers) and floating-point numbers (decimals).</p>
+    <p>Example:
+        <ul>
+            <li>console.log(13 % 4);</li>
+            <li>Output: 1
+                <p>
+                    In this example, the modulo operator returns the remainder of dividing 13 by 4, which is 1 because 13 divided by 4 is 3 with a remainder of 1. 
+                </p>
+                <p>
+                    We can also use modulo to determine if a number is even or odd. An even numer will hae a remainder of 0 when divded by 2, while and odd number will have a remainder of 1 when divided by 2.
+                    <ul>
+                        <li>console.log(4 % 2):</li>
+                        <li>Output: 0 (even)</li>
+                        <li>console.log(5 % 2);</li>
+                        <li>Output: 1 (odd)</li>
+                    </ul>
+                    <p>
+                        if (x % 2 == 0) {
+                            console.log("x is even");
+                          } else {
+                            console.log("x is odd");
+                          }
+                    </p>
+                    <p>
+                        Modulo can also be used in conjunction with other operators and expressions to create more complex logic in our programs.
+                    </p>
+                    <P>Example:
+                        <P>
+                            let num = 42;
+
+                            if (num % 2 == 0 && num % 3 == 0) {
+                                console.log("The number is divisible by both 2 and 3");
+                            } else if (num % 2 == 0) {
+                                console.log("The number is divisible by 2 but not by 3");
+                            } else if (num % 3 == 0) {
+                                console.log("The number is divisible by 3 but not by 2");
+                            } else {
+                                console.log("The number is not divisible by either 2 or 3");
+                            }
+                      
+                          // Output: "The number is divisible by both 2 and 3" 
+                        </P>
+                        <p>
+                            In this example, we first check if the number is divisible by both 2 and 3 by using the && operator to combine the two modulo expressions (num % 2 == 0 and num % 3 == 0). If that is true, we print a message saying "The number is divisible by both 2 and 3". If the number is not divisible by both 2 and 3, we move on to check if it is only divisible by 2. If that is true, we print a message saying "The number is divisible by 2 but not by 3". If the number is not divisible by 2 either, we move on to check if it is only divisible by 3. If that is true, we print a message saying "The number is divisible by 3 but not by 2". Finally, if the number is not divisible by either 2 or 3, we print a message saying "The number is not divisible by either 2 or 3".
+
+                            Note: In the example a % b, a is referred to as the dividend, % is the operator, and b is the divisor. In JavaScript, % always returns the remainder, or the value that is left over when the dividend is divided by the divisor (e.g. the result of a % b will be the remainder after a is divided by b). The result will be returned with the sign of the dividend. 
+                        </p>
+                    </P>
+                </p>
+            </li>
+        </ul>
+    </p>
+
+    <h1>Nested if Statements</h1>
+    <p>In JavaScript, a nested if else statement is a type of conditional statement where one if else statement is nested inside another if or else statement. This allows you to test for multiple conditions and execute different code blocks depending on the results of those tests.</p>
+    <p>The basic syntax of a nested if else statement is as follows:
+        if (condition1) {
+            // code to execute if condition1 is true, then condition 2 is checked
+               if (nestedCondition) {
+                  // code to execute if both condition1 and nestedCondition2 are true
+               } else {
+                  // code to execute if condition1 is true but nestedCondition2 is false
+               }
+          } else {
+            // code to execute if condition1 is false
+          }
+          <p>In the above code, there are two levels of conditional statements. The outer if else statement checks condition1, and if it is true, it executes the code inside the first pair of curly braces. If nestedCondition2 is also true, it executes the code inside the second pair of curly braces, otherwise it executes the code inside the else block. If condition1 is false, the code inside the else block is executed.</p>
+          <p>Here is an example of a nested if else statement in JavaScript:
+            if (condition1) {
+                // code to execute if condition1 is true, then condition 2 is checked
+                   if (nestedCondition) {
+                      // code to execute if both condition1 and nestedCondition2 are true
+                   } else {
+                      // code to execute if condition1 is true but nestedCondition2 is false
+                   }
+              } else {
+                // code to execute if condition1 is false
+              }
+              <p>In the above code, there are two levels of conditional statements. The outer if else statement checks condition1, and if it is true, it executes the code inside the first pair of curly braces. If nestedCondition2 is also true, it executes the code inside the second pair of curly braces, otherwise it executes the code inside the else block. If condition1 is false, the code inside the else block is executed.</p>
+              <p>Here is an example of a nested if else statement in JavaScript:
+
+                let num = 10;
+
+                if (num > 0) {
+                    if (num % 2 == 0) {
+                    console.log(num + " is a positive even number");
+                    } else {
+                    console.log(num + " is a positive odd number");
+                    }
+                } else if (num == 0) {
+                    console.log("Zero is neither positive nor negative");
+                 } else {
+                    console.log(num + " is a negative number");
+                }
+        
+                </p>
+
+<p>
+Loop - a control structure that allows a block of code to be executed repeatedly until a specific condition is met.
+Loop body - the code that is executed during each iteration of a loop, usually found inside of curly brackets { }.
+Loop condition - the condition that determines whether the loop should continue or not.
+break statement - a statement that is used to exit a loop prematurely based on a certain condition.
+do while loop - a variation of the while loop that ensures that the code block is executed at least once, regardless of the condition being met.
+while loop - a type of loop that is used when the number of iterations is not known ahead of time. It relies on a specified condition being true to continue looping.
+for loop - a type of loop that is used when the number of iterations is known ahead of time. It consists of an initialization statement, a condition for continuing the loop, and an increment (or decrement) statement.
+Infinite loop - a loop that never stops executing because the condition for terminating the loop is never met.
+Iteration - each execution of the loop's code block or every time the loop runs.
+Iterator - a variable used to keep track of the current iteration count, customarily i or j for nested loops. This can be any variable name.
+</p>
+</p>
+</p>
+
+<h2>Let's Play A Game!</h2>
+<p>
+    for (var i = 0; i < 100 && points < 290; i++){
+        if(points == 125 && pointsReset === false){
+            points = 25;
+            pointsReset = true;
+        } else if (i % 2 === 0){
+            points = points + 5;
+        } else {
+            points = points + 3;
+        }
+        
+        console.log("Turns: " + i + " Score: " + points)
+    }
+</p>
+    
 </body>
 </html>

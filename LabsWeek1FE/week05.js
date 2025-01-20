@@ -213,17 +213,29 @@ console.log(`--------------------------
  *         Print the iterator if the remainder (% // modulus) is 0 when divisible by 4.
  *
  * ↓ YOUR CODE HERE ↓ */
-var countDown = 0;
-
-for (var countDown = 0; countDown < 11; countDown--) {
-    if (countDown <= 11 && countDown <= -10) {
-        console.log(countDown);
-    }
+for (let i = 10; i >= -10; i--) {
+    console.log(i);
 }
+
+// let i = 1;
+// do {
+//     console.log(i);
+//     i++;
+// } while (i <= 50);
+
+let i = 1;
+do {
+    if (i % 4 === 0) {
+        console.log(i);
+    }
+    i++;
+} while (i <= 50);
 /*-------------------------------------------------------*/
 
 console.log(`--------------------------
     Question 6: Debugging an infinite loop! \n`);
+
+    
 
 /**
  * Step 1: Read through the written code below.
@@ -232,10 +244,10 @@ console.log(`--------------------------
  *
  * ↓ YOUR CODE HERE ↓ */
 
-/*    
-       for (let i = 11; i > 10; i++) { 
+   
+       for (let i = 11; i >= 10; i--) { 
           console.log(i);   
        } 
-      */
+      
 
 console.log('-----------Finished------------');
