@@ -1,108 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Functions</title>
     <script src="functions.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Functions</h1>
-    <p>As mentioned in the previous section, it is important to follow the DRY principle -- Don't Repeat Yourself.  Software developers should strive to avoid duplicating code.  Duplicated code means more places to make changes if we ever need to change anything, and more places to make changes means more opportunities for something to be missed or a mistake to be made.
+    <p>
+      As mentioned in the previous section, it is important to follow the DRY
+      principle -- Don't Repeat Yourself. Software developers should strive to
+      avoid duplicating code. Duplicated code means more places to make changes
+      if we ever need to change anything, and more places to make changes means
+      more opportunities for something to be missed or a mistake to be made.
+      <br />
 
-        Functions in JavaScript are simply a set of statements written to accomplish as task, and functions allow JavaScript Developers avoid code duplication.  A function is written once, and can be invoked (or called) any number of times.  
-        
-        To declare a function in JavaScript, we use the following:
-        the keyword function
-        a name for the function
-        zero or more parameters (comma-separated, inside parentheses),  
-        a number of JavaScript statements inside of curly braces.
-        
-        
-        Let's look at two example function declarations:
-        
-        printLowerCase function declaration: This function takes any string, and prints the string all in lower case.  Notice that this function has one parameter, but does not return any value:
-        function printLowerCase(name) {
-        console.log(name.toLowerCase());
-        }
-        
-        2.  multiply function declaration:   This function takes any two numbers, and multiples those two numbers.  Notice that this function takes two parameters, and returns a result:
-        
-        function multiply(num1, num2) {
-        return num1*num2;
-        }
-        
-        This example multiplies two numbers and returns the result.  Now, to be fair, this could be simplified by using *. but you get the idea.
-        
-        
-        
-        Another function declaration example:
-        
-        Let's take a look at another example, something a bit more useful. Remember the example from Week 2:  Weekly Videos and Curriculum 1. Boolean Operators and Conditionals?  We were trying to decide whether or not a person could drive based on their age.  Here is the if - else code.
-        
-        var ageRequiredToDrive = 16;
-        
-        var currentAge = 14;
-        
-        if (currentAge >= ageRequiredToDrive) {
-        
-          console.log('This person can drive');
-        
-        } else {
-        
-          console.log('This person cannot legally drive');
-        
-        }
-        
-        
-        How would we make this into a function?  
-        
-        function checkCanDrive(age) {
-        
-        return (age >= 16);
-        }
-        
-        Now, we need to invoke that function, or call that function for it to be useful.
-        
-        var currentAge = 14;
-        if (checkCanDrive(currentAge) {
-        console.log('This person can drive');
-        } else {
-        console.log('This person cannot legally drive');
-        
-        
-        For this simple example, the effort taken to create this function seems more than it's worth, but imagine that we are a function with hundreds of lines of code, and it is called many times.  The reusability of the code with a simple call to a function is the benefit of functions.
-        
-        
-        
-        Return the Lowest Grade in an GradeBook Array Example:
-        
-        
-        GradeBook Example, taken from Week 2: Videos and Curriculum 1. Arrays: Let's write a function to return the lowest grade in the GradeBook.
-        
-        let fullName = "Mary" + " " + "Brown"; 
-        let gradesArray = [100, 79, 80, 90, 100];
-        
-        function lowestGrade (gradeBook) {
-        if (gradeBook.length > 0) {
-        let lowGrade=gradeBook[0];
-        for (let grade of gradeBook) {
-        if (grade < lowGrade) {
-        lowGrade = grade;
-        }
-        }
-        return lowGrade;
-        } else {
-            return 0;
-        }
-        }
-        
-        console.log("\n\nStudent: " + fullName);
-        console.log("Grades: ");
-        for (let i = 0; i < gradesArray.length; i++) { 
-        console.log("\t" + (i+1) + ": " + gradesArray[i]);
-        }
-        console.log("Evaluation: ");
-        console.log("\tLowest Grade is: " + lowestGrade(gradesArray));</p>
-</body>
+      Functions in JavaScript are simply a set of statements written to
+      accomplish as task, and functions allow JavaScript Developers avoid code
+      duplication. A function is written once, and can be invoked (or called)
+      any number of times. <br /><br />
+    </p>
+
+    <p>
+      To declare a function in JavaScript, we use the following: the keyword
+      function a name for the function zero or more parameters (comma-separated,
+      inside parentheses), a number of JavaScript statements inside of curly
+      braces.
+    </p>
+
+    <p>
+      Let's look at two example function declarations: <br />
+
+      printLowerCase function declaration: This function takes any string, and
+      prints the string all in lower case. Notice that this function has one
+      parameter, but does not return any value: function printLowerCase(name) {
+      console.log(name.toLowerCase()); }
+    </p>
+    <p>
+      2. multiply function declaration: This function takes any two numbers, and
+      multiples those two numbers. Notice that this function takes two
+      parameters, and returns a result:
+      <br />
+      function multiply(num1, num2) { return num1*num2; }
+      <br />
+      This example multiplies two numbers and returns the result. Now, to be
+      fair, this could be simplified by using *. but you get the idea.
+    </p>
+
+    <p>
+      Another function declaration:
+      <br />
+      Let's take a look at another example, something a bit more useful.
+      Remember the example from Week 2: Weekly Videos and Curriculum 1. Boolean
+      Operators and Conditionals? We were trying to decide whether or not a
+      person could drive based on their age. Here is the if - else code. var
+      ageRequiredToDrive = 16; var currentAge = 14; if (currentAge >=
+      ageRequiredToDrive) { console.log('This person can drive'); } else {
+      console.log('This person cannot legally drive'); }
+    </p>
+
+    <p>
+      How would we make this into a function? <br />
+
+      function checkCanDrive(age) { return (age >= 16); } Now, we need to invoke
+      that function, or call that function for it to be useful. var currentAge =
+      14; if (checkCanDrive(currentAge) { console.log('This person can drive');
+      } else { console.log('This person cannot legally drive');
+    </p>
+
+    <p>
+      For this simple example, the effort taken to create this function seems
+      more than it's worth, but imagine that we are a function with hundreds of
+      lines of code, and it is called many times. The reusability of the code
+      with a simple call to a function is the benefit of functions.
+
+      <br />
+
+      Return the Lowest Grade in an GradeBook Array Example:
+    </p>
+    <p>
+      GradeBook Example, taken from Week 2: Videos and Curriculum 1. Arrays:
+      Let's write a function to return the lowest grade in the GradeBook.
+      <br />
+      let fullName = "Mary" + " " + "Brown"; let gradesArray = [100, 79, 80, 90,
+      100];
+      <br />
+      function lowestGrade (gradeBook) { if (gradeBook.length > 0) { let
+      lowGrade=gradeBook[0]; <br> for (let grade of gradeBook) { <br> if (grade <
+      lowGrade) { <br> lowGrade = grade; } } <br> return lowGrade; <br> } else { return 0; } }
+      <br />
+      console.log("\n\nStudent: " + fullName); console.log("Grades: "); for (let
+      i = 0; i < gradesArray.length; i++) { console.log("\t" + (i+1) + ": " +
+      gradesArray[i]); } console.log("Evaluation: "); console.log("\tLowest
+      Grade is: " + lowestGrade(gradesArray));
+    </p>
+
+    <h2>Vocabulary Terms</h2>
+    <ul>
+      <li>
+        Arguments: Values that are passed into a Function when it is called.
+        Used to initialize the Parameters in a Function.
+      </li>
+      <li>
+        Body: The part of a Function that contains the code that is executed
+        when the Function is called.
+      </li>
+      <li>
+        Function: A block of code that performs a specific task and can be
+        called or invoked from other parts of the program.
+      </li>
+      <li>function: The keyword used to define a Function in JavaScript.</li>
+      <li>Invoke: To call a Function and execute its code.</li>
+      <li>
+        Parameters: Variables that are defined in the declaration of a Function,
+        and receive values when the Function is called.
+      </li>
+      <li>
+        return: A keyword used in a Function to provide (or return) a value and
+        stop the Function execution.
+      </li>
+      <li>
+        Statement: A line of code that performs an action, such as an
+        assignment, a loop, or a conditional.
+      </li>
+      <li>
+        Value: A data type that represents a single piece of information, such
+        as a number, a String, or a Boolean.
+      </li>
+    </ul>
+
+    <h3>Functions</h3>
+    <p>
+      Functions are an essential part of JavaScript programming that modularizes
+      code. They help to make code reusable and more organized. A Function is a
+      block of code designed to perform a particular task. To create a Function
+      in JavaScript, you need to use the function keyword, followed by a name
+      for the Function, parentheses, and curly braces. The body of the Function
+      will go inside the curly braces. Here is what the syntax of a Function
+      looks like:
+    </p>
+    <p>
+      function descriptiveFunctionName ( parameter1, parameter2, ...) { //
+      Function body, denoted by the curly braces // this is where you write the
+      code that will be executed when the Function is called ... <br> return
+      returnValue; // used if you want the Function to return a value } <br>
+      descriptiveFunctionName( argument1, argument2, ...); // this statement
+      calls the Function
+    </p>
+    <p>
+      Moreover, it is important to use descriptive names when naming Functions.
+      As a best practice, Function names should be verbs that describe what the
+      Function does. Function names in JavaScript are written in camelCase,
+      which means that they start with a lowercase letter, and each additional
+      word in the name is Capitalized. For example, if you wanted to name a
+      Function that counts array items, the name could be countArrayItems(). By
+      following this convention, your code will be more readable and easier to
+      understand. Here is an example of a simple Function, without any
+      parameters, that logs numbers 0 through 9 to the console using a for loop:
+    </p>
+    <p>
+      function myCount() { <br> for (let i = 0; i < 10; i++) { <br> console.log(i); <br> } }
+    </p>
+    <p>
+      To execute or run a Function, you need to call or invoke it by its name.
+      For example, you can call the above Function with the following:
+    </p>
+    <p>myCount();</p>
+
+    <h3>Parameters and Arguments</h3>
+    <p>
+      Functions can also accept parameters as inputs, which allows you to make
+      your code more dynamic. In JavaScript, you can define parameters for a
+      Function by specifying them inside the parenthesis when defining the
+      Function. When you invoke the Function, you can pass in arguments that
+      will be used to initialize the parameters. Essentially, the parameters are
+      placeholders within the function, that are replaced with the arguments
+      passed in when the Function is invoked. Here is an example of a Function
+      that accepts two parameters and returns their sum:
+    </p>
+    <p>
+      function myFunctionWithParams(num1, num2) <br> { return num1 + num2; } <br> var
+      result = myFunctionWithParams(2, 3); <br> console.log(result); // Output: 5
+    </p>
+    <p>
+      In this code example, we have defined a Function called
+      myFunctionWithParams that takes in the parameters, num1 and num2. In this
+      case, we pass the values 2 and 3 to the Function when we invoke it using
+      the statement myFunctionWithParams(2, 3). The value of num1 is then set to
+      2 and the value of num2 is set to 3. The Function then adds these two
+      values together and returns the result of 5. When a Function is executed,
+      it can return a value by using the return keyword as shown in the example
+      above. The return statement is used to stop the Function execution and
+      return a value back to the caller, in this case 5. <br />
+      If you only invoke the Function without any additional code to output the
+      result, the Function will execute its code and return any value specified
+      by the return statement, but nothing will be displayed in the console. If
+      you want to see the returned value in the console, you need to use the
+      console.log() method to print it out. In this example, the Function
+      invocation was assigned to the variable result, then result was printed to
+      the console.
+    </p>
+
+    <h3>Arrow Functions</h3>
+    <p>This lesson covers Questions 1-10 (Part 1) of the OpenClass Arrow Functions lesson and comprises five (5) coding questions, each accompanied by a mastery question.
+<br>
+      ES6
+      <br>
+      ECMAScript 2015, also known as ES6, was a major update to the JavaScript language specification. It was officially released in June 2015 and introduced significant new features and syntax changes to the language. Some of the new features introduced in ES6 include arrow functions, classes, template literals, destructuring, and modules. The reason for the ES6 update was to address some of the limitations and inconsistencies in the previous version of the language, and to provide developers with a more modern and robust set of tools for building complex applications. </p>
+      <br>
+      Arrow Functions
+      <br>
+      <p>JavaScript arrow functions are a compact way of writing Functions. They are similar to regular Functions in that they can accept parameters and return values, but they have a shorter syntax. Arrow functions have a few key differences from regular functions. First, they do not have their own this keyword, so the value of this inside an arrow function is the same as the value of this outside the function. This makes arrow functions especially useful for event handlers, where the value of this can be ambiguous. Second, if an arrow function has only one parameter, the parentheses around the parameter can be omitted. Lastly, arrow functions cannot be used as constructors, meaning you cannot use the new keyword with them. Overall, arrow functions can be a handy tool for writing concise and readable code, especially for simple functions with short bodies.</p>
+      <p>
+      The syntax for an arrow function with a single parameter and expression is as follows: <br>
+      
+          let myConciseArrowFunction = parameter1 => expression; <br>
+      The syntax for arrow functions with more than one statement or more than a single line of code is as follows: <br>
+      
+          let myBlockArrowFunction = (parameter1, parameter2) => { <br>
+              statement; <br>
+              statement; <br>
+              return expression;<br>
+          };
+          <br>
+      Below is an example of an arrow function with a concise body, notice how the parentheses are included since there are two parameters and there is no need for a return key word:
+      <br>
+          let sum = (a, b) => a + b; <br>
+      Following is an example of an arrow function with a block body, notice how curly braces { } are used to include multiple statements and in this case the return key word is obligatory:
+      <br>
+          let addToPrint = (num1) => { <br>
+              let sum = 0; <br>             
+              for(let i = 0; i < num1; i++) { <br>
+                sum += num1; <br>
+              } <br>
+              return sum; <br>
+          }; <br>
+      
+          console.log(addToPrint(4)); // Output: 16</p>
+      </p>
+  </body>
 </html>

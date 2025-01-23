@@ -40,5 +40,75 @@ Just like any variable in JavaScript, an array must be declared.  We declare the
        The position of the items begin with position 0 and end with position 5. 
        The last item is always the number of items -1. 
     </p>
+
+    <h1>Vocabulary Terms:</h1>
+    <ul>
+        <li>Array: An Array is a collection of values accessed through a single variable. The Array Object allows us to store and manipulate multiple values through a variable by using an Index.</li>
+        <li>concat(): A method that combines two or more Arrays and returns a new Array that contains all the elements from the original Arrays. The original Arrays are not modified.</li>
+        <li>Element: Refers to a single item in an Array.</li>
+        <li>filter(): A method that creates a copy of an Array with all the elements that qualify a test implemented by a provided Function.</li>
+        <li>for loop: A for loop is a control flow statement in JavaScript that allows you to execute a block of code repeatedly based on a specified condition. It is often used to iterate over the elements in an Array.</li>
+        <li>for of loop: Allows you to iterate over the values of an iterable object, such as an Array.</li>
+        <li>forEach(): A built-in Array method that allows you to loop through the elements of an Array and execute a provided Function once for each element.</li>
+        <li>Index: A non-negative numerical value that represents the position of an element in an Array. In JavaScript, Arrays are zero-indexed.</li>
+        <li>length: A property that returns the number of elements in the Array.
+        </li>
+        <li>map(): A method that creates a new Array with new elements that result from calling a provided Function on every element in the original Array.</li>
+        <li>pop(): A method that removes the last element from an Array and returns that element.</li>
+        <li>push(): A method that adds one or more elements to the end of an Array and returns the new length of the Array.</li>
+        <li>reduce(): A method that allows you to reduce an Array of values into a single value.</li>
+        <li>reverse(): A method that reverses the order of elements in an Array. It modifies the original Array and returns the Array where the last element is now the first and what was the first element in now the last.</li>
+        <li>shift(): A method that removes the first element from an Array and returns that element. The remaining elements in the Array are then shifted to a lower index.
+        </li>
+        <li>slice(): A method that returns a new Array that contains a portion of the original Array, determined by the method parameters, the starting index (inclusive) and ending index (not inclusive) of the elements to be included in the new Array.</li>
+        <li>sort(): A method that reorganizes the elements of an Array by ascending order based on their assigned Unicode numbers (or code points). The sorted Array is then returned.</li>
+        <li>splice(): A method that allows you to add, remove, and replace elements in an Array at any index. Determined by the parameters passed in to the method.
+        </li>
+        <li>unshift(): A method used to add one or more elements to the beginning of an Array and returns the new length of the modified Array. All other elements in the Array will have their indices increased accordingly.</li>
+    </ul>
+
+    <h2>What is an Array?</h2>
+    <p>An Array is an object data structure in JavaScript that allows us to store and access multiple values of the same data type. Arrays are objects that are resizable and can hold different data types all mixed together, if necessary.
+
+        Arrays can be created by declaring a variable using the key words var or let and assigning it to an Array literal, which is denoted by square brackets []. <br> Arrays can also be declared by using an Array constructor with or without the new keyword. Throughout this lesson we will practice using both key words to declare an Array, var and let. Here are different examples of declaring an Array:</p>
+
+        <p>Using an Array Literal:</p>
+
+         <p>var myArray = [];  // Output: [] , an empty Array literal
+        
+            <br> var myOtherArray = [1, 2, 3];  // Output: [1,2,3]
+        
+            <br> var myStringArray = ["apple", "banana", "orange"];  // Output: ["apple","banana","orange"]</p>
+
+        <p>Using an Array Constructor:</p>
+
+        <p>let numsArray = new Array(3);  // Output: [ , , ]  an empty Array with 3 slots
+
+            <br> let myOtherNumsArr = new Array(1, 2, 3);  // Output: [1, 2, 3]
+        
+            <br> let fruitsArr = Array ("apple", "banana", "orange");  // Output: ["apple","banana","orange"]</p>
+            
+           <h2>Sorting Arrays</h2>
+           <p>Sorting an Array means arranging its elements in a particular order. By default, the sort() method sorts elements in ascending order by their Unicode designation. Here is an example of how the sort() method works with an Array of numbers:</p>
+           <p>    // using just the sort() method <br>
+            let numbers = [3, 25, 4, 12, 5, 2, 6, 11, 21, 5, 1, 15]; <br>
+            numbers.sort(); <br>
+            console.log(numbers);  // Output: [1,11,12,15,2,21,25,3,4,5,5,6]</p>
+           <p>Notice how the numbers are in order but 11 is treated like a 1 and 21 is treated like a 2. Not exactly ascending order but that is how the sort() method works with numbers. However, we can provide a Function to the sort() method to specify a custom sorting order.</p>
+           <p> // using the sort() method with a Function passed through <br>
+            let numbers = [3, 25, 4, 12, 5, 2, 6, 11, 21, 5, 1, 15]; <br>
+            numbers.sort((a, b) => a - b); <br>
+            console.log(numbers);  // Output: [1,2,3,4,5,5,6,11,12,15,21,25]</p>
+            <p>In this example, we use the sort() method with a comparison Function that compares the elements of the Array in pairs and returns a negative value if a should come before b, a positive value if a should come after b, and zero if they are equal. By subtracting b from a, it can be determined which number, a or b, is larger and which one is smaller. It continues through the Array until the elements are sorted in ascending order.</p>
+
+            <h2>Reverse Array</h2>
+            <p>Reversing an Array means changing the order of its elements so that the first element becomes the last, the second becomes the second to last, and so on. In JavaScript, we can reverse an Array using the reverse() method.</p>
+            <p>Here is an example of how to reverse an Array of Strings using the reverse() method: <br>
+
+                let fruits = ["apple", "banana", "cherry", "date", "elderberry"];  <br>
+                fruits.reverse(); <br>
+                console.log(fruits); // Output: ["elderberry", "date", "cherry", "banana", "apple"]</p>
+
+            <p>In this example, we have an Array of fruit that we want to reverse. We use the reverse() method to reverse the order of the elements in the fruits Array. The console.log() statement outputs the reversed Array of fruit.</p>
 </body>
 </html>
