@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Array Methods</title>
+    <script src="intermediateArrayMethods.js"></script>
+</head>
+<body>
+    <h1>Intermediate Array Methods</h1>
+    <p>When using methods on arrays, it's important to refer to the documentation on exactly how each of these methods works.  
+
+        arrayName.every()  Example:
+        
+        In our GradeBook example, what if we wanted to decide if every grade in the GradeBook array was a passing grade.  Passing in this example is a 70 or above.
+        
+        let fullName = "Mary" + " " + "Brown"; 
+        let gradesArray = [100, 79, 80, 90, 100];
+        const isPassing = (currentValue) => currentValue >= 70;
+        
+        console.log("\n\nStudent: " + fullName);
+        console.log("Grades: ");
+        for (let i = 0; i < gradesArray.length; i++) { 
+        console.log("\t" + (i+1) + ": " + gradesArray[i]);
+        }
+        console.log("Evaluation: ");
+        
+        if (gradesArray.every(isPassing)) {
+        console.log('\tEvery grade is a passing grade (>= 70)!');
+        } else {
+        console.log('\tNot all grades are passing.  A passing grade is >= 70!');
+        }
+        
+        
+        What would happen if we added a grade of 55 to our array?  Note:  You need the above declarations of fullName, gradesArray and isPassing to run the following code.
+        
+        gradesArray.push(55);
+        console.log("\n\nStudent: " + fullName);
+        console.log("Grades: ");
+        for (let i = 0; i < gradesArray.length; i++) { 
+        console.log("\t" + (i+1) + ": " + gradesArray[i]);
+        }
+        console.log("Evaluation: ");
+        
+        if (gradesArray.every(isPassing)) {
+        console.log('\tEvery grade is a passing grade (>= 70)!');
+        } else {
+        console.log('\tNot all grades are passing.  A passing grade is >= 70!');
+        }</p>
+</body>
+</html>

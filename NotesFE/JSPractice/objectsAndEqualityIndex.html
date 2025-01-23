@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects & Equality</title>
+    <script src="objectsAndEquality.js"></script>
+</head>
+<body>
+    <h1>Objects & Equality</h1>
+    <p>What is an Object in JavaScript?
+
+        An Object is a group of properties and methods.  A property is an association between a key:value pair, where the key is the property name, and the value is the value that we are assigning to that property.
+        
+        In JavaScript, Objects can be defined (or created) a few ways:
+        
+        with an Object Literal or Object Initializer
+        By using a Constructor function
+        By using the Object.create() method.
+        In this section, we will look at creating an Object by using an Object Literal.  Let's take a look at a simple Contact List Object:
+        
+        var contactOne = {
+        firstName:"Mickey",
+        lastName: "Mouse",
+        address: {
+        street: "1 Main Street",
+        city: "Disneyland",
+        state: "CA",
+        zip: "92802"
+        },
+        phone: "123-456-7890",
+        notes: ""
+        };
+        
+        
+        Let's look at how we access the properties here.  To get to a property within an object, we need to use dot notation as follows:
+        
+        console.log(contactOne.firstName + " " + contactOne.lastName 
+        +  " lives in " + contactOne.address.city + " " 
+        + contactOne.address.state);
+        
+        
+        </p>
+
+        <h1>Equality vs Identity</h1>
+        <p>//Equality vs Identity (Both are boolean operators)
+            //Equality (==) checks if the values are equal. Example: (2 == '2' is true) (Use only as a last resort for an exception)
+            // 3 operators are used to compare values in JavaScript. ==, ===, and !=. 
+            //Identity (===) checks if the values are equal and the types are the same. Example: (2 === '2' is false) (Use as default as the rule of thumb)
+            
+            // == is used to compare two values, but it ignores the datatype of variable.
+            console.log(2 == '2'); //prints true. (2 is equal to '2')
+            
+            // === is usedto compare two values, but it checks the datatype of variable.
+            console.log(2 === '2'); //prints false. (2 is not equal to '2')
+            
+            
+            // != is used to compare two values, but it ignores the datatype of variable.
+            console.log(2 != '2'); //prints false. (2 is equal to '2')</p>
+</body>
+</html>

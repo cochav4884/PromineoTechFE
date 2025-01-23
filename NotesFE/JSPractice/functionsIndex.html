@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <script src="functions.js"></script>
+</head>
+<body>
+    <h1>Functions</h1>
+    <p>As mentioned in the previous section, it is important to follow the DRY principle -- Don't Repeat Yourself.  Software developers should strive to avoid duplicating code.  Duplicated code means more places to make changes if we ever need to change anything, and more places to make changes means more opportunities for something to be missed or a mistake to be made.
+
+        Functions in JavaScript are simply a set of statements written to accomplish as task, and functions allow JavaScript Developers avoid code duplication.  A function is written once, and can be invoked (or called) any number of times.  
+        
+        To declare a function in JavaScript, we use the following:
+        the keyword function
+        a name for the function
+        zero or more parameters (comma-separated, inside parentheses),  
+        a number of JavaScript statements inside of curly braces.
+        
+        
+        Let's look at two example function declarations:
+        
+        printLowerCase function declaration: This function takes any string, and prints the string all in lower case.  Notice that this function has one parameter, but does not return any value:
+        function printLowerCase(name) {
+        console.log(name.toLowerCase());
+        }
+        
+        2.  multiply function declaration:   This function takes any two numbers, and multiples those two numbers.  Notice that this function takes two parameters, and returns a result:
+        
+        function multiply(num1, num2) {
+        return num1*num2;
+        }
+        
+        This example multiplies two numbers and returns the result.  Now, to be fair, this could be simplified by using *. but you get the idea.
+        
+        
+        
+        Another function declaration example:
+        
+        Let's take a look at another example, something a bit more useful. Remember the example from Week 2:  Weekly Videos and Curriculum 1. Boolean Operators and Conditionals?  We were trying to decide whether or not a person could drive based on their age.  Here is the if - else code.
+        
+        var ageRequiredToDrive = 16;
+        
+        var currentAge = 14;
+        
+        if (currentAge >= ageRequiredToDrive) {
+        
+          console.log('This person can drive');
+        
+        } else {
+        
+          console.log('This person cannot legally drive');
+        
+        }
+        
+        
+        How would we make this into a function?  
+        
+        function checkCanDrive(age) {
+        
+        return (age >= 16);
+        }
+        
+        Now, we need to invoke that function, or call that function for it to be useful.
+        
+        var currentAge = 14;
+        if (checkCanDrive(currentAge) {
+        console.log('This person can drive');
+        } else {
+        console.log('This person cannot legally drive');
+        
+        
+        For this simple example, the effort taken to create this function seems more than it's worth, but imagine that we are a function with hundreds of lines of code, and it is called many times.  The reusability of the code with a simple call to a function is the benefit of functions.
+        
+        
+        
+        Return the Lowest Grade in an GradeBook Array Example:
+        
+        
+        GradeBook Example, taken from Week 2: Videos and Curriculum 1. Arrays: Let's write a function to return the lowest grade in the GradeBook.
+        
+        let fullName = "Mary" + " " + "Brown"; 
+        let gradesArray = [100, 79, 80, 90, 100];
+        
+        function lowestGrade (gradeBook) {
+        if (gradeBook.length > 0) {
+        let lowGrade=gradeBook[0];
+        for (let grade of gradeBook) {
+        if (grade < lowGrade) {
+        lowGrade = grade;
+        }
+        }
+        return lowGrade;
+        } else {
+            return 0;
+        }
+        }
+        
+        console.log("\n\nStudent: " + fullName);
+        console.log("Grades: ");
+        for (let i = 0; i < gradesArray.length; i++) { 
+        console.log("\t" + (i+1) + ": " + gradesArray[i]);
+        }
+        console.log("Evaluation: ");
+        console.log("\tLowest Grade is: " + lowestGrade(gradesArray));</p>
+</body>
+</html>
