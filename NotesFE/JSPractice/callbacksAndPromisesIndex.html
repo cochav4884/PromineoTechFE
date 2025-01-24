@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callbacks and Promises</title>
+    <script src="callbacksAndPromises.js"></script>
+  </head>
+  <body>
+    <h1>Callbacks and Promises</h1>
+    <p>
+      Functions: To review, a function is code that can be called by other code,
+      or by itself. Functions allow for code reusability and allow the DRY
+      principle to be adhered to. Succinctly defined and named by Andy Hunt and
+      Dave Thomas in their book The Pragmatic Programmer, it states that "Every
+      piece of knowledge must have a single, unambiguous, authoritative
+      representation within a system." In other words, "Don't Repeat Yourself".
+      This principle was in use before the book was published, but Hunt and
+      Thomas are credited with coining the phrase DRY principle. In JavaScript,
+      there are different types of functions: - An Anonymous Function does not
+      have a function name -- only function expressions. - A Named Function is a
+      function with a function name -- function expressions or declarations. - A
+      Recursive Function is simply a function that calls itself. - An IIFE, or
+      Immediately Invoked Function Expression is a function expression that is
+      called directly after the function is loaded into the browser's complier.
+      - Inner function: describes a function declared within another function. -
+      Outer function: describes a function within which another function is
+      declared. In JavaScript, functions are first-class citizens. What does
+      that mean? In general terms, a first-class citizen in programming language
+      design is any entity which supports all the operations generally available
+      to other entities. With functions, since they have the following
+      abilities, they are referred top as first-class citizens. Some of the
+      abilities that functions have in JavaScript are as follow: - A function
+      can be stored as a value, including storing that function in a variable. -
+      A function can be passed as an argument. - A function can be returned from
+      another function. Functions that return a function are called Higher Order
+      Functions in programming. With ES6 (Refer to all of the Week 4: Weekly
+      Videos and Curriculum for a detailed explanation), Arrow Functions were
+      introduced into JavaScript, and Higher-Order Arrow Functions implies using
+      Arrow Functions (in ES6) along with Higher-Order functions. Terminology: -
+      callback: A function that is passed into another function as an argument
+      for later execution. - higher-order function: A function that accepts a
+      function as an argument. - arrow function: A concise way to write
+      functions in JavaScript. - higher-order arrow function: Implies using
+      arrow functions (in ES6) with Higher-Order functions. The code will be
+      much shorter, more concise, easy to debug and focusses on what is required
+      rather than how to achieve it. To relate Callbacks to Promises -- our next
+      Video -- there are two types of Callbacks, synchronous or asynchronous
+      callbacks; but Promises are foundational to asynchronous programming in
+      JavaScript. Resources:
+    </p>
+
+    <h2>Promises</h2>
+    <p>
+      JavaScript Promises are a great way to handle asynchronous operations, and
+      are used to find out if something has happened or not. Promises are
+      Objects in JavaScript. The Promise Object has two internal properties,
+      state and result. These properties are used to determine whether or not
+      the Promise is still working (pending), or has been settled (succeeded or
+      failed). Remember, that the Promise is executed immediately upon creation,
+      and should have two functions, resolve and reject, which will change the
+      state of the corresponding Promise Object. Note: state and result can not
+      be accessed externally, they are internal, and can only be accessed using
+      the methods .then .catch and .finally. A Promise Object returned by the
+      new Promise constructor starts with: state: "pending" result: undefined
+      The executor is called automatically when new Promise is used, and the
+      Promise begins its work. Then depending on the outcome, the executor will
+      either call resolve or reject to do the following: When successful, the
+      Promise ends with: state: "fulfilled" result: a result value When an error
+      occurs, the Promise ends with: state: "rejected" result: an error object
+      Internally: A Promise Object starts with state: "pending" and result:
+      undefined and ends with either "fulfilled" and a value, or "rejected" and
+      an error. If a Promise Object has either "fulfilled" or "rejected" as its
+      state, it is also considered "settled", as opposed to "pending". A Promise
+      Object serves as a link between the executor, also called producing code
+      and consumer functions, which will either receive a result or an error.
+      Consumer functions are declared by using .then and .catch Example: const
+      booleanFlag = false; let trueOrFalse = new Promise((resolve, reject) => {
+      if (booleanFlag) { resolve("The flag is true!"); } else { reject("The flag
+      is false!"); } }); // This will print out the promise that you've just
+      declared console.log(trueOrFalse); trueOrFalse .then(function
+      successValue(result) { console.log(result); }) .then(function
+      successValue2() { console.log("You can call multiple functions this
+      way."); }) .catch(function failureValue(reject) { console.log(reject); });
+      By copying this code, and changing the booleanFlag variable to true, you
+      will see a much different result. Notice that Promise chaining exists in
+      JavaScript, which avoids one of the Issues with Callbacks surrounding
+      nested Callbacks. Error Handling of nested Callbacks is complex and
+      confusing. While Callbacks can be nested, Promises are chained, which
+      avoids the nesting issue.
+    </p>
+  </body>
+</html>

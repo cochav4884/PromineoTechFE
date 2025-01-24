@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Literals</title>
+    <script src="templateLiterals.js"></script>
+</head>
+<body>
+    <h1>
+        Template Literals
+    </h1>
+    <p>
+        Template literals are literals delimited with backtick (`) characters.  They are really useful, and allow multi-line strings, string interpolation with embedded expressions, and tagged templates. <br>
+
+let firstName = 'Mickey'; <br>
+let lastName = 'Mouse'; <br>
+let street = '1 Main St.'; <br>
+let city = 'Disneyland'; <br>
+let state = 'CA'; <br>
+
+console.log( <br>
+`${firstName} ${lastName} lives at <br>
+${street} <br>
+                 ${city}, ${state}.`); <br>
+
+
+In JavaScript, this information could be printed using console.log() and string concatenation, but using console.log() and template literals provides a much easier way to do so.
+    </p>
+</body>
+</html>

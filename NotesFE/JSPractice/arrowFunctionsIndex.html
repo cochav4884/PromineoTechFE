@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Functions</title>
+    <script src="arrowFunctions.js"></script>
+</head>
+<body>
+    <h1>
+        Arrow Functions
+    </h1>
+    <p>
+        Functions:
+
+Functions are a specific construct, also referred to as a subprogram, that is written to accomplish a tasks, or calculate a value.  Functions are very specific in that they take input and return output.  They are usually named, so that they can be called whenever that functionality is needed.  Functions in JavaScript are constructible, and callable, which means that they can be invoked with the new keyword.
+
+To define a JavaScript function, you need the following:
+- the function keyword
+- a name for the function (without a name, a function is an anonymous function)
+- a list of one or more parameters (comma-separated within parentheses)
+- the JavaScript statements, enclosed in curly brackets
+
+For example:
+
+function power(base, exponent) {
+return base**exponent;
+}
+
+
+Arrow Functions:
+
+Arrow Functions were introduced in ES6.  They allow for streamlined code, with smaller function syntax.   Notice the description below:
+
+() =>  ...   
+-------------
+()    indicates the input of the function,
+=>  indicates the function (takes the input from the left & outputs to the right,
+...    indicates the output of that function.
+          
+
+An arrow function has two huge benefits:  (1) shorter syntax requiring less code and (2) no issues with the use of this.    Regular functions are constructible; however Arrow Functions are only callable, not constructible.  An arrow function can be used instead of a traditional function expression, with the following differences:
+-  Arrow Functions should not be used as methods, and do not have bindings to this, arguments, or super
+-  Arrow Functions can not be used as constructors.  You may not invoke an arrow function with the new keyword.
+
+Here is an arrow function that implements the power function above:
+
+const powerFunction = (base, exp) => { return base**exp };
+
+console.log(powerFunction(2,2));
+console.log(powerFunction(4,2));
+console.log(powerFunction(2,4));
+
+
+An alternative implementation of powerFunction is the following power arrow function:
+
+const power = (base, exp) => {
+let result = 1;
+for (let count = 0; count < exp; count++) {
+result *= base;
+}
+return result;
+};
+
+console.log(power(2,2));
+console.log(power(4,2));
+console.log(power(2,4));
+    </p>
+</body>
+</html>
