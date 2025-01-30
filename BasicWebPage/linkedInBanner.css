@@ -1,0 +1,40 @@
+body {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(37, 37, 107, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.col-3 img {
+  height: 800px;
+  object-fit: cover;
+  margin-left: 800px;
+  box-shadow: 4px 4px 4px rgb(236, 235, 236);
+}
+
+.col-9 h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 50px; /* Reduced margin-bottom */
+  margin-right: 0px;
+  text-shadow: 3px 3px 3px rgb(11, 173, 223);
+  text-align: right;
+}
+
+/* Style for the new divs */
+#firstStatement, #secondStatement, #output {
+  font-size: 1.2rem;
+  color: white;
+  margin: 20px 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  text-align: right;
+}
