@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handling Exceptions</title>
+    <script src="handlingExceptions.js"></script>
+</head>
+<body>
+    <h1>Handling Exceptions</h1>
+    In JavaScript, there are a few types of errors: 
+
+- Syntax errors:  these are caught at interpret time.  When a syntax error occurs in JavaScript, only the code contained within the same thread as the syntax error is affected and the rest of the code gets executed assuming nothing in them depends on the code containing the error  (e.g. a missing closing curly brace).
+
+- Logical errors:  the code might appear right, and contain no syntax errors, but the result once the program runs is not what the programmer intended.  This will require a programmer to debug the functionality, and re-code the solution.
+
+- Runtime errors or Exceptions:   The syntax might be correct, but at runtime, when the program is executed, something isn't right (e.g. undefined method, etc.).  Exceptions can happen in software, and also in hardware.  
+
+
+
+What is an Exception?
+
+Exception:  An exception is defined as an event that occurs that is contrary to the expected behavior of the application or program that has been written.  Instead of functioning as expected, something happens that causes an unexpected result.
+
+JavaScript is an interpreted language, and so some Errors are caught at interpret time.  However, many Exceptions are not caught until the program is running. 
+
+
+
+What is Exception Handling?
+
+In programming, how the code deals with or handles Exceptions is called Exception Handling.  What does an application do with an unexpected occurrence?  An application needs to make sure it has a plan for when things go wrong.
+
+If no exception handling exists, the code does not know what to do.  It will return from the function where the error occurred, to the calling function, and so on up the call stack, until it finds an exception handler.  If nothing is found, the program will fail.
+
+The goal of exception handling is to ensure that our applications do not crash, but handle errors, and continue running.
+
+
+
+Comparing Diagnosing Car Troubles to Exceptions:
+
+To get a better idea of what an Exception is and why Exception Handling is important, let's take a look at something a bit more familiar, a car.     
+
+Imagine as you are driving or riding along, the car engine stops working.  What is wrong?  Why did your car stop?   How do we get our car engine running again?  The solution totally depends on what the problem with the car is:
+- Would filling the car with gas fix a dead battery? 
+- Would changing a tire fix an overheated engine?
+- Would adding oil fix being out of gas?
+
+It's important to know what a problem is before we randomly start fixing things in the hope that we fix the right issue.  
+
+- If there is no electricity in your car, filling your gas tank will not help
+- If your check engine light is on,  changing a tire will not solve it
+- If your gas gauge is on Empty, adding oil will not help that issue.
+
+Cars are designed with features to help you diagnose issues.  There are gauges, warnings, and codes that indicate when something needs to be addressed in your car.
+
+
+
+The Moral of the Story:
+
+As a car owner, it is good practice to notice when something is not as you expect (e.g. a warning light comes on, the gas gauge is on Empty, the car is slow to start, etc.)
+
+
+
+Apply The Moral of the Story to Programming:
+
+As a software developer,  it is good practice to use Exception Handling in your programming to gracefully handled unexpected event.    We can not predict every failure in our programs, but we can definitely catch exceptions, and communicate back to the user clues as to what the issue is.  Here are some examples of Exceptions that could be handled.
+
+- Invalid Input:  What does the application do when a user puts in an invalid username and/or password?    Instead of crashing, or quitting, the program can validate the input, and reprompt a user for a valid username and/or password.
+
+- Network Failure: When you are accessing a server over a network, and the internet is down, what does the application do?  crash?  or give an error that says network unavailable, try again later.
+
+- Divide by zero error:  When a program tries to divide by zero, and exception is raised, and can be returned to the program.  This can be handled, and the program can continue running.
+
+
+The video in this chapter covers the way to handle exceptions in  JavaScript, which include
+
+- Diagnose and fix checked exceptions before running your code.
+- Use try-catch-finally blocks to handle unchecked exceptions
+
+
+Resources:
+
+- JavaScript try-catch-finally Statement
+- JavaScript Exception Handling
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inheritance</title>
+    <script src="inheritance.js"></script>
+  </head>
+  <body>
+    <h1>Inheritance</h1>
+
+    Inheritance is one of the Pillars of Object-Oriented Programming, and is key
+    when reusing code in an Object-Oriented program. It is possible to reuse
+    properties and methods when a new class is created from an existing class.
+    Use the keyword extends to inherit properties and methods from a different
+    class. In the following example, the first class created is Person and then
+    the Teacher class is created using extends Person Here is an example: class
+    Person { constructor (newName) { this.name = newName; } introduce() { return
+    `My name is ${this.name}.`; } } class Teacher extends Person { constructor
+    (name, courseName) { super(name); this.courseName = courseName; }
+    introduceSelf() { console.log(`My name is ${this.name}, and I will be
+    teaching your ${this.courseName} class.`); } } let teacher = new
+    Teacher('Ms. Angle', 'Trigonometry'); console.log(teacher.introduce());
+    teacher.introduceSelf(); Other things to note is the use of Template
+    Literals in the introduce() method in Person, and also in the
+    introduceSelf() method in Teacher. Notice that both of those are able to be
+    called on the variable teacher. Coding challenge: Modify this simple example
+    to add additional properties to the Person class, and then use those
+    properties within the Teacher class.
+  </body>
+</html>

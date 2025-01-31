@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS5 Week 08 FE</title>
+    <script src="objectOrientedProgramming.js"></script>
+</head>
+<body>
+    <h1>Object Oriented Programming</h1>
+
+    What is Object-Oriented Programming OOP?
+
+
+Object Oriented Programming (OOP) is a programming paradigm. OOP models a system as a collection of objects, where each object represents something in that system.  Java and C++ are both examples of Object-Oriented programming languages.
+
+In OOP,  objects are the key construct in our programming, and these objects contain properties and functionality.  Instead of writing code all in one place, we structure our program into objects.  Each object will contain relevant properties and functionality, which is code that is structured into methods that can be used over and over.  
+
+In OOP, programs are written by creating objects that contain both data (properties)  and methods (functionality),  in contrast with procedural programming where data exists, and  procedures and methods perform operations on the data.
+
+It takes time to start to think of data as being stored in an object which also contains all of the methods written for that object.  Another way to explain this is to think of an object, and imagine that everything that you need (data or methods) is accessible anytime you reference that object.  If you have access to the object, you also have access to any available property and functionality that belong to that object.
+
+Terminology -- Classes vs. Objects:
+
+Classes are the mechanism by which we structure our code in OOP.
+
+A Class is a blueprint, in which you create your properties and functionality.
+An Object is the actual product developed from the blueprint.
+An Object is an instance of a Class!
+
+
+So, a class is a template for objects, and an object is an instance of a class.  When we create an object from a class, that object will inherit everything in the class, including the properties and functionality.
+
+
+
+JavaScript and OOP:
+
+JavaScript has features similar to those described above; however, as we described above, classes and objects in OOP are two separate constructs.   In JavaScript, objects are often created without any separate class definition, by either using a function or an object literal.   Thus,  programming objects is much more "lightweight" than in class-based OOP.
+
+Additionally, in JavaScript, constructors and prototypes CAN BE used to implemented class-based OOP patterns, but using them directly to implement inheritance can be interesting.  As such, JavaScript provides additional features to assist.  These features map more directly to class-based OOP.
+
+
+Description of a Class and an Object created from the Class:
+
+Class:  Animal
+
+Properties:
+
+
+name
+weight
+height
+type
+location
+Functionality:
+
+
+describe()
+Object:  dog 
+
+A dog will be instantiated as an instance of the class, Animal.
+
+ let dog = new Animal();
+
+
+Preview:
+
+In the next chapter, 2. Classes, you will find a JavaScript example that creates a class Animal, which has properties, and one method; and we instantiate an elephant using the class Animal.
+
+
+
+Resource:
+
+- JavaScript & Object-Oriented programming
+
+</body>
+</html>

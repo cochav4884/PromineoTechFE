@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <script src="class.js"></script>
+</head>
+<body>
+    <h1>Class</h1>
+    In JavaScript, there are many built-in classes (e.g. Date, etc), so you may have already used JavaScript classes.  Classes give developers the ability of code organization, and are a foundation of object-oriented programming.
+    Classes allow the creation of objects that store internal data, and expose behavior to users of those objects. 
+    Classes also allow private fields, which means data can be hidden from users if necessary. 
+    Related functions can be organized within the Class to which they belong, 
+    
+    In this section, we are going to be declaring a new class.  Classes can do the following:
+    Constructor:  Using the new operator, classes are used to create objects.
+    Instance Methods and Instance Fields:  Each object has properties (data and/or methods) added by the class
+    Static Methods and Static Fields:  The class itself can also store properties (data and/or methods) with are used to interact with instances of the class.  
+    
+    Here is a JavaScript example of a class declaration, including an instantiation.
+    
+    This is animal.js:
+    class Animal {
+    constructor(name, type, weight, height, location) {
+    this.name = name;
+    this.type = type;
+    this.weight = weight;
+    this.height = height;
+    this.location = location;
+    }
+    
+    describe() {
+    console.log("Animal Description");
+    console.log("------------------");
+    console.log("\tName: " + this.name);
+    console.log("\tType: " + this.type);
+    console.log("\tWeight: " + this.weight + " lb.");
+    console.log("\tHeight: " + this.height + " in.");
+    console.log("\tLocation: " + this.location);
+    }
+    }
+    
+    let elephant = new Animal("Dumbo", "elephant", 8000, 108, "Disneyland");
+    elephant.describe();
+    
+    
+    Resources:
+     JavaScript Classes MDN Web Docs
+    Why JavaScript Classes?
+
+</body>
+</html>
