@@ -127,34 +127,34 @@ lastName, and returns a full name
 (the full name should be the first and the las name separated by a space).
  */
 function fullName(firstName, lastName) {
-    let fullName = firstName + " " + lastName;
-    console.log(fullName);
+  let fullName = firstName + ' ' + lastName;
+  console.log(fullName);
 }
-fullName("Matthew", "Cox");
+fullName('Matthew', 'Cox');
 
 /*ANCHOR 9
 Write a function that takes an array of numbers and returns true
 if the sum of all the numbers in the array is greater than 100.
  */
-let numbers1 = [100, 200, 300, 400]
-let numbers2 = [1, 2, 3, 4]
+let numbers1 = [100, 200, 300, 400];
+let numbers2 = [1, 2, 3, 4];
 
-function sumNumbersArray(array){
-    let total = 0;
+function sumNumbersArray(array) {
+  let total = 0;
 
-    for (let i = 0; i < array.length; i++) {
-     //   console.log(i, "Test");
-     total += array[i]
-     console.log("Total:", total);
-    }
+  for (let i = 0; i < array.length; i++) {
+    //   console.log(i, "Test");
+    total += array[i];
+    console.log('Total:', total);
+  }
 
-    if (total > 100) {
-        console.log("Total:", total, true);
-        return true
-    }else {
-        console.log("Total:", total, false);
-        return false
-    }
+  if (total > 100) {
+    console.log('Total:', total, true);
+    return true;
+  } else {
+    console.log('Total:', total, false);
+    return false;
+  }
 }
 sumNumbersArray(numbers2);
 
@@ -163,16 +163,16 @@ Write a function that takes an array of numbers and returns the
 average of all the elements in the array.
  */
 function calculateNumbersAverage(array) {
-    let total = 0;
-    for (let i =0; i < array.length; i++) {
-  //      console.log(i, "Test");
-  total += array[i];
-  console.log("Calculate Function, total:", total);
-    }
+  let total = 0;
+  for (let i = 0; i < array.length; i++) {
+    //      console.log(i, "Test");
+    total += array[i];
+    console.log('Calculate Function, total:', total);
+  }
 
-    let average = total / array.length
-    console.log("Average of numbers:", average);
-    return average;
+  let average = total / array.length;
+  console.log('Average of numbers:', average);
+  return average;
 }
 calculateNumbersAverage(numbers1);
 
@@ -186,32 +186,32 @@ let numbers3 = [100, 100, 100, 50];
 let numbers4 = [100, 100, 100];
 
 function twoAverages(array1, array2) {
-    console.log("Parameters:", array1, array2);
-    let total1 = 0;
-    let total2 = 0;
-for (const number of array1) {
+  console.log('Parameters:', array1, array2);
+  let total1 = 0;
+  let total2 = 0;
+  for (const number of array1) {
     total1 += number;
-    console.log("Current number loop1:", number, "Total1:", total1);
-}
+    console.log('Current number loop1:', number, 'Total1:', total1);
+  }
 
-for (const number of array2) {
+  for (const number of array2) {
     total2 += number;
-    console.log("Current number loop2:", number, "Total2:", total2);
-}
-let average1 = total1 / array1.length;
-let average2 = total2 / array2.length;
+    console.log('Current number loop2:', number, 'Total2:', total2);
+  }
+  let average1 = total1 / array1.length;
+  let average2 = total2 / array2.length;
 
-console.log("Averages", average1, average2);
+  console.log('Averages', average1, average2);
 
-if (average1 > average2) {
+  if (average1 > average2) {
     console.log(true);
-    return true
-} else if (average1 < average2) {
+    return true;
+  } else if (average1 < average2) {
     console.log(false);
-    return false 
-} else {
-    console.log("Numbers are equal");
-}
+    return false;
+  } else {
+    console.log('Numbers are equal');
+  }
 }
 twoAverages(numbers3, numbers4);
 /*ANCHOR 12
@@ -221,10 +221,9 @@ returns true if it is hot outside and if moneyInPocket is greater
 than 10.50.
  */
 function willBuyDrink(isHotOutside, moneyInPocket) {
-console.log("Parameters", isHotOutside, moneyInPocket);
-let buyDrink = isHotOutside === true && moneyInPocket > 10.5;
-console.log("Buy a drink?", buyDrink);
-return buyDrink;
-
+  console.log('Parameters', isHotOutside, moneyInPocket);
+  let buyDrink = isHotOutside === true && moneyInPocket > 10.5;
+  console.log('Buy a drink?', buyDrink);
+  return buyDrink;
 }
-willBuyDrink(true, 5)
+willBuyDrink(true, 5);
