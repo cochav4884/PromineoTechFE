@@ -1,0 +1,55 @@
+/* Make sure the body has no margin and proper overflow */
+body, html {
+    background-color: rgb(240, 248, 255);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+/* Style for the parallax container */
+.parallax {
+    /* The image used */
+    background-image: url("images2/yarn.jpg");
+  
+    /* Set a specific height */
+    min-height: 500vh;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+    color: rgb(56, 48, 10);
+    text-shadow: 2px 2px 2px black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 56px;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    padding-top: 50px;
+    color: rgb(194, 164, 13);
+    text-shadow: 3px 3px 3px rgb(56, 48, 10);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 36px;
+}
+
+.content {
+    margin-top: 250px;
+    height: 100hv;
+    background-color: rgb(240, 248, 255, 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    text-align: center;
+}
