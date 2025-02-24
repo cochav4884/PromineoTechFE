@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugging</title>
+    <script src="debugging.js"></script>
+</head>
+<body>
+    Debugging can be described as diagnosing problems in code:  finding what is causing a problem, and fixing those problems!   A bug in a program is something that causes the program to fail to do what it is designed to do.    The term debugging comes from taking bugs out of code, literally removing the bugs from a program.
+
+The term debug is anecdotally attributed  to U.S. Navy Rear Admiral Grace Hopper. The story is told that in 1945, she coined the term debug when she and her colleagues found a problem in Mark II computer, when they opened up the machine, they found and removed an actual moth.   Although the term bug had been used  since the 19th century to describe a mechanical malfunction, Grace Hopper was actually the first to use bug to talk about a computer problem, and to talk about debugging a computer.
+
+Check out  Grace Murray Hopper (1906-1992): A legacy of innovation and service  in the YaleNews to get more information on the influence and accomplishments of this remarkable person, and to learn a bit more about the history of computing.
+
+Important vocabulary:
+debugger:  a computer program that helps find and correct errors in other computer programs.
+breakpoint:  a signal that informs the debugger to temporarily suspend execution of the program at a certain point in the code.
+
+Of course, a JavaScript programmer can use console.log()  to inspect variables, displaying values in the Console, which can be really useful.  However a debugger allows a programmer to set one or more breakpoints anywhere in the code, and when you run your program in debug-mode, the code will stop at the breakpoint that has been set.  The program is still running at that point, which means that the programmer can tell the debugger to step line by line through the code, step into method calls, stop over method calls, and most importantly,  inspect variables in real time.  
+
+Integrated Development Environments (IDE) like Visual Studio (VS) Code provide debuggers.  IDEs are applications that facilitate the development of other applications.  The intent is to encompass all programming tasks in one application, including debugging.   VS Code has built-in debugging support for the Node.js runtime, and can debug JavaScript
+
+The following instructions will aid in the use of the VS Code IDE debugger:
+
+To define one or more breakpoints in your source code where you suspect the problem is happening.  To set a breakpoint, right-click in the left margin when editing your code in VS Code IDE, and select Toggle Breakpoint.   
+
+To run your JavaScript code in debug-mode within the VS Code IDE, do one of the following:
+Run -->  Start Debugging --> Node.js
+
+Click on the Run and Debug Icon (See image below)
+in the left margin of VS Code
+View of VS Code Explorer, with a pointer to the Run and Debug icon
+
+
+
+Resources:
+
+Debugging with VS Code IDE
+
+
+
+
+</body>
+</html>
