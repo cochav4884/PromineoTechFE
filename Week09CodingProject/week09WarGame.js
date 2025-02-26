@@ -41,14 +41,17 @@ class Card {
  *    An array to store all the card ranks
  *    An array to store all the card suits
  */
-
 class Deck {
     constructor() {
         this.deck = [];
         this.ranks = [
             'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'
         ];
-        this.suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+        this.suits = [ 
+            { name: 'Hearts', symbol: '❤️' }, 
+            { name: 'Diamonds', symbol: '💎' }, 
+            { name: 'Clubs', symbol: '🍀' }, 
+            { name: 'Spades', symbol: '🗡️' }];
         this.createDeck();
         this.shuffleDeck();
     }
@@ -58,10 +61,11 @@ class Deck {
     createDeck() {
         for (let suit of this.suits) {
             for (let i = 0; i < this.ranks.length; i++) {
-                this.deck.push(new Card(this.ranks[i], suit, i + 1));
+                this.deck.push(new Card(this.ranks[i], `${suit.name} ${suit.symbol}`, i + 1)); // Use Card class
             }
         }
     }
+    
 
     // A method to shuffle the deck
     shuffleDeck() {
