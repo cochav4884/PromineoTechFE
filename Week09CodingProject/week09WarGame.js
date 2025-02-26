@@ -1,5 +1,5 @@
 // console.log('pls work');
-//What do we need for a WAR card game?
+// What do we need for a WAR card game?
 
 /**
  * Deck
@@ -7,8 +7,8 @@
  *  - Rank ("name value")
  *  - Suit (hearts, diamonds, clubs, spades)
  *  - Value
- * - a way to shuffle
- * - a way to pass the cards to the players (should this be in my Deck? or my game logic?)
+ * - A way to shuffle
+ * - A way to pass the cards to the players (should this be in my Deck? or my game logic?)
  *
  * Players (do I need a player class? or can I just put it in my game logic?)
  * - Name?
@@ -20,32 +20,43 @@
  * - Ways to compare the cards... number values on each card
  */
 
-// Deck class
+// Card class to represent each individual card
+class Card {
+    constructor(rank, suit, value) {
+        this.rank = rank;
+        this.suit = suit;
+        this.value = value;
+    }
 
-/** Should have :
+    toString() {
+        return `${this.rank} of ${this.suit}`;
+    }
+}
+
+// Deck class
+/** Should have:
  *    An array to store the cards
- *    An array to store all the cards ranks
- *    An array to store all the cards suits
+ *    An array to store all the card ranks
+ *    An array to store all the card suits
  */
 
-export default class Deck {
+class Deck {
     constructor() {
         this.deck = [];
         this.ranks = [
             'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'
         ];
         this.suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+        this.createDeck();
+        this.shuffleDeck();
     }
 
     // A method to create a deck... iterate over our ranks/suits
     // Push a new card (as an object) into our constructor’s this.deck
     createDeck() {
-        for (let i = 0; i < this.suits.length; i++) {
-            for (let j = 0; j < this.ranks.length; j++) {
-                this.deck.push({
-                    name: `${this.ranks[j]} of ${this.suits[i]}`,
-                    value: j + 1
-                });
+        for (let suit of this.suits) {
+            for (let i = 0; i < this.ranks.length; i++) {
+                this.deck.push(new Card(this.ranks[i], suit, i + 1));
             }
         }
     }
@@ -59,10 +70,27 @@ export default class Deck {
     }
 }
 
-// black spade &#9824;
-// black heart &#9829;
-// black diamond &#9830;
-// black club &#9827;
+// Player class to store player-related information
+class Player {
+    constructor(name) {
+        this.name = name;
+        this.score = 0;
+        this.hand = [];
+    }
+
+    playCard() {
+        return this.hand.shift(); // Removes and returns the top card
+    }
+
+    increaseScore() {
+        this.score++;
+    }
+}
+
+// Black spade &#9824;
+// Black heart &#9829;
+// Black diamond &#9830;
+// Black club &#9827;
 
 // Class for a Game (Specifically our WAR game)
 /** Needs:
@@ -71,7 +99,7 @@ export default class Deck {
  *  - Create the deck, shuffle the deck, and pass the deck...
  *
  *  - Logic to play the game
- *    - Turn based, how many turns?
+ *    - Turn-based, how many turns?
  *    - Do our players have a hand yet?
  *    - Control flow statement logic to decide who wins?
  *
@@ -83,8 +111,18 @@ export default class Deck {
 
 class Game {
     constructor() {
-        this.player1 = { name: 'Player 1', score: 0, hand: [] };
-        this.player2 = { name: 'Player 2', score: 0, hand: [] };
+        this.player1 = new Player('Player 1');
+        this.player2 = new Player('Player 2');
+        this.deck = new Deck();
+        this.dealCards();
+    }
+
+    // Distribute cards to players
+    dealCards() {
+        while (this.deck.deck.length > 0) {
+            this.player1.hand.push(this.deck.deck.shift());
+            this.player2.hand.push(this.deck.deck.shift());
+        }
     }
 
     // Method to play the game
@@ -96,45 +134,40 @@ class Game {
      * Log the winner
      */
     playGame() {
-        // Instantiate a new deck, create a deck, then shuffle the deck
-        const deck = new Deck();
-        deck.createDeck();
-        deck.shuffleDeck();
+        console.log("Starting the War game!\n");
 
-        // Distribute cards to players
-        while (deck.deck.length !== 0) {
-            this.player1.hand.push(deck.deck.shift());
-            this.player2.hand.push(deck.deck.shift());
-        }
-
-        // Actually playing the game... how many turns do I need?
         for (let i = 0; i < this.player1.hand.length; i++) {
-            let p1Card = this.player1.hand[i];
-            let p2Card = this.player2.hand[i];
+            let p1Card = this.player1.playCard();
+            let p2Card = this.player2.playCard();
 
-            // Conditional logic to award points based on comparing the card values
+            console.log(`Round ${i + 1}: ${this.player1.name} plays ${p1Card.toString()} vs ${this.player2.name} plays ${p2Card.toString()}`);
+
             if (p1Card.value > p2Card.value) {
-                this.player1.score++;
-                console.log(`P1: ${p1Card.name} vs P2: ${p2Card.name} → Player 1 wins this round!`);
+                this.player1.increaseScore();
+                console.log(`${this.player1.name} wins this round!\n`);
             } else if (p2Card.value > p1Card.value) {
-                this.player2.score++;
-                console.log(`P1: ${p1Card.name} vs P2: ${p2Card.name} → Player 2 wins this round!`);
+                this.player2.increaseScore();
+                console.log(`${this.player2.name} wins this round!\n`);
             } else {
-                console.log(`P1: ${p1Card.name} vs P2: ${p2Card.name} → It's a tie! No points.`);
+                console.log("It's a tie! No points awarded.\n");
             }
         }
 
-        // Announce the final winner
+        this.displayWinner();
+    }
+
+    // Display the final scores and winner
+    displayWinner() {
         console.log("\nFinal Scores:");
-        console.log(`Player 1: ${this.player1.score}`);
-        console.log(`Player 2: ${this.player2.score}`);
-        
+        console.log(`${this.player1.name}: ${this.player1.score}`);
+        console.log(`${this.player2.name}: ${this.player2.score}`);
+
         if (this.player1.score > this.player2.score) {
-            console.log("🏆 Player 1 wins the game!");
+            console.log(`🏆 ${this.player1.name} wins the game!`);
         } else if (this.player2.score > this.player1.score) {
-            console.log("🏆 Player 2 wins the game!");
+            console.log(`🏆 ${this.player2.name} wins the game!`);
         } else {
-            console.log("It's a tie!");
+            console.log("It's a tie! No winner.");
         }
     }
 }
