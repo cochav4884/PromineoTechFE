@@ -1,3 +1,5 @@
+export { Deck, Game }; // Exporting Deck and Game classes for testing
+
 // console.log('pls work');
 // What do we need for a WAR card game?
 
