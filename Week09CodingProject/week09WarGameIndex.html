@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War Card Game</title>
+    <link rel="stylesheet" href="week09WarGame.css">
+    <!-- Load game logic first (week09WarGame.js) -->
+    <script type="module" src="week09WarGame.js"></script>
+    <script></script>
+</head>
+<body>
+    <!-- Mocha Test results will be displayed here -->
+    <div id="mocha"></div>
+<header>
+     <h1>WAR Card Game</h1>
+</header>
+   
+    <button id="startGame">Start Game</button>
+    <pre id="gameOutput"></pre>
+
+    <script type="module">
+        import { Game } from "./week09WarGame.js"; // Ensure correct relative path
+    
+        document.addEventListener("DOMContentLoaded", () => {
+            const startButton = document.getElementById("startGame");
+            const output = document.getElementById("gameOutput");
+    
+            if (startButton) {
+                startButton.addEventListener("click", () => {
+                    output.textContent = ""; // Clear previous game output
+    
+                    const game = new Game();
+                    const originalConsoleLog = console.log;
+    
+                    console.log = function (message) {
+                        output.textContent += message + "\n";
+                        originalConsoleLog.apply(console, arguments);
+                    };
+    
+                    game.playGame();
+    
+                    console.log = originalConsoleLog; // Restore console.log after execution
+                });
+            } else {
+                console.error("startGame button not found.");
+            }
+        });
+    </script>
+    
+</body>
+</html>

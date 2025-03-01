@@ -2,9 +2,10 @@
   "name": "promineotechfe",
   "version": "1.0.0",
   "description": "\"# PromineoTechFE\"",
-  "main": "index.js",
+  "main": "week09WarGame_test.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,6 @@
   "homepage": "https://github.com/cochav4884/PromineoTechFE#readme",
   "dependencies": {
     "bootstrap": "^4.4.1",
-    "chai": "^5.2.0",
-    "jquery": "^3.7.1",
-    "mocha": "^11.1.0"
+    "jquery": "^3.7.1"
   }
 }
