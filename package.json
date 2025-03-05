@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/cochav4884/PromineoTechFE#readme",
   "dependencies": {
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^4.6.2",
     "jquery": "^3.7.1"
+  },
+  "devDependencies": {
+    "mocha": "^11.1.0"
   }
 }
