@@ -24,6 +24,8 @@ turnElement.style.padding = '10px'; // Adds space inside the border
 turnElement.style.display = 'inline-block'; // Prevents full-width stretching
 turnElement.style.textAlign = 'center'; // Centers text inside the box
 turnElement.style.width = '100%'; // Stretches the turn box to the size of the board
+turnElement.style.backgroundColor = 'rgba(108, 117, 125)'; // bg-secondary in rgba with 50% opacity
+turnElement.style.borderColor = '#6c757d'; // Optional: Keep the border color for consistency
 
 // Ensure the parent container centers the element
 document.getElementById('turn').parentElement.style.textAlign = 'center';
@@ -103,6 +105,14 @@ function showAlert(message, type) {
   alertMessage.textContent = message;
   alertElement.className = `alert alert-${type} mt-3`;
 }
+
+// Set the font, font size, and translucent background color for the reset button
+const resetButton = document.getElementById('reset');
+resetButton.style.fontFamily = "'Bangers', cursive, sans-serif";
+resetButton.style.color = '#000'; // Black color for visibility
+resetButton.style.fontSize = '24px';
+resetButton.style.backgroundColor = 'rgba(108, 117, 125)'; // bg-secondary in rgba with 50% opacity
+resetButton.style.borderColor = '#6c757d'; // Optional: Keep the border color for consistency
 
 // Reset the game
 document.getElementById('reset').onclick = () => {
