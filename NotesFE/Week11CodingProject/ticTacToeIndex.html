@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic-Tac-Toe</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+
+</head>
+<body class="container py-4">
+
+  <h1 id="turn" class="text-center">X's Turn</h1>
+
+  <div class="d-grid gap-2" id="board">
+    <!-- 9 cells will be generated dynamically -->
+  </div>
+
+  <button id="reset" class="btn btn-secondary border-dark btn-block mt-3">Reset Game</button>
+
+  <div id="alert" class="alert alert-info mt-3" style="display: none;">
+    <span id="alert-message"></span>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="ticTacToe.js"></script>
+</body>
+</html>
