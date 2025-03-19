@@ -1,0 +1,79 @@
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cups of Coffee</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      .container {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="text-center text-light">How Many Cups of Coffee Do You Drink?</h2>
+
+      <!-- Table to display data -->
+      <table class="table table-bordered table-striped mt-4" id="dataTable">
+        <thead class="bg-light">
+          <tr>
+            <th class="text-light">Name</th>
+            <th class="text-light">Age</th>
+            <th class="text-light">Drinks Coffee</th>
+            <th class="text-light">Cups of Coffee</th>
+            <th class="text-light">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- New rows will be added here -->
+        </tbody>
+      </table>
+
+      <!-- Form to add a new row -->
+      <h4 class="mt-5 text-light">Add New Row</h4>
+      <form id="addRowForm">
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required />
+          </div>
+          <div class="form-group col-md-3">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" id="age" required />
+          </div>
+          <div class="form-group col-md-3">
+            <label for="drinksCoffee">Drinks Coffee</label>
+            <select class="form-control" id="drinksCoffee" required>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="cupsOfCoffee">Cups of Coffee</label>
+            <input
+              type="number"
+              class="form-control"
+              id="cupsOfCoffee"
+              required
+            />
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Row</button>
+      </form>
+    </div>
+
+    <script src="week10FE.js"></script>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
