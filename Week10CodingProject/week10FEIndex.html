@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -19,17 +19,19 @@
   </head>
   <body>
     <div class="container">
-      <h2 class="text-center text-light">How Many Cups of Coffee Do You Drink?</h2>
+      <h2 class="text-center text-light">
+        How Many Cups of Coffee Do You Drink?
+      </h2>
 
       <!-- Table to display data -->
       <table class="table table-bordered table-striped mt-4" id="dataTable">
         <thead class="bg-light">
           <tr>
-            <th class="text-light">Name</th>
-            <th class="text-light">Age</th>
-            <th class="text-light">Drinks Coffee</th>
-            <th class="text-light">Cups of Coffee</th>
-            <th class="text-light">Actions</th>
+            <th class="text-dark">Name</th>
+            <th class="text-dark">Age</th>
+            <th class="text-dark">Drinks Coffee</th>
+            <th class="text-dark">Cups of Coffee</th>
+            <th class="text-dark">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -42,22 +44,22 @@
       <form id="addRowForm">
         <div class="form-row">
           <div class="form-group col-md-3">
-            <label for="name">Name</label>
+            <label for="name" class="text-light">Name</label>
             <input type="text" class="form-control" id="name" required />
           </div>
           <div class="form-group col-md-3">
-            <label for="age">Age</label>
+            <label for="age" class="text-light">Age</label>
             <input type="number" class="form-control" id="age" required />
           </div>
           <div class="form-group col-md-3">
-            <label for="drinksCoffee">Drinks Coffee</label>
+            <label for="drinksCoffee" class="text-light">Drinks Coffee</label>
             <select class="form-control" id="drinksCoffee" required>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
           </div>
           <div class="form-group col-md-3">
-            <label for="cupsOfCoffee">Cups of Coffee</label>
+            <label for="cupsOfCoffee" class="text-light">Cups of Coffee</label>
             <input
               type="number"
               class="form-control"
@@ -66,7 +68,7 @@
             />
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add Row</button>
+        <button type="submit" class="btn btn-secondary">Add Row</button>
       </form>
     </div>
 
