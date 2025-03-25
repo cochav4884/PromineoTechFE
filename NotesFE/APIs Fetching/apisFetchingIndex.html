@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APIs Fetching Example</title>
+</head>
+<body>
+    <h1>API Fetching Example</h1>
+    <button id="fetchDataBtn">Fetch Data</button>
+    <div id="dataDisplay"></div>
+
+
+    <div>
+        <h2>Week 12: APIs & Fetching</h2>
+        <ul>
+            <li>Concepts: Front-End vs Back-End: Build an understanding of the roles of a Front-End and Back-End, and how they work together</li>
+            <li>Fetching: Getting Data From an API: Get data from a free public API and show it in an app</li>
+            <li>Tools: Network Tab: Use the Network Tab of the Developer Tools to debug fetch reqests and responses</li>
+            <li>Tools: json-server: Set up json-server to use as a practice backend</li>
+            <li>Fetching: Creating, Updating, & Deleting: Make POST, DELETE, and PUT requests to an API</li>
+            <li>Fetching: Data Syncing: Keep data synced between Front-End state and a Back-End database</li>
+        </ul>
+        
+        <h2>Video Summary: Understanding Frontend and Backend</h2>
+        <h3>Frontend</h3>
+        <ul>
+            <li>Frontend Code: Runs in the browser, enabling interactive user interfaces.</li>
+            <li>Limitations: Frontend code lacks long-term memory. It forgets data when tthe browser tab is refreshed or closed.</li>
+            <li>Storage Challenges: Storing data on a user's device is impractical as it is not accessible across multiple devices and requires the device to be constantly on and connected.</li>
+        </ul>
+
+        <h3>Backend</h3>
+        <ul>
+            <li>Purpose: Provides long-term memory and stores data for frontend applications.</li>
+            <li>Server Role: Acts as a centralized computer that handles data requests from various user devices. This server, known as the backend, stores all usere data securely.</li>
+            <li>API: Backend code that handles requests from the frontend about data. If facilitates communication and data exchange betweeen the frontend and the server.</li>
+            <li>Additional Functions: Beside storing data, the server can host frontend files and perform resource-intensive tasks like generating images or processing large data sets.</li>
+        </ul>
+
+        <h3>Integration of Frontend and Backend</h3>
+        <ul>
+            <li>Combined Use: Most modern applications require both frontend and backend code to function efficiently. The frontend provides the user interface, while the backend manages data and complex operations.</li>
+            <li>Alternative Setups: Some applications may use a "dumb" backend for hsoting frontend code without long-term memory needs (e.g., calculators, simple games). Conversely, some websites render pages on the backend with minimal frontend code, though this can slow down interactions.</li>
+            <li>Static Websites: Basic sites can be built using only HTML and CSS, hosted on a simple backend without additonal frontend and backend code. These are suitable for resumes or simple business sites.
+                The video emphasizes the importance of understanding the roles of frontend and backend in building robust and user-friendly web applications.</li>
+        </ul>
+        
+        <h3>Video Summary: How to Get Data from an API on the Backend</h3>
+        <p>In this video, you'll learn how to get data from a REST API on the backend, including hwo to read API documentation, make HTTP requests, manage asynchronous code, and handle HTTP responses.</p>
+
+        <h3>Understanding APIs</h3>
+        <ul>
+            <li>API: Part of the backend that handles requests about data.</li>
+            <li>REST APIs: The most common type of APIs, built following specific quidelines.</li>
+        </ul>
+
+        <h3>Steps to Get Data from an API</h3>
+        <ul>
+            <li>1. Read API Documentation: <br> Get the API key and URL to fetch data from.</li>
+            <li>2. Make HTTP Requests: <br> Use JavaScripts Fetch function or the Axios library to make HTTP requests.</li>
+            <li>3. Manage Asynchronous Code: <br> Use async/await or .then syntax to handle asynchronous code.</li>
+            <li>4. Handle HTTP Responses: <br> Check the status and parse the JSON data from the response.</li>
+        </ul>
+
+        <h3>Example: Fetching Data from a LEGO API</h3>
+        <ul>
+            <li> Step 1. Go to the API documentation to get the API key and URL.</li>
+            <li> Step 2. Register and generate an API key.</li>
+            <li> Step 3. Use the documentation to build the fetch URL with base URL, endpoint, and parameters.</li>
+            <li> Step 4. write the fetch code in JavaScript.</li>
+        </ul>
+
+        <h3>Building the Fetch URL</h3>
+        <p>The URL is built from three parts: the base URL, the endpoint, and any needed parameters. Query parameters go at the end of the URL after a question mark symbol.</p>
+
+        <h3>Writing the Fetch Code</h3>
+        <ul>
+            <li> Step 1. Build the URL using th base URL, endpoint, and parameters.</li>
+            <li> Step 2. Make a fetch request to this URL and log the response.</li>
+            <li> Step 3. Handle the response and parse the JSON data.</li>
+        </ul>
+
+        <h3>Handling Asynchronous Code</h3>
+        <p>Asynchronous code allows parts of the code to run in the backhground while other code is also running. Use the async keyword to mark functions as asynchronous and the await keyword to wait from the function to finish.</p>
+
+        <h3>Example: Fetching Movie Data from the OMDB API</h3>
+        <ul>
+            <li> Step 1. Get the API key from the OMDB API documentation.</li>
+            <li> Step 2. Build the fetch URL with the API key and desired parameters.</li>
+            <li> Step 3. Write the fetch code and handle the response.</li> 
+        </ul> 
+        <p>By following these steps, you can fetch data from any REST API that uses an API key to authenticate.</p>
+
+        <h3>Video Summary: Using the Network Tab to Debug HTTP Requests</h3>
+        <p>In this video, we'll take a tour of the network tab in browser developer tools and learn how to use it to see debug HTTP requests.</p>
+
+        <h3>Network Tab Overview</h3>
+        <p>The network tab in browser develper tools shows all HTTP requests made while the tab is open.</p>
+        <ul>
+            <li>Refresh the page to see requests for the HTML page and JavaScript files.</li>
+            <li>Click the fetch button to see fetch requests, including the URL, request method, and status code.</li>
+            <li>Preview and response tabs show data returned in the response.</li>
+        </ul>
+
+        <h3>Using the Network Tab</h3>
+        <p>URL and Request Method: View the URL the request was made to and the request method (e.g., GET). <br>
+        Status Code: See the status code returned in the response (e.g., 200 OK). <br>
+    The preview tab displays the response body in an expandable format, while the response tab shows it as a JSON file.</p>
+
+    <h3>Debugging with the Network Tab</h3>
+    <p>The deaders tab is useful for deugging requests. Common errors include:</p>
+    <ul>
+        <li>4xx Errors: Client-side errors. For example, 404 Not Found indicates a typo in the URL.</li>
+        <li>401 Unauthorized: Indicates an issue with authentication, such as a missing or incorrect API key.</li>
+        <li>CORS Errors: Cross-Origin Resource Sharing errors occur when trying to access an API from a different base URL than the frontend. This can be due to authentication issues, incorrect URLs, or incorrect request methods.</li>
+    </ul>
+
+    <h3>Example Debugging Scenarios</h3>
+    <ul>
+        <li>Typo in URL: Adding a typo to the URL results in a 404 Not Found error.</li>
+        <li>Missing API Key: Removing the API key results in a 401 Unauthorized error.</li>
+        <li>CORS Error: Incorrectly forming the URL can result in a CORS error.</li>
+    </ul>
+
+    <h3>Conclusion</h3>
+    <p>The network tab is a powerful tool for debugging HTTP requests. By understanding how to use it, you can efficiently debug and troubleshoot issues in your web applications.</p>
+    </div>
+ 
+</body>
+</html>
