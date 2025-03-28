@@ -1,5 +1,0 @@
-.movie-img {
-    max-width: 150px;  /* Set the max width */
-    max-height: 150px; /* Set the max height */
-    object-fit: cover; /* Ensures the image maintains its aspect ratio */
-}
