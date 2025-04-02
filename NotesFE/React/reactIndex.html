@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React</title>
+  </head>
+  <body>
+    <h1>Preparing for React</h1>
+    <ul>
+      <li>
+        Variables: Destructing: Use destructuring to streamline code and make it
+        more readable
+      </li>
+      <li>Tools: Building With Vite: Set up projects with Vite</li>
+      <li>
+        Operations: Spread: Use the spread operator to copy arrays and objects
+      </li>
+      <li>
+        Concepts: Functional Programming: Learn about the principles of
+        Functional Programming and it's benefits and downsides
+      </li>
+      <li>
+        Variables: Typescript: Start using Typescript to write more robust code
+        and make it easier to find bugs
+      </li>
+    </ul>
+
+    <h2>Variables: Destructuring</h2>
+
+    <h3>Destructuring Objects and Arrays in JavaScript</h3>
+    <p>
+      In this video, we'll learn how to destructure objects and arrays.
+      Destructuring is putting the insides of an object or an array into new
+      variables, but don't worry, no objects or arrays are harmed in the making
+      of the new variables. The original object and array are unchanged.
+    </p>
+
+    <h3>Types of Destructuring</h3>
+    <p>
+      There are two kinds of destructuring: one for objects and one for arrays.
+      Let's look at object destructuring first.
+    </p>
+
+    <h3>Object Destructuring</h3>
+    <p>
+      I like to think of objects like burritos. They have ingredients (or
+      properties) inside all wrapped up into a nice little package by a tortilla
+      (or curly brackets). We could make a new variable and set it equal to the
+      entire burrito or object, but sometimes it's much more convenient if we
+      can instead work with the ingredients or properties inside.
+    </p>
+
+    <h3>Code Example:</h3>
+    <p>
+      const burrito = { cheese: 'cheddar', beans: 'black', rice: 'brown' };
+      const { cheese, beans, rice } = burrito;
+    </p>
+    <p>
+      What this does is make multiple variables, each containing one property
+      from the object. You could think of this like taking the ingredients of a
+      burrito and putting them in separate bowls. We could do this without
+      destructuring by creating variables ourselves and setting each one to each
+      property, but destructuring streamlines this process and makes the code
+      easier to read. There are some rules we need to follow when we're object
+      destructuring:
+    </p>
+    <ul>
+      <li>
+        The names of the new variables need to match the name of the properties.
+      </li>
+      <li>The order of those names does not matter.</li>
+      <li>You don't have to take all the ingredients.</li>
+    </ul>
+
+    <h3>Real-World Example:</h3>
+    <p>
+      We tend to destructure objects that were just grouped together for
+      convenience. For example, we might group together a bunch of settings inot
+      a settings object.
+    </p>
+
+    <h3>Code Example:</h3>
+    <p>
+      const settings = { theme: 'dark', showBar: true }; const { theme, showBar
+      } = settings;
+    </p>
+    <p>
+      This allows us to work with theme and showBar individually without
+      repeatedly referenecing the setting object.
+    </p>
+
+    <h3>Parameter Destructuring</h3>
+    <p>
+      A very common use of oject destructuring is with parameters. When you make
+      a function, if that function is going to allow an object to be passed in,
+      we can destructure the parameters directly.
+    </p>
+
+    <h3>Code Example:</h3>
+    <p>
+      function updateSettings({ theme, showBar }) { console.log(theme, showBar);
+      }
+    </p>
+    <p>
+      This is called parameter destructuring. Just because we're destructuring
+      one parameter doesn't mean we can't have other parameters either before or
+      after the destructured parameter.
+    </p>
+
+    <h3>Array Destructuring</h3>
+    <p>
+      Arrays are clearly sandwiches. When you're making a BLT, you want the
+      lettuce next to the bread so that hte tomatoes don't get the bread all
+      soggy. It has an order.
+    </p>
+
+    <h3>Code Example:</h3>
+    <p>
+      const sandwich = ['bacon', 'lettuce', 'tomato']; const [bacon, lettuce,
+      tomato] = sandwich;
+    </p>
+    <p>This allows us to work with the X and Y individually.</p>
+
+    <h3>Returning Multiple Values</h3>
+    <p>
+      One very common use of array destructuring is when we want to return two
+      things from a function. In JavaScript, you can only return one thing from
+      a function, but that one thing can be an array.
+    </p>
+
+    <h3>Code Example:</h3>
+    <p>function getArrows() { return ['left', 'right']; }</p>
+    <p>
+      By destructuring, we can easily return multiple values from a function.
+      While anything you can do with destructuring, you could do without
+      destructuring, things are much more streamlined and readable when we use
+      destructuring. We are going to be using destructuring a lot through the
+      rest of this course. So, we've learned how to object destructure,
+      particularly object destructuring in a parameter list, and we've learned
+      how to array destructure, particularly array destructuring something
+      returned from a function.
+    </p>
+
+    <h1>Tools: Building With Vite</h1>
+    <h2>Introduction to Build Tools and Using Vite</h2>
+    <p>This video we'll learn about what building is, what a build tool is and how to use Vite as a build tool.</p>
+
+    <h3>What is Building</h3>
+    <p>Building is taking code in one format and translating it into another format. For example, in a large professional app, we want to separate our code into many different files. That makes it easier for many developers to work on the same app by working on different files. It also keeps things organized so that we can focus on one piece at a time and not get overwhelmed. But when we run out app, we'd much prefer that our app only have a few files, so the user only has to download a few files across the internet. So, we can build our app by taking it from many files and combing it inot just a few files. We ca also use building to translate special kinds of code like Typescript, Sass, and React's JSX into normal JavaScript and CSS. Ww'll be using Typescript and JSX soon, so you'll see that in action.</p>
+
+    <h3>What is a Build Tool?</h3>
+    <p>While you could bulid your files manually by running comma nds that do each of the build steps, it's much easier to use what's called a bulid tool. This is a tool that automates the build process and handles setting up your app for the first time. In this class, we'll use Vite, which is a fantastic bulid tool that's fast and can handle building lots of different kinds of apps.</p>
+
+    <h3>Setting Up a New App with Vite</h3>
+    <p>To use Vite to set up a new app, you run this command:
+        <p>
+            npm create vite@latest 
+        </p>
+        When you run this command for the first time, it may say that it neeeds to intal the Create Vite package. You can just hit enter and let it do that. It'll first ask you to put in a project name. You can pick whatever you want. This will just be the folder name for that project. I'm gonna call mine 'practice'. Then it will have you select a framework. Late on in this course we'll use the React framework, but for now, we'll just pick vanilla, which means no framework. Then it will have you pick between JavaScript and Typescript. We will be learning Typescript soon, but for now, we'll pick JavaScript. It runs the npm init command for you and sets up a 'package.json' for you. It has you run these three commands:
+        <p>
+            cd practice <br />
+            npm install <br />
+            npm run dev
+        </p>
+        When I run npm install, it'll install all the libraries that are in the package.json. Be mindful that wherever you ran the npm create vite command is where it will make your app. So, for example, I just opened up my terminal and ran that command, and when I opened up my termianl, it was in my user folder. So it made my project just straight in my user folder. I'm gonna open this up in my VS code, and we can see the files that it has created for me. I have a 'package.json'. We can seee that it's given me a dependency of Vite because that's what I'm using for my building. It's also wet up a few scripts for me. These will allow me to easily run, build, and preview my app. It's made a 'node_modules' folder for all by libraries, and it's also made me a 'pulic' folder. This is where it's put the Vite logo that it's using as the icon for this app. It's made me a '.gitignore', which nicely will ignore anything that I probably want ignored, and it's made me a couple of files to kind of get me started. It's made me an 'index.html' that's already pulling in a 'main.js'. It's already written some code in here. We can see it's doing a query selector and then setting up some inner HTML in that app div.
+    </p>
+
+    <h3>Running the App</h3>
+    <p>If I want to run this app, I neeed to open up the terminal and do:
+        <p>
+            npm run dev
+        </p>
+        This will run a development server. Vite's development server is a lot like live server. Now it gives me a link where if I click on it, it will open my app p in the browser. Like live server, if I make a change in here, that change will show up immediately once I save the file. The Vite development server does a little bit more than live server, though, because it handles that build step and combines and translates our code so it's ready to run in the browser.
+    </p>
+
+    <h3>Understanding Important Statements</h3>
+    <p>There might be some code here that you don't recognize. What is happening with these import statements up at the top? In order for Vite to know how to combine all your files together, it has to know what files are using what other files. We usee export statements to make something available in one file to be used in another file. We use import statements to say that we want to use something form another file. There are two ways to export and import. There are named exports, where you just put the export keyword, and then when you go to import it, you have to put the name in curly brackets. And there are default exports. There can only be one default export per file. We have to add that default keyword after the export keyword. When we import something from default, we do not put curly brackets.</p>
+
+    <h3>Code Example:</h3>
+    <p>
+        // Named export
+        export const myFunction = () => {};
+        
+        // Named import
+        import { myFunction } from './myFile';
+        
+        // Default export
+        export default myFunction;
+        
+        // Default import
+        import myFunction from './myFile'; 
+    </p>
+    <p>When we write an import, we have to tell Vite where the file is that is exporting that thing. When you write a path to a JavaScript file, you don't have to put the .js on the end; you can just leave it off. but if you're importing another kind of file, like say an image or a CSS file, you do need to put that '.css' or '.png' on the end. When importing an image, you never use curly brackets. You always treat it as if you're importing a default. When you import CSS, you don't put any name for it at all; you just do import and the and the path to the CSS file. A CSS file imported anywhere will be available and applicable everywhere. When you write paths to yout own files, they have to start with either a './' or a '../.' If you don't start with one of those, it'll look for it in the node_modules folder. So we only use that for library names. If you do a './', it'll looking in the folder it's already in. If you do a '../', it'll go up a folder first. And just like with any path, you can do multiple '../' if you need to go up multiple folders.</p>
+
+    <h3>Export and Import Example:</h3>
+    <p>
+        // counter.js
+export function setupCounter() {
+  // Function implementation
+}
+
+// main.js
+import { setupCounter } from './counter.js';
+setupCounter();
+If we change the export to a default export:
+
+// counter.js
+export default function setupCounter() {
+  // Function implementation
+}
+
+// main.js
+import setupCounter from './counter.js';
+setupCounter();
+    </p>
+    <p>If you mix up named and default exports/imports, you'll get errors. For example, if you try to import a named export as a default or vice versa, you'll see errors like "The requested module does not provide an export named 'default'". We neeed to make sure that how we export it matches how we import it.</p>
+
+    <h3>Building Your Own App</h3>
+    <p>If you'd like to build your own app, you can clear out the provided code and start from scratch. For example, I can set up some data and make a rendertag list function. I will just make a div and set the inner HTML to all the tags, mapping each tag to a div. Then I'll make sre that I call the render tag list function and append each div that I'm creating into the app div.</p>
+
+    <h3>Using BootStrap</h3>
+    <p>If I'd like to use BootStrap in my app, I can 'npm install bootstrap' just like I always would. But instead of including BootStrap into my HTML, I import BootStrap into my JavaScript file.</p>
+
+    <h3>Code Example:</h3>
+    <p>
+        import 'bootstrap/dist/css/bootstrap.min.css'; 
+    </p>
+    <p>Be careful with typos in import paths, as they can prevent your app form working. Once imported correctly, you can use BootStrap classed in your app.</p>
+
+    <h3>Creating and Importing Custom Modules</h3>
+    <p>If i want to make another file and put different code in that file to use in my main file, I can create the file, export the function or variable, and then import it where needed.</p>
+
+    <h3>Code Example:</h3>
+    <p>
+        // tag.js
+        export function renderTag(tag) {
+          // Function implementation
+        }
+        
+        // main.js
+        import { renderTag } from './tag.js';
+    </p>
+    <p>This allows me to organize my code into separate modules.</p>
+
+    <h3>Conclusion</h3>
+    <p>We've learned how to use a build tool (Vite) to set up and build an app, we've used Vite's development server to view our app while we're working on it. Whlie this might feel like neccessary extra steps now, as our apps start to get more complicated and use more advanced features, a build tool will be essential and will save us a lot of trouble and time.</p>
+
+    <h1>Operations: Spread</h1>
+    <h2>Introduction to the Spread Operator</h2>
+    <p>In this video we'll learn about the spread operator. The spread operator copies the insides of an object or an array, but just like destructuring, no objects or arrays are harmed in the spreading process.</p>
+
+    <h3>Spreading an Object</h3>
+    <p>When we're spreading an object, we put three dots before the object. We can then take those insides, all the properties on that object that we've now made a copy of, and them into a new object, a new set of curly brackets. This will make a copy of that object. If we think of objects like burritos, again, you could think of spreading like when your burrito rips open on th side, so you scoop out the insides of the burrito and put it inot a new tortilla. But again, not actual objects get changed or harmed in this process. It just makes a copy. You could, of course, do this yourself, make a new ojbect and set each property to what the property is on the orginal object, but it's much easier to use the spread operator.</p>
+
+    <h3>Overwriting Properties</h3>
+    <p>One cool trick that we can do with the spread operator is we can actually put properties and values after we spread the object. This will overwrite any properties on the copied object with what we are setting it to on the end. Let's look at a real-world example of this. We have a settings object that has the theme set to Luna, showBar set to true, and dark set to false. We might want to set dark to true, but maybe we don't want to change the original object. We just want to make a changed copy. So we could spread the setting object and then after that, put a dark property set to true. This will overwrite the earlier dark property that came from our settings object and make us a new object that has all the same properties of the orignal settings object with dark set to true. Again, we could do this ourselves if we wanted to, but it's much more streamlined using the spread operator.</p>
+
+    <h3>Spreading an Array</h3>
+    <p>We can also spread an array that takes all the items of the original array and makes a copy that can then be put into a new array. If arrays are sandwiches, and this is like taking the insides of a sandwich and putting it into new slices of bread, but again, the original array is unchanged. We could, of course, do this ourselves as long as we know how long the array is. Just take each item form the array in order and put it into the new array. But it's much easier with the spread operator.</p>
+
+    <h3>Adding New Items</h3>
+    <p>A cool trick you can do with aray spreading is to add a new item. On the end of the copy, you can just put that new item after the spread array, and it makes a new array that has all the items of the copied array plus another item on the end. We'll be using this as well a lot in this class.</p>
+
+    <h3>Conclusion</h3>
+    <p>So we've learned about the spread operator and how we can use it to make copies of objects and arrays. We can even make copies of objects with changed properties or copies of arrays with new items on the end.</p>
+
+    <h1>Concepts: Functional Programming</h1>
+    <h2>Introduction to Functional Programming</h2>
+    <p>In this vidoe, we'll learn about functional programming. Functional programming is a paradigm for how code should be written that focuses on writing clean, reliable code. Functional programming has become more and more popular in the last 10 years or so because it tends to be better for asynchronous code. It also tends to have fewer bugs, be easier to maintain, and be more readable. the downsides of functional programming are that it has a little bit of a learning curve to get used to, and sometimes it adds more complexity than it's worth.</p>
+
+    <h3>Declarative Code</h3>
+    <p>Declarative code is code that says what to do, whereas imperative code, the alternative, is code that says how to do something. If we're talking about making a cake, declarative code would say, "I would like a ;ink cake with a heart on top." Imperative code would tell you to make the batter, cook it in the over, take it out, let it cool, dye the frosting pink, frost it pink, and pipe out a heart on top of the cake. It would tell you how to do each step, whereas the declarative version just says what you wnat the final result to be. You could think of declarative code like the declaration of a queen. She says, "I declare I would like this to happen." She doesn't have to specify how it should happen because she's not a peasant. She doesn't need to worry about the details. She just says what she wants done. If we wanted to get the item from the array with the ID of three, wwe could do that declaratively or imperatively. Delcaratively would be to use the find array method. We're just saying, "Hey, look in this array. find the itme with the ID of three." How are ou gonna find that item? That's not my job. I'm a queen. Imperative code walks the computer thorugh each step in order to find that item, make an "I" variable, keep it up to date with which item in the array we're on, index into the array at that "I" variable, and check each one to see if the ID matches the number we want. Declarative code often has more expressions than statements. Expressions have a value, whereas statements do something. Declarative code is often built up of mostly expressions, things like array methods instead of for loops, and ternary operators instead of an if statement.</p>
+
+    <h3>Immutable State</h3>
+    <p>Immutable state means that we do not mutate the state. We do not change our data directly. Instead, we work off of copies, making changes only to copies of our state. So if wwe want to update the property on an object, instead of just doing 'object.property = newValue', we make a copy of object using the spread operator and set the property to the new value on the copy. Immutability is beneficial for asynchronous programming because if we have multiple areas of the code tha tare using the same data at the same time, they can't mess each other up. It also leads to fewer bugs, makes it easier to test, and easier to maintain. When working with immutable data, we need to steer clear of methods like push and splice because they change the original array. Instead, we use methods like the spread operator and filter, which work off of copies.</p>
+
+    <h3>Pure Functions</h3>
+    <p>A pure function is a function that does not have side effects. For example, have you ever had a coworker that makes a mess of the office kitchen? That would me an impure coworker. A pure coworker just makes a copy of the lunch without affecting anything else. Pure functions that take input through parameters and return output without changing anything outside of the function or using variables from outside the function.  Pure functions are easy to test because you can call the function with different inputs and, as long as the outputs are what you expect, you know the function workds correctly. They are also great for asynchronous code because they prevent unintended side effects.
+    </p>
+
+    <h3>Conclusion</h3>
+    <p>We've learned three of four principles of functional programming: declarative code, immutable state, and pure functions. Declarative code says what to do instead of how to do it. Immutable state means state that is never changed directly; instead, changes are only made to copies. Pure functions are functions that have no side effects and only use data passsed inot them through parameters. While functional programming takes a bit to get used to, there's no reason why most modern web development is based around its principles. It works really well for the asynchronous world of modern software.</p>
+
+    <h1>Variables: Typescript</h1>
+    <h2>Introduction to Typescript</h2>
+    <p>In this video, we'll learn about Typescript. Typescript is a version of JavaScript with types. Imagine we want to change this code here to Typescript. Well, it's gonna be pretty difficult. We're gonna have to come in here to this function, type 'a: number' to specify that this parameter is of  the type number and that's it. this is now Typescript code. While Typescript sounds scary, we usually only have to make a few little changes to our code to unlock the benefits of Typescript.</p>
+
+    <h3>Benefits of Typescript</h3>
+    <p>Typescript allows us to catch errors easier. Have you ever had the issue in your JavaScript code where something ended up as undefined and you're not sure how? Typescript can help you catch the kind of bug much easier because it keeps track of what kinds of things can be in each variable and warns you when something could be undefined. Many errors only come up in very specific scenarios. For example, maybe you show a message when the user tries to log in three times with a bad password. In orderto check that that code works, you would have to simulate that situtaion. If you had a type error in that code, you would only find it if you simulate that exact situtaion where you've logged in three times with the wrong password. But Typescript can allow you to find that error as you are writing the code. Typescript also functions as built-in documentation because it tells you what types of each parameter should be and what kinds of things might end up in variables.</p>
+
+    <h3>Static and Strong Typing</h3>
+    <p>When we say JavaScript with types, what do we really mean? Typescript is statically typed, strongly-ish typed version of JavaScript. Statically typed means that the types are checked when the code is compiled. A dynamically typed language checks the types as each line runs. If the language statically typed, then you specify the types of each variable as you make each variable. Java, C, and Typescript are statically typed languages. You specify the type that will go in this variable, and now that variable can only hold that type of data. Variables in Python, PHP, and JavaScript, dynamically types languages, don't have a type put on each variable. Any variable can hold any type and be switched between types at any time. Typescript makes JavaScript statically typed, meaning the types are checked at compile time.</p>
+
+    <h3>Compiled vs. Interpreted Languages</h3>
+    <p>To understand compile time, we've got to talk about the difference between a compiled language and an interpreted language. In a compiled language, you write the code and t hen before that code can be run at all, it has to be compiled down into low-level instructions for the computer to run. The entire codebase is translated into low-level instructions all at once. While it's doing this, it can check the types and make sure there's no type errors. In an interpreted language, we write the code and then run it without having to compile it, and instead as each line is run, it is translated into low-level instructions. JavaScript is an interpreted language because the browser interprets each line of code as it runs it. To make a statically typed version of JavaScript, we need that compile step. So Typescript is a compiled version of JavaScript, kind of. We actually call it transpiled because compiling translates it into low-level instructions, whereas transpiling translates it inot another high-level language. We write our code as Typescript, it gets transpiled and type checked by our bulid tool, something like Vite, and now we have JavaScript, and then that JavaScript can run in the browser. We don't have to wait for that transpile step to see our errors. VS Code can show us our errors as we write the code.</p>
+
+    <h3>Writing Typescript Code</h3>
+    <p>To wirte Typescript code, you write JavaScript code but you give types to your variables. Luckily, Typescript can infer some of the types for us. For example, we don't have to put a type on our studentName variable because Typescript can tell that we're setting it to a string, so it gives that variable a type of string by default. We usually only put types on variables that have more complicated types or because it's going to get reassigned to something else late. When we type  a function, we type the parameters. After the name of each parameter, we put a colon, a space, and the type that that parameter is. You can also type what that function will return, but usually Typescript can figure that out for you, so you can leave it off. In Typescript, we only want to put the bare minimum of types to make Typescript happy.</p>
+
+    <h3>Typing Arrays, Objects, and Functions</h3>
+    <p>There are two ways to type an array. You can either put the type that's going to be in that array, like an array of strings, and then put square brackets, or you can put Array and then in angle brackets put the type of that array. Either way does the same thing. For object types, we specify what properties should be on that object. If the object has any fewer properties, the type checking will fail. You can specify that a property is optional, and then it will accept objects with or without that property. To type a parameter that's a function, we specify the type with an arrow function syntax. We give the parameters in parentheses, and then on the right-hand side of the arrow, we specify what that function will return.</p>
+
+    <h3>Union Types</h3>
+    <p>sometimes we need to allow a variable, parameter, or property to be multiiple different types. For example, we could allow the width to be a number of the string "auto". The single vertical line indicates an OR. When using a union type, we want to do what's called narrowing, which means to make an if-elae that says what functionality to do if it's one type or another.</p>
+
+    <h3>Reusable Types</h3>
+    <p>One very cool feature of Typescript is that you can reuse types. You can give type a name and then just use that name anywhere you would've put that type. Instead of specifying the properties every tiem you use the user type, you can just call the type "user" and then use that throughout your code to specify that this function accepts a user.</p>
+
+    <h3>Conclusion</h3>
+    <p>We've learned how to write Typescript, a very popular version of JavaScript that has type checking built into it. It helps us prevent bugs, makes our code more readable, makes it easier to find bugs, helps us find bugs sooner, and kind of self-documents your code. I kind of live Typescript.</p>
+
+    <h1>Variables: TypeScript</h1>
+    <p>Setup TypeScript and Vite</p>
+</body>
+</html>
