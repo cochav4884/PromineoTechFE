@@ -14,7 +14,7 @@ const salsa = burrito.salsa;
 const tortilla = burrito.tortilla;
 
 // Destructuring way to access properties on an object
-const { cheese, beans, meat, salsa, tortilla } = burrito;
+const { cheeseType, beansType, meatType, salsaType, tortillaType } = burrito;
 
 // Destructuring rules:
 // 1. The variable names on the left side of the assignment must match the property names on the right side.
