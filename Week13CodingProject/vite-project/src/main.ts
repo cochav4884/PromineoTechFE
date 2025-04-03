@@ -1,11 +1,12 @@
 // Importing necessary CSS files
 import './style.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import '../db.json';
 
 
 // Define API URL and key (replace with your host and API key)
 const API_URL = 'http://localhost:5000/movies'; // Make sure to update with your correct URL
-const API_KEY = 'Your_API_Key_Here'; // Optional if your API requires a key
+const API_KEY = 'HkMwCY58i61SxGSegiorf3ejDRDuM1JeaoUgUQpr'; // Optional if your API requires a key
 
 // Get form and input elements
 const movieForm = document.getElementById('movieForm') as HTMLFormElement;
@@ -23,30 +24,68 @@ const movieList = document.getElementById('movieList') as HTMLUListElement;
 let allMovies: { id: number; title: string; director: string; year: string; genre: string }[] = [];
 
 // Function to fetch and display movies
+// async function fetchMovies() {
+//   try {
+//       const response = await fetch(API_URL, {
+//           method: 'GET',
+//           headers: {
+//               'Content-Type': 'application/json',
+//               'x-api-key': API_KEY
+//           }
+//       });
+
+//       if (!response.ok) {
+//           throw new Error(`Failed to fetch movies: ${response.statusText}`);
+//       }
+
+//       const data = await response.json();
+//       console.log('Fetched data:', data);  // Log the data to check its format
+
+//       if (Array.isArray(data)) {
+//           allMovies = data;
+//           displayMovies(data);
+//       } else {
+//           console.error('Expected an array of movies, but got:', data);
+//       }
+//   } catch (error) {
+//       console.error('Error fetching movies:', error);
+//   }
+// }
+
 async function fetchMovies() {
-    try {
-        const response = await fetch(API_URL, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-api-key': API_KEY
-            }
-        });
+  try {
+      // Static movie data to test displayMovies
+      const staticMovies = [
+          { id: 1, title: 'Inception', director: 'Christopher Nolan', year: '2010', genre: 'Sci-Fi' },
+          { id: 2, title: 'The Matrix', director: 'Wachowski', year: '1999', genre: 'Action' }
+      ];
 
-        if (!response.ok) {
-            throw new Error(`Failed to fetch movies: ${response.statusText}`);
-        }
+      // Display static movies to test the displayMovies function
+      displayMovies(staticMovies);
+      console.log('Static movies displayed'); // Check if this shows up in the console
 
-        const data = await response.json();
-        allMovies = data;
-        displayMovies(data);
-    } catch (error) {
-        console.error('Error fetching movies:', error);
-    }
+      // Fetching movie data from the API
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+          throw new Error(`Failed to fetch movies: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log('Movies fetched from API:', data);  // Log the data fetched from the API
+      allMovies = data;
+      displayMovies(data);  // Display the fetched movies
+  } catch (error) {
+      console.error('Error fetching movies:', error);
+  }
 }
+
+
+
 
 // Function to display movies
 function displayMovies(movies: { id: number; title: string; director: string; year: string; genre: string }[]): void {
+  console.log('Displaying movies:', movies); //Log to verify displayMovies is called with correct data
     if (movieList) {
         movieList.innerHTML = ''; // Clear current movie list
     }
