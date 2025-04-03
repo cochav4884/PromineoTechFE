@@ -80,9 +80,6 @@ async function fetchMovies() {
   }
 }
 
-
-
-
 // Function to display movies
 function displayMovies(movies: { id: number; title: string; director: string; year: string; genre: string }[]): void {
   console.log('Displaying movies:', movies); //Log to verify displayMovies is called with correct data
