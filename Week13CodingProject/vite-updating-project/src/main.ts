@@ -2,20 +2,29 @@
 const API_URL = 'http://localhost:5000/movies'; // Local json-server URL, replace with your actual API URL
 const API_KEY = 'HkMwCY58i61SxGSegiorf3ejDRDuM1JeaoUgUQpr'; // Replace with your actual API key
 
-// Form elements
-const movieForm = document.getElementById('movieForm');
-const titleInput = document.getElementById('title');
-const directorInput = document.getElementById('director');
-const yearInput = document.getElementById('year');
-const genreInput = document.getElementById('genre');
-const searchInput = document.getElementById('searchInput');
-const genreSelect = document.getElementById('genreSelect');
+// Form elements with types
+const movieForm = document.getElementById('movieForm') as HTMLFormElement;
+const titleInput = document.getElementById('title') as HTMLInputElement;
+const directorInput = document.getElementById('director') as HTMLInputElement;
+const yearInput = document.getElementById('year') as HTMLInputElement;
+const genreInput = document.getElementById('genre') as HTMLInputElement;
+const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+const genreSelect = document.getElementById('genreSelect') as HTMLSelectElement;
 
 // Movie list display area
-const movieList = document.getElementById('movieList');
+const movieList = document.getElementById('movieList') as HTMLUListElement;
+
+// Type for the Movie
+interface Movie {
+    id: number;
+    title: string;
+    director: string;
+    year: string;
+    genre: string;
+}
 
 // Store fetched movies in a global variable for filtering
-let allMovies = [];
+let allMovies: Movie[] = [];
 
 // Function to fetch and display movies from the API (using async/await)
 async function fetchMovies() {
@@ -32,7 +41,7 @@ async function fetchMovies() {
             throw new Error('Failed to fetch movies');
         }
 
-        const data = await response.json();
+        const data: Movie[] = await response.json();
         allMovies = data; // Store fetched movies
         displayMovies(data); // Display all movies initially
     } catch (error) {
@@ -41,7 +50,7 @@ async function fetchMovies() {
 }
 
 // Function to display movies in the list
-function displayMovies(movies) {
+function displayMovies(movies: Movie[]) {
     movieList.innerHTML = ''; // Clear the movie list
     movies.forEach(movie => {
         const movieItem = document.createElement('li');
@@ -61,10 +70,10 @@ function displayMovies(movies) {
 }
 
 // Event listener for the form submission to add a new movie (using async/await)
-movieForm.addEventListener('submit', async function (event) {
+movieForm.addEventListener('submit', async function (event: Event) {
     event.preventDefault(); // Prevent default form submission
 
-    const newMovie = {
+    const newMovie: Omit<Movie, 'id'> = {
         title: titleInput.value.trim(),
         director: directorInput.value.trim(),
         year: yearInput.value.trim(),
@@ -91,7 +100,7 @@ movieForm.addEventListener('submit', async function (event) {
             throw new Error('Failed to add movie');
         }
 
-        const data = await response.json();
+        const data: Movie = await response.json();
         console.log('Movie added:', data);
         fetchMovies(); // Refresh the movie list
         movieForm.reset(); // Clear form inputs
@@ -101,7 +110,7 @@ movieForm.addEventListener('submit', async function (event) {
 });
 
 // Function to delete a movie (using async/await)
-async function deleteMovie(movieId) {
+async function deleteMovie(movieId: number) {
     try {
         const response = await fetch(`${API_URL}/${movieId}`, {
             method: 'DELETE',
