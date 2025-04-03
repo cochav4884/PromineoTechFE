@@ -1,5 +1,5 @@
 // Import here
-import '../src/style.css'
+
 
 
 // API URL and Key
