@@ -1,3 +1,7 @@
+// Place imports here:
+import 'bootstrap';
+import './style.css';
+
 // API URL and Key
 const API_URL = 'http://localhost:5000/movies'; // Local json-server URL, replace with your actual API URL
 const API_KEY = 'HkMwCY58i61SxGSegiorf3ejDRDuM1JeaoUgUQpr'; // Replace with your actual API key
@@ -51,6 +55,7 @@ async function fetchMovies() {
 
 // Function to display movies in the list
 function displayMovies(movies: Movie[]) {
+    console.log('Displaying movies:', movies); // Debugging line
     movieList.innerHTML = ''; // Clear the movie list
     movies.forEach(movie => {
         const movieItem = document.createElement('li');
