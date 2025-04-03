@@ -1,6 +1,7 @@
 // Importing necessary CSS files
 import './style.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // Define API URL and key (replace with your host and API key)
 const API_URL = 'http://localhost:5000/movies'; // Make sure to update with your correct URL
