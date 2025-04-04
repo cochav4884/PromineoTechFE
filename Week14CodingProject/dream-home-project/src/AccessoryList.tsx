@@ -12,21 +12,25 @@ interface AccessoryListProps {
 }
 
 const AccessoryList: React.FC<AccessoryListProps> = ({ accessories }) => {
+  console.log("AccessoryList received accessories:", accessories); // Check if data is received here
+
+  if (!accessories || accessories.length === 0) {
+    return <div>No accessories available</div>; // Handle case with no accessories
+  }
+
   return (
-    <div className="accessory-list">
-      {accessories.length === 0 ? (
-        <p>No accessories available.</p>
-      ) : (
-        <ul>
-          {accessories.map((accessory) => (
-            <li key={accessory.id}>
-              <strong>{accessory.name}</strong> - {accessory.style} ({accessory.size})
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="accessory-list" style={{ padding: "10px", backgroundColor: "lightgrey" }}>
+      <h3>Accessory List</h3>
+      <ul>
+        {accessories.map((accessory) => (
+          <li key={accessory.id}>
+            <strong>{accessory.name}</strong> - {accessory.style} ({accessory.size})
+          </li>
+        ))}
+      </ul>
     </div>
   );
+  
 };
 
 export default AccessoryList;

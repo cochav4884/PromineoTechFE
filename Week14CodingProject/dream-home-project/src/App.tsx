@@ -1,14 +1,14 @@
-import { houseAccessories } from "./houseAccessories";
-import { landAccessories } from "./landAccessories";
-import Header from "./Header"; // Adjusted the import path to the correct location
-// Removed unnecessary React import
-import "./App.css"; // Ensure you have a CSS file for styling
-import Sidebar from "./Sidebar"; // Adjusted the path to match the correct location
-import AccessoryList from "./AccessoryList"; // Adjusted the path to match the correct location
+import { houseAccessories } from "./houseAccessories"; // Importing house accessories
+import { landAccessories } from "./landAccessories"; // Importing land accessories
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import AccessoryList from "./AccessoryList";
+import "./App.css";
 
 function App() {
-  console.log(houseAccessories);
-  console.log(landAccessories);
+  console.log("House Accessories:", houseAccessories); // Check if data is there
+  console.log("Land Accessories:", landAccessories); // Check if data is there
+
 
   return (
     <div className="app-container">
