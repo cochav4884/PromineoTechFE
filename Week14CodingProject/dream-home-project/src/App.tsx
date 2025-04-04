@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { houseAccessories } from "./houseAccessories";
+import { landAccessories } from "./landAccessories";
+import Header from "./Header"; // Adjusted the import path to the correct location
+// Removed unnecessary React import
+import "./App.css"; // Ensure you have a CSS file for styling
+import Sidebar from "./Sidebar"; // Adjusted the path to match the correct location
+import AccessoryList from "./AccessoryList"; // Adjusted the path to match the correct location
 
 function App() {
-  const [count, setCount] = useState(0)
+  console.log(houseAccessories);
+  console.log(landAccessories);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-container">
+      <Header />
+      <div className="main-layout">
+        <Sidebar />
+        <main className="content">
+          <h2>🏠 House Accessories</h2>
+          <AccessoryList accessories={houseAccessories} />
+
+          <h2>🌿 Land Accessories</h2>
+          <AccessoryList accessories={landAccessories} />
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
