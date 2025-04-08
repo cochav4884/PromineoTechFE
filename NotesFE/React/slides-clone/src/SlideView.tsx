@@ -6,7 +6,7 @@ export default function SlideView() {
             <div className="bg-white m-3 w-75 shadow-sm p-3 border" style={{height: slideHeight + "px" }}>Slide View</div>
             <div>
                 <label htmlFor="speaker-notes"></label>
-                <textarea className="form-control" id="speaker-notes" placeholder="Enter your notes here">Speaker Notes</textarea>
+                <textarea className="form-control" id="speaker-notes" placeholder="Enter your notes here" defaultValue="Speaker Notes"></textarea>
             </div>
         </div>
     );

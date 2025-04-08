@@ -1,10 +1,11 @@
-import thumbnail from "./assets/thumbnail.png";
+import thumbnail2 from "./assets/thumbnail2.png";
 
 export default function SlideThumbnail() {
+  const slideNumber = 2;
   return (
     <>
-      <span>1</span>
-      <img src={thumbnail} alt="" />
+      <span>{ slideNumber} </span>
+      <img src={thumbnail2} onClick={() => alert("Selected!")} alt="man typing on laptop" className="rounded-circle" />
     </>
   );
 }
