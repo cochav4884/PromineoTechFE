@@ -1,8 +1,17 @@
+import Toolbar from './Toolbar';
+import Sidebar from './Sidebar';
+import SlideView from './SlideView';
+import SlideThumbnail from './SlideThumbnail';
+import './App.css';
+
 export default function App() {
   return (
-    <div className="App">
-      <h1>Welcome to the Slides Clone!</h1>
-      <p>This is a simple React application.</p>
-    </div>
+   <div>
+    App
+    <Toolbar />
+    <Sidebar />
+    <SlideView />
+    <SlideThumbnail />
+   </div>
   );
 }
