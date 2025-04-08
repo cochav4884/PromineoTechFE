@@ -1,7 +1,10 @@
+import thumbnail from "./assets/thumbnail.png";
+
 export default function SlideThumbnail() {
-    return (
-        <div className="slide-thumbnail">
-           
-        </div>
-    );
+  return (
+    <>
+      <span>1</span>
+      <img src={thumbnail} alt="" />
+    </>
+  );
 }
