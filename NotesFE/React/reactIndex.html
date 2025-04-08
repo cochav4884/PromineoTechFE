@@ -90,17 +90,26 @@
 
     <h3>Rules of Components</h3>
     <ul>
-        <li>1. The function name miust start with a capital letter 
-            <p>correct: function MyComponentName() {}</p>
-            <p>incorrect: function myComponentName() {}</p>
+        <li>
+            1. The function name must start with a capital letter
+            <ul>
+                <li>correct: function MyComponentName() {}</li>
+                <li>incorrect: function myComponentName() {}</li>
+            </ul>
         </li>
-        <li>2. The component must be used like it's an HTML element
-            <p>correct: <MyComponentName/></p>
-            <p>incorrect: MyComponentName()</p>
+        <li>
+            2. The component must be used like it's an HTML element
+            <ul>
+                <li>correct: &lt;MyComponentName/&gt;</li>
+                <li>incorrect: MyComponentName()</li>
+            </ul>
         </li>
-        <li>3. The function must return one top-level element
-            <p>correct: return <ul> <li>1</li>  <li>2</li> </ul></p>
-            <p>incorrect: return <li>1</li> <li>2</li> </p>
+        <li>
+            3. The function must return one top-level element
+            <ul>
+                <li>correct: return &lt;ol&gt; &lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt; &lt;/ol&gt;</li>
+                <li>incorrect: return &lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt;</li>
+            </ul>
         </li>
     </ul>
 
