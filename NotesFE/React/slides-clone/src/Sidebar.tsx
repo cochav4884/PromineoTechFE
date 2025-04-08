@@ -1,8 +1,5 @@
 export default function Sidebar() {
-    return (
-        <div className="sidebar">
-            <h2>Sidebar</h2>
-            <p>This is the sidebar content.</p>
-        </div>
-    );
+  return (
+    <div className="border-end bg-light p-3 w-25">Sidebar</div>
+  );
 }
