@@ -16,6 +16,7 @@
   "dependencies": {
     "bootstrap": "^5.3.2",
     "cors": "^2.8.5",
-    "json-server": "^0.17.4"
+    "json-server": "^0.17.4",
+    "vite-updating-project": "file:"
   }
 }
