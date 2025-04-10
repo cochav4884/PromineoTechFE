@@ -122,3 +122,27 @@ return (
 // Set it to call to the function
 // <button onclick="handleClick()" />
 
+
+// Using Props: information flows down like a waterfall from component to component
+
+function App() {
+    return (
+        <div>
+            <h3>Welcome!</h3>
+            <SearchBar size={3} />
+        </div>
+    )
+}
+
+function SearchBar ({ size }) {
+    return (
+        <form className={"fs-" + size}>
+            <input type="text" />
+            <SpecialButton text="Login" />
+        </form>
+    )
+}
+
+function SpecialButton ({ text }) {
+    return <button>{ text }</button>
+}

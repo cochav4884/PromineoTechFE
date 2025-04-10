@@ -210,5 +210,97 @@
 
     <P>Imperative vs Declarative</P>
     <p>See react.js for examples!</p>
+
+    <h2>React Props</h2>
+    <p>Set like they're HTML attributes, recieved as an object parameter</p>
+    <h3>Communicate</h3>
+
+    <P>
+        <CartItemList cartList={cartList} />
+        <CartTotal cartList={cartList} />
+    </P>
+    <p>We can use props to pass data down to another component</p>
+
+    <h3>Cutomize</h3>
+    <p>
+        <Button theme="success" type="button" title="Success Button">Green Success Button</Button>
+        <Button theme="danger" type="button" title="Danger Button">Red Danger Button</Button>
+    </p>
+    <p>We can use props to allow a component to be reused in different ways and customized to each use</p>
+
+    <p>Example:</p>
+
+    <ul>
+        <li>In the parent component, you write:
+            <Panel title="border" open="{false}"/>
+        </li>
+        <li>In the background, React runs:
+            Panel({title: "border", open: false})
+            *IMPORTANT!: You don't write this! Never call a component function directly, let React do that.*
+        </li>
+        <li>In the child component, you write:
+            funtion Panel({title, open}) {
+
+            }
+        </li>
+    </ul>
+
+    <p>Rule for Props</p>
+    <p>1. Always destructure your props for readability
+        <br>
+        correct: function Card({ text, style }) {
+            return <div className={style}>{text}</div>
+        }
+        <br>
+        incorrect: function Card(props) {
+            return <div className={props.style}>{props.text}</div>
+        }
+    </p>
+    <p>2. Props can only be passed down, never across or up
+        <br>
+        correct: Parent
+            (down to child)
+            Child    Child
+
+        <br>
+        incorrect:         Parent
+            Child (across to other child) Child
+        
+        <br>
+        incorrect:   Parent
+                 (up to parent)
+                Child     Child
+    </p>
+
+    <p>In React, components don't know where they will be used, and they may be used in many places. <br>
+    *They don't know their parent component and can't communicate with it*</p>
+
+    <p>*But don't worry! There is a way to get data to flow up! We'll get there. *</p>
+
+    <p>For Example:
+        <br>
+        <ul>
+            <li>App: can send information down to props SearchBar</li>
+            <li>props SearchBar: can send information down to props SpecialButton</li>
+            <li>props SpecialButton: is at the bottom and does not send information up</li>
+        </ul>
+        <br>
+        <ul>
+            <li><h4>App: Sends down to:</h4></li>
+            <li>props Toolbar</li>
+            <li>props SlideView</li>
+            <li>props Sidebar</li>
+            <li><h4>props Toolbar: Sends down to:</h4></li>
+            <li>props ToolbarButton</li>
+            <li>props ToolbarButton</li>
+            <li><h4>props SlideView: has no child to send to</h4></li>
+            <li><h4>props Sidebar: Sends down to:</h4></li>
+            <li>props SlideThumbnail</li>
+            <li>props SlideThumbnail</li>
+        </ul>
+        
+    </p>
+
+
 </body>
 </html>
