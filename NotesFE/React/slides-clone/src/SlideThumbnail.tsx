@@ -1,11 +1,9 @@
-import thumbnail2 from "./assets/thumbnail2.png";
-
-export default function SlideThumbnail() {
-  const slideNumber = 2;
+export default function SlideThumbnail({ slide }: { slide: { order: number, image: string }}) {
+  
   return (
     <>
-      <span>{ slideNumber} </span>
-      <img src={thumbnail2} onClick={() => alert("Selected!")} alt="man typing on laptop" className="rounded-circle" />
+      <span>{ slide.order} </span>
+      <img src={ slide.image } onClick={() => alert("Selected!")} alt="man typing on laptop" className="rounded-circle" />
     </>
   );
 }
