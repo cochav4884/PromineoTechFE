@@ -326,6 +326,55 @@
         </li>
     </ul>
 
+    <h1>React Lists</h1>
+    <h2>Reacts Philosophy</h2>
+    <h3>Principles of Functional Programmig</h3>
+    <ul>
+        <li>Declarative Code</li>
+        <li>Imuutable State</li>
+        <li>Pure Functions</li>
+        <li>Type System</li>
+    </ul>
+
+    <p>Declarative: The code says what to do</p>
+    <ul>
+        <li>Mostly expressions</li>
+        <li>Array methods 
+            .map()
+            .find()
+            .filter()
+        </li>
+        <li>Ternary operator</li>
+    </ul>
+
+    <p>Imperative: The code says how to do it</p>
+    <ul>
+        <li>Mostly statements</li>
+        <li>Loops 
+            for 
+            while 
+            for-of 
+            do-while 
+        </li>
+        <li>If statements </li>
+    </ul>
+
+    <h2>React Key</h2>
+    <p>
+        A unique identifier that helps React keep track of list items between renders.
+    </p>
+
+    <h3>Rules for Keys</h3>
+    <ul>
+        <li>Unique: No other item in the list should have the same key. Items in other lists don't matter
+            key1, key2, key3, key4
+        </li>
+        <li>Consistent: Each item should always have the same key, no matter howw the data is sorted or what items get deleted.
+            key1, key2, key3, key4 => one deleted => key3, key1, key4
+        </li>
+    </ul>
+
+    <p>Rules for keys get broke alot...hehehe...so maybe they should be called "Guidelines" for Keys...lol</p>
 
 </body>
 </html>
