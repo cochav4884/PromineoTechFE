@@ -2,6 +2,7 @@ import SlideThumbnail from "./SlideThumbnail";
 import thumbnailImage2 from "./assets/thumbnail2.png";
 import thumbnail2Image3 from "./assets/thumbnail3.png";
 import thumbnail3Image4 from "./assets/thumbnail4.png";
+import thumbnail4Image5 from "./assets/thumbnail5.png";
 
 const testSlides = [
   {
@@ -19,14 +20,18 @@ const testSlides = [
     order: 3,
     image: thumbnail3Image4
   },
+  {
+    id: 3,
+    order: 4,
+    image: thumbnail4Image5
+  },
 ];
 
+// Mapping an array to JSX to a specific component is extremely common in React and is a key skill that you want to be sure you build comfortably.
 export default function Sidebar() {
   return (
     <div className="border-end bg-light p-3 d-flex flex-column" style={{ width: "200px" }}>
-      <SlideThumbnail slide={testSlides[0]} />
-      <SlideThumbnail slide={testSlides[1]} />
-      <SlideThumbnail slide={testSlides[2]} />
+      { testSlides.map( s => <SlideThumbnail key={s.id} slide={ s } /> ) }
     </div>
   );
 }
