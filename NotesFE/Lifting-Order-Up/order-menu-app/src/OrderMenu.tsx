@@ -1,8 +1,9 @@
-export default function OrderMenu() {
+export default function OrderMenu({ setOrder}: { setOrder: (newValue: string) => void}) {
+    
     return (
         <div>
-            <button>Tacos</button>
-            <button>Burritos</button>
+            <button onClick={() => setOrder("tacos")}>Tacos</button>
+            <button onClick={() => setOrder("burritos")}>Burritos</button>
         </div>
     )
 }

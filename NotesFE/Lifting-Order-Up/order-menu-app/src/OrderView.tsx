@@ -1,5 +1,5 @@
-export default function OrderView() {
+export default function OrderView({ order}: { order: string }) {
     return (
-        <div>Your order is: </div>
+        <div>Your order is: {order}</div>
     )
 }
