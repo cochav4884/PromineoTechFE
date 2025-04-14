@@ -1,5 +1,3 @@
-
-
 type SlideThumbnailProps = {
   slide: { id: number, order: number, image: string }
   isSelected: boolean
