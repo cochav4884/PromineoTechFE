@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 15: Forms & API Integration</title>
+</head>
+<body>
+    <h1>Forms & API Integration</h1>
+    <ul>
+        <li>useEffect Hook: Learn when and why to use the useEffect hook.</li>
+        <li>Fetching Data: Use useEffect to fetch data from APIs and manage loading states and errors.</li>
+        <li>Forms: Create and validate both simple and complex forms, including custom controls like star ratings.</li>
+        <li>Project Work: Build create and edit forms, and sunchronize your app with a backend API using conditional rendering for loading and error states.</li>
+    </ul>
+
+    <h2>UI: React Intro to State</h2>
+    <p>Github Repo: https://github.com/natafaye/fesd-slides-clone</p>
+    <p>Branch: git checkout react-intro-to-state</p>
+
+    <h3>Front-End</h3>
+    <p>State to Rendering to User to Listening to State</p>
+    <ul>
+        <li>When the app first loads in, React automatically renders based on the state</li>
+        <li>We'll write listening even handlers that trigger when the user does something.</li>
+        <li>We'll have our listening event handlers update the state</li>
+        <li>React automatically re-renders the component when its state changes</li>
+    </ul>
+
+    <h3>React State</h3>
+    <p>Data that changes - and when it changes, the component should rerender</p>
+
+    <h4>Rules of State</h4>
+    <ul>
+        <li>1. State is data that changes, there's no reason to put unchanging data in state</li>
+
+    </ul>
+
+    <h4>Rules of Array Destructuring</h4>
+    <ul>
+        <li>1. The order of the variables nees to match the order of the items</li>
+        <li>2. The names don't matter</li>
+        <li>3. You don't have to take all the items</li>
+    </ul>
+
+    <h4>Building with React</h4>
+    <ul>
+        <li>1. Break the app into components</li>
+        <li>2. Pass the data down through props</li>
+        <li>3. Decide what to put in state and where</li>
+        <li>4. Update the state in event listeners</li>
+    </ul>
+
+    <h4>Creating a Normal Variable</h4>
+    <p>let variable = INITIAL_VALUE</p>
+
+    <h4>Creating a State Variable</h4>
+    <p>const [state, setState] = useState(INITIAL_VALUE)</p>
+    <ul>
+        <li>Pick names for these (after const...state and setState) variables. The second one is a function</li>
+        <li>Put a starting value here (INITIAL_VALUE), like 0 or null of "none" or true</li>
+    </ul>
+
+    <h4>Returned Array Destructuring (Pattern)</h4>
+    <p>
+        function functionName() {
+            return someArray
+        }
+
+        const [variableName, variable2Name, etc] = functionName()
+    </p>
+
+    <p>
+        example:
+
+        function useState() {
+            return someArray
+        }
+
+        cosnt [state, setState] = useState()
+    </p>
+
+    <h4>Updating a State Variable</h4>
+    <p>
+        setState(NEW_VALUE)
+    </p>
+
+    <ul>
+        <li>Replace setState with the name you picked for your function variable</li>
+        <li>Put a new value here (NEW_VALUE)</li>
+    </ul>
+</body>
+</html>

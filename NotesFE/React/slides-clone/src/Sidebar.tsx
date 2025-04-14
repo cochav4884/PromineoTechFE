@@ -3,38 +3,61 @@ import thumbnailImage2 from "./assets/thumbnail2.png";
 import thumbnail2Image3 from "./assets/thumbnail3.png";
 import thumbnail3Image4 from "./assets/thumbnail4.png";
 import thumbnail4Image5 from "./assets/thumbnail5.png";
+import { useState } from "react";
 
 const testSlides = [
   {
     id: 0,
     order: 1,
-    image: thumbnailImage2
+    image: thumbnailImage2,
   },
   {
     id: 1,
     order: 2,
-    image: thumbnail2Image3
+    image: thumbnail2Image3,
   },
   {
     id: 2,
     order: 3,
-    image: thumbnail3Image4
+    image: thumbnail3Image4,
   },
   {
     id: 3,
     order: 4,
-    image: thumbnail4Image5
+    image: thumbnail4Image5,
   },
 ];
 
 // Mapping an array to JSX to a specific component is extremely common in React and is a key skill that you want to be sure you build comfortably.
 export default function Sidebar() {
-  return (
-    <div className="border-end bg-light p-3 d-flex flex-column" style={{ width: "200px" }}>
-      { testSlides.map( s => <SlideThumbnail key={s.id} slide={ s } /> ) }
-    </div>
-  );
-}
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  const handleButtonClick = () => {
+    setIsExpanded(!isExpanded)
+  }
+  
+  return ( 
+      <>
+        {isExpanded ? (
+          <div
+            className="border-end bg-light p-3 d-flex flex-column"
+            style={{ width: "200px" }}
+          >
+            {testSlides.map((s) => (
+              <SlideThumbnail key={s.id} slide={s} />
+            ))}
+          </div>
+        ) : null}
+        <button className="btn btn-light p-1 border" 
+          onClick={handleButtonClick}
+          >
+          {isExpanded ? "<" : ">"}
+        </button>
+      </>
+    );
+    
+    }
+
 
 
 /**
