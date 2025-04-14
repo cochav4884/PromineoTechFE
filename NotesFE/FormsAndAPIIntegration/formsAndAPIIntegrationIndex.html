@@ -90,5 +90,44 @@
         <li>Replace setState with the name you picked for your function variable</li>
         <li>Put a new value here (NEW_VALUE)</li>
     </ul>
+
+    <h2>Operations: Optional Chaining</h2>
+    <p>
+        https://docs.google.com/presentation/d/1VVA103r5ii8MQCYC6VcyDZmis7y5A3SL2yypH5q7EY8/edit?usp=sharing
+    </p>
+
+    <h3>Optional Chaining</h3>
+    <p>
+        object?.property
+    </p>
+    <p>
+        If the object is null or undefined, it won't try to get the propert, it'll just simplify to undefined
+    </p>
+
+    <h3>Sample Card Component</h3>
+    <p>
+        function ProductCard({ productId }: { productId: number }) {
+            const product - products.find(p => p.id === productId)
+            return <h3>{ product.name }</h3>
+        }
+    </p>
+    <ul>
+        <li>product in product.name is going to give a type error: ERROR product could be undefined</li>
+        <li>We could use an if check before return: if(!product) return <h3></h3></li>
+        <li>Or we could use *Optional Chaining*: product.name will change to product?.name;
+            If product is undefined, it will simplify to undefined, and the h3 will be empty
+        </li>
+    </ul>
+
+    <h3>Clarification:</h3>
+    <P>Normal Chaining: object.property</P>
+    <p>Optional Chaining: object?.property</p>
+
+    <h3>Chaining Optional Chaining</h3>
+    <p>
+        object?.objectProperty?.property
+    </p>
+    <p>If the object is null or undefined, or if objectProperty is null or undefined, it'll just simplify to undefined
+    </p>
 </body>
 </html>
