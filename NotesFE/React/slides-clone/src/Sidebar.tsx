@@ -32,8 +32,14 @@ const testSlides = [
 export default function Sidebar() {
   const [isExpanded, setIsExpanded] = useState(true);
 
+  const [selectedSlideId, setSelectedSlideId] = useState(0)
+
   const handleButtonClick = () => {
     setIsExpanded(!isExpanded)
+  }
+
+  const handleSlideClick = (id: number) => {
+    setSelectedSlideId(id)
   }
   
   return ( 
@@ -44,7 +50,7 @@ export default function Sidebar() {
             style={{ width: "200px" }}
           >
             {testSlides.map((s) => (
-              <SlideThumbnail key={s.id} slide={s} />
+              <SlideThumbnail key={s.id} slide={s} onSelected={handleSlideClick} isSelected={s.id === selectedSlideId} />
             ))}
           </div>
         ) : null}
