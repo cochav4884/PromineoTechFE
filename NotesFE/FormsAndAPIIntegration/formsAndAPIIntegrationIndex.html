@@ -35,6 +35,7 @@
         <li>1. State is data that changes, there's no reason to put unchanging data in state</li>
         <li>2. State must only be in one place, never duplicated</li>
         <li>3. State can only be shared with lower components, never higher or sibling components</li>
+        <li>4. State is immutable, never change it directly</li>
 
     </ul>
 
@@ -201,5 +202,53 @@
 
     <h4>Implementation of React Bootstrap Component</h4>
     <p>A react component that returns JSX for a Bootstrap component and hooks up Bootstrap's JavaScript</p>
+
+    <h2>Simple Data</h2>
+    <p>strings: const [color, setColor] = useState("green")</p>
+    <p>setColor("purple")</p>
+    <p>numbers: const [count, setCount] = useState(0)</p>
+    <p>setCount(count +1)</p>
+    <p>booleans: const [show, setShow] = useState(false)</p>
+    <p>setShow(!show)</p>
+
+    <h2>Complex Data</h2>
+    <p>objects: const [user, setUser] = useState({ level: 3 })</p>
+    <p>arrays: const [list, setList] = useState([])</p>
+
+    <h3>Immutability</h3>
+    <p>
+        Remove from an Array:
+        someArray = someArray.filter(
+            item => item.id !== idToDelete
+        )
+    </p>
+    <p>
+        Add to an Array:
+        someArray = [ ...someArray, newItem ]
+    </p>
+    <p>
+        Update an Object:
+        someObject = {
+            ...someObject,
+            property: newValue
+        }
+    </p>
+    <p>
+        Update an Object in an Array:
+        someArray = someArray.map(item => (
+            item.id !== idToUpdate ? item : {
+                ...item,
+                property: newValue
+            }
+        ))
+    </p>
+
+    <h3>Benefits of Immutability</h3>
+    <ul>
+        <li>Better for asynchronous programming: If multiple pieces of asynchronous code are using the same state at the same time, they'll never mess each other up, because each only changes copies of the state</li>
+        <li>Fewer bugs: The state is less likely to be changed in an unexpected way. It's easier to test because you don't have to worry about another part of the code changing the state - they'd only make a changed copy</li>
+        <li>Easier to maintain: When one part of the code is given the state, it knows that no other par to of the code will change that exact object or array - so that part of the code can be worked on independently from the other parts.</li>
+    </ul>
+
 </body>
 </html>
