@@ -129,5 +129,44 @@
     </p>
     <p>If the object is null or undefined, or if objectProperty is null or undefined, it'll just simplify to undefined
     </p>
+
+
+    <h1>UI: React Lifting State Up</h1>
+    <p>
+        https://docs.google.com/presentation/d/1AflDCswiXqTBEv-HRCSrIgtTFs3xCOW2sVbGwJzBSB0/edit?usp=sharing
+    </p>
+    <p>
+        Github Repo: https://github.com/natafaye/fesd-slides-clone
+        Branch: git checkout react-lifting-state-up
+    </p>
+
+    <h2>Lifting State Up</h2>
+    <p>
+        Moving state higher in the component tree so that the state and state settter can be used by lower components
+    </p>
+
+    <h3>Communicate</h3>
+    <p>
+        <CartItemList cartList={cartList}/>
+        <CartTotal cartList={cartList}/>
+    </p>
+    <p>
+        We can use props to pass data down to another component 
+    </p>
+
+    <h3>Customize</h3>
+    <p>
+        <Button theme="success">Submit</Button>
+        <Button1 theme="danger"></Button1>
+    </p>
+    <p>
+        We can use props to allow a component to be reused in different ways and customized to each use
+    </p>
+
+    <h3>Rules of Props</h3>
+    <ul>
+        <li>1. Always destructure your props for readability</li>
+        <li>2. Props can only be passed down, never across or up</li>
+    </ul>
 </body>
 </html>
