@@ -1,7 +1,8 @@
 
 type ToolbarButtonProps = {
     icon: string,
-    onClick: () => void
+    onClick: () => void;
+    title: string; // Added title to props
 }
 
 export default function ToolbarButton({ icon, onClick}: ToolbarButtonProps) {

@@ -2,21 +2,26 @@ import SlideThumbnail from "./SlideThumbnail";
 import { useState } from "react";
 
 type SidebarProps = {
-    slides: Array<{ id: number, order: number, image: string }>
+    slides: Array<{ id: string, order: number, image: string }>
     selectedSlideId: number
     setSelectedSlideId: (newValue: number) => void
+    deleteSlide: (id: number) => void
 }
 
 // Mapping an array to JSX to a specific component is extremely common in React and is a key skill that you want to be sure you build comfortably.
-export default function Sidebar({ slides, selectedSlideId, setSelectedSlideId}: SidebarProps) {
+export default function Sidebar({ 
+  slides, 
+  selectedSlideId, 
+  setSelectedSlideId, deleteSlide}: 
+  SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(true);
 
   const handleButtonClick = () => {
     setIsExpanded(!isExpanded)
   }
 
-  const handleSlideClick = (id: number) => {
-    setSelectedSlideId(id)
+  const handleSlideClick = (id: string) => {
+      setSelectedSlideId(Number(id))
   }
   
   return ( 
@@ -31,7 +36,8 @@ export default function Sidebar({ slides, selectedSlideId, setSelectedSlideId}: 
               key={s.id} 
               slide={s} 
               onSelected={handleSlideClick} 
-              isSelected={s.id === selectedSlideId} />
+              isSelected={Number(s.id) === selectedSlideId}
+              deleteSlide={(id) => deleteSlide(Number(id))} />
             ))}
           </div>
         ) : null}

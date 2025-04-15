@@ -10,25 +10,26 @@ type SlideViewProps = {
 
 export default function SlideView({ slide }: SlideViewProps) {
   const slideHeight = 500;
+
   return (
     <div className="flex-grow-1 d-flex flex-column">
-      <div className="d-flex flex-grow-1 justify-items-center align-items-center bg-light"></div>
+      {/* Removed empty div here */}
       <div
         className="bg-white m-3 w-75 shadow-sm p-3 border"
         style={{
           height: slideHeight + "px",
-          color: slide?.fontColor,
+          color: slide?.fontColor || "black", // 🆕 use passed fontColor
         }}
       >
         {slide?.text}
       </div>
       <div>
-        <label htmlFor="speaker-notes"></label>
+        <label htmlFor="speaker-notes">Speaker Notes</label>
         <textarea
           className="form-control"
           id="speaker-notes"
           placeholder="Enter your notes here"
-          defaultValue="Speaker Notes"
+          defaultValue=""
         ></textarea>
       </div>
     </div>
