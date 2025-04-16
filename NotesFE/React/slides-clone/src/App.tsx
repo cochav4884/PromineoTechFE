@@ -8,6 +8,7 @@ import thumbnail3Image4 from "./assets/thumbnail4.png";
 import thumbnail4Image5 from "./assets/thumbnail5.png";
 import thumbnail5Image6 from "./assets/thumbnail6.png";
 import thumbnail6Image7 from "./assets/thumbnail7.png";
+import type { Slide } from "./types";
 
 const TEST_SLIDES = [
   {
@@ -49,7 +50,7 @@ const TEST_SLIDES = [
 ];
 
 export default function App() {
-  const [slides, setSlides] = useState(TEST_SLIDES);
+  const [slides, setSlides] = useState<Slide[]>(TEST_SLIDES);
   const [selectedSlideId, setSelectedSlideId] = useState(0);
   const [fontColor, setFontColor] = useState("black"); // 🆕 Lifted font color state
 

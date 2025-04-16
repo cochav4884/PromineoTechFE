@@ -4,6 +4,7 @@ import colorIcon from "./assets/palette-solid (1).svg";
 import fontIcon from "./assets/text-height-solid.svg";
 import plusIcon from "./assets/plus-solid.svg";
 import { useState } from "react";
+import type { Slide } from "./types";
 
 const colors = [
     { name: "Red", value: "red", variant: "danger" },
@@ -16,12 +17,7 @@ type ToolbarProps = {
   fontColor: string; // 🆕
   setFontColor: (color: string) => void; // 🆕
   updateSlideFontColor: (color: string, id?: number) => void
-  selectedSlide?: {
-    id: number;
-    order: number;
-    image: string;
-    fontColor: string;
-  }
+  selectedSlide?: Slide
 };
 
 export default function Toolbar({ addBlankSlide, updateSlideFontColor, selectedSlide }: ToolbarProps) {

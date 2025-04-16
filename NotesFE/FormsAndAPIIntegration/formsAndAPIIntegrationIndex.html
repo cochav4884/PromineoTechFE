@@ -259,5 +259,229 @@
         Branch: git checkout react-complex-state
     </p>
 
+    <h1>Variables: More Typescript</h1>
+    <p>
+        https://docs.google.com/presentation/d/1bok1dhEwKscK6wubn-rBNFTjEJRSzH-DNRtyZaIdyVo/edit?usp=sharing
+    </p>
+    <p>
+        Github Repo: https://github.com/natafaye/fesd-slides-clone
+        Branch: git checkout more-typescript
+    </p>
+
+    <h2>Typescript: A version of JavaScript where each variable is given a type</h2>
+    <h3>Import & Export Types</h3>
+    <ul>
+        <li>
+            Export Type: export type User = { id: number, name: string }
+        </li>
+        <li>
+            Import Type: import type { User } from "./types.ts"
+        </li>
+    </ul>
+
+    <h2>Typing UseState</h2>
+    <h3>Typing useState: const [state, setState] = useState("") or const [state, setState] = useState([])</h3>
+    <p>
+        Typing useState:
+        const [state, setState] = useState<TYPE>(initialValue)
+        
+        You can set a type on your state like this (see <TYPE>)
+    </p>
+    <p>Example:
+        Typing Array in useState:
+        const [state, setState] = useState<string[]>([])
+
+        const [state, setState] = useState<Array<string>>([])
+    </p>
+    <p>
+        const [state, setState] = useState<NamedType[]>([])
+
+        const [state, setState] = useState<Array<NamedType>>([])
+    </p>
+
+    <h2>Typing Union in useState</h2>
+    <p>
+        const [state, setState] = useState<string | null>(null)
+
+        const [state, setState] = useState<number | string>("auto")
+    </p>
+
+    <h2>Typing Event Object</h2>
+    <p>
+        <!-- Typing Event Object: <button onClick={event => {}}></button> -->
+
+        if the event handler is inline, the event object will be automatically typed
+    </p>
+    <p>
+        <button type="button" onClick={handleEvent} title="Click to handle event">Click Me</button>
+
+        const handleEvent = (event: TYPE) => {}
+
+        But if the handler is separate, the event object will need to be manually typed
+    </p>
+    <p>
+        Two most common types of events: Click and change
+        const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {}
+
+        const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {}
+    </p>
+
+    <h3>Event Types</h3>
+    <ul>
+        <li>React.MouseEvent<   ></li>
+        <li>React.ChangeEvent<   ></li>
+        <li>React.KeyBoardEvent<   ></li>
+        <li>React.FocusEvent<   ></li>
+        <li>React.FormEvent<   ></li>
+        <li>React.DragEvent<   ></li>
+        <li>React.ToucheEvent<   ></li>
+        <li>React.WheelEvent<   ></li>
+        <li>...and more!</li>
+    </ul>
+
+    <h3>HTML Element Types</h3>
+    <ul>
+        <li>HTMLButtonElement</li>
+        <li>HTMLAnchorElement</li>
+        <li>HTMLDivElement</li>
+        <li>HTMLFormElement</li>
+        <li>HTMLHEadingElement</li>
+        <li>HTMLImageElement</li>
+        <li>HTMLInputElement</li>
+        <li>HTMLLiElement</li>
+        <li>HTMLSelectElement</li>
+        <li>HTMLTextAreaElement</li>
+        <li>...and more!</li>
+    </ul>
+
+    <h2>Type Assertion</h2>
+    <p>As Type Assertion: 
+        document.getElementById("some-id") as HTMLInputElement
+        response.json() as string[]
+    </p>
+
+    <h2>!Type Assertion</h2>
+    <p>
+        document.getElementById("some-id")!.textContent
+        list.find(item => item.id === DEFAULT_ITEM)!.name
+    </p>
+    <h3>*CAUTION*</h3>
+    <ul>
+        <li>1. Only use type assertion if you need it</li>
+        <li>Using type assertion is leaving the safety zone</li>
+    </ul>
+
+    <h2>Utility Types</h2>
+    <p>
+        Partial Type: Make a new type with all the properties Optional
+
+        const update = (id: number, updatedProperties: Partial<Email>) => {}
+    </p>
+
+    <h3>Email</h3>
+    <p>
+        type Email = {
+            id: number
+            author: string
+            text: string
+        }
+
+        this is a type of Email for your code
+    </p>
+
+    <h3>Partial<Email></h3>
+        <p>
+            {
+            id?: number
+            author?: string
+            text?: string
+        }
+
+        Partial will set up the elements in email to be optional; this can be useful when your making an update function and you want to take in whatever properties need updating; you can update some of the properties if that's what is needed.
+        </p>
+
+    <h2>Required Type</h2>
+    <p>Make a new type with all the properties Required
+
+        const setAdmin = (newAdmin: Required<User>) => {}
+    </p>
+
+    <h3>User</h3>
+    <p>
+        type User = {
+            id: number
+            name: string
+            phone: string
+            email: string
+            adminLevel?: number 
+        }
+    </p>
+
+    <h3>Required<User></h3>
+        <p>
+            {
+                id: number 
+                number: string
+                phone: string 
+                email: string 
+                adminlevel: number 
+            }
+
+            this will work only if the User had properties that were optional
+        </p>
+
+    <h2>Pick Type</h2>
+    <p>
+        Make a new type with only some properties included
+
+        let contactInfo: Pick<User, "email" | "phone"> => {
+            email: user.email,
+            phone: user.phone
+        }
+    </p>
+
+    <h3>User</h3>
+    <p>
+        type User = {
+            id: number 
+            name: string 
+            phone: string 
+            email: string 
+            adminLevel?: number
+        }
+    </p>
+
+    <h3>Pick<User, "email" | "phone"></h3>
+    <p>
+        {
+            phone: string 
+            email: string 
+        }
+    </p>
+
+    <h3>Omit Type (Opposite Pick Type)</h3>
+    <p>
+        Make a new type with some properties excluded
+
+        const update = (id: number, updatedEmail: Omit<Email, "id">) => {}
+
+        The properties to omit (see "id in red above")
+    </p>
+
+    <p>for example:
+
+        Email: 
+        type Email = {
+            id: number 
+            author: string 
+            text: string 
+        }
+
+        Omit<Email, "id">:
+            {
+                author: string 
+                text: string 
+            }
+    </p>
 </body>
 </html>

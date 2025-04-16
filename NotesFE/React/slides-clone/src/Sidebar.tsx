@@ -1,8 +1,9 @@
 import SlideThumbnail from "./SlideThumbnail";
 import { useState } from "react";
+import type { Slide } from "./types";
 
 type SidebarProps = {
-    slides: Array<{ id: number, order: number, image: string }>
+    slides: Array<Slide>
     selectedSlideId: number
     setSelectedSlideId: (newValue: number) => void
     deleteSlide: (id: number) => void
