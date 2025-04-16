@@ -63,7 +63,7 @@ export default function App() {
       <Toolbar addBlankSlide={addBlankSlide} setFontColor={setFontColor} fontColor={fontColor} /> {/* 🆕 pass down */}
       <div className="d-flex flex-grow-1">
         <Sidebar 
-          slides={slides.map(slide => ({ ...slide, id: slide.id.toString() }))} 
+          slides={slides} 
           deleteSlide={deleteSlide} 
           selectedSlideId={selectedSlideId} 
           setSelectedSlideId={setSelectedSlideId} 

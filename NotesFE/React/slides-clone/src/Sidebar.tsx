@@ -2,7 +2,7 @@ import SlideThumbnail from "./SlideThumbnail";
 import { useState } from "react";
 
 type SidebarProps = {
-    slides: Array<{ id: string, order: number, image: string }>
+    slides: Array<{ id: number, order: number, image: string }>
     selectedSlideId: number
     setSelectedSlideId: (newValue: number) => void
     deleteSlide: (id: number) => void
@@ -20,8 +20,8 @@ export default function Sidebar({
     setIsExpanded(!isExpanded)
   }
 
-  const handleSlideClick = (id: string) => {
-      setSelectedSlideId(Number(id))
+  const handleSlideClick = (id: number) => {
+      setSelectedSlideId(id)
   }
   
   return ( 

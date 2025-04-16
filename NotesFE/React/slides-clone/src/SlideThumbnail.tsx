@@ -1,12 +1,12 @@
 type SlideThumbnailProps = {
   slide: {
-    id: string;
+    id: number;
     order: number;
     image: string;
   };
   isSelected: boolean;
-  onSelected: (id: string) => void;
-  deleteSlide: (id: string) => void;
+  onSelected: (id: number) => void;
+  deleteSlide: (id: number) => void;
 };
 
 export default function SlideThumbnail({ 
