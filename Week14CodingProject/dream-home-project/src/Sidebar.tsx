@@ -1,12 +1,13 @@
+import React from 'react';
+import { Nav } from 'react-bootstrap'; // React-Bootstrap component for navigation
+
 const Sidebar: React.FC = () => {
   return (
     <aside className="sidebar">
-      <nav>
-        <ul>
-          <li><a href="#">🏠 House Accessories</a></li>
-          <li><a href="#">🌿 Land Accessories</a></li>
-        </ul>
-      </nav>
+      <Nav defaultActiveKey="#home" className="flex-column">
+        <Nav.Link href="#">🏠 House Accessories</Nav.Link>
+        <Nav.Link href="#">🌿 Land Accessories</Nav.Link>
+      </Nav>
     </aside>
   );
 };

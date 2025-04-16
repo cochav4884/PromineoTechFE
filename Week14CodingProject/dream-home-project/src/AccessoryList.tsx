@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { Button, ListGroup } from 'react-bootstrap'; // React-Bootstrap components
 
 interface Accessory {
   id: number;
@@ -9,28 +10,24 @@ interface Accessory {
 
 interface AccessoryListProps {
   accessories: Accessory[];
+  deleteItem: (id: number) => void;
+  toggleStyle: (id: number) => void;
 }
 
-const AccessoryList: React.FC<AccessoryListProps> = ({ accessories }) => {
-  console.log("AccessoryList received accessories:", accessories); // Check if data is received here
-
-  if (!accessories || accessories.length === 0) {
-    return <div>No accessories available</div>; // Handle case with no accessories
-  }
-
+const AccessoryList: React.FC<AccessoryListProps> = ({ accessories, deleteItem, toggleStyle }) => {
   return (
-    <div className="accessory-list" style={{ padding: "10px", backgroundColor: "lightgrey" }}>
-      <h3>Accessory List</h3>
-      <ul>
-        {accessories.map((accessory) => (
-          <li key={accessory.id}>
-            <strong>{accessory.name}</strong> - {accessory.style} ({accessory.size})
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ListGroup>
+      {accessories.map((accessory) => (
+        <ListGroup.Item key={accessory.id}>
+          <strong>{accessory.name}</strong> - {accessory.style} ({accessory.size})
+          <Button variant="danger" onClick={() => deleteItem(accessory.id)} style={{ marginLeft: '10px' }}>Delete</Button>
+          <Button variant="warning" onClick={() => toggleStyle(accessory.id)} style={{ marginLeft: '10px' }}>
+            Toggle Style
+          </Button>
+        </ListGroup.Item>
+      ))}
+    </ListGroup>
   );
-  
 };
 
 export default AccessoryList;
