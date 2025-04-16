@@ -483,5 +483,56 @@
                 text: string 
             }
     </p>
+
+    <h1>React Hooks</h1>
+    <p>
+        A function that allows a component to "hook into" some feature
+
+        *Note: Hook functions always start with the work "use"
+
+        Some Hooks We'll Use:
+    </p>
+    <ul>
+        <li>useState - gives access to React State</li>
+        <li>useEffect - gives access to React Effects</li>
+        <li>useParams - gives access to React Router URL params</li>
+        <li>useRouteError - gives access to React Router error</li>
+    </ul>
+
+    <h2>Example Custom Hooks: in this class we will only be using hooks other people have writen, but you can write your own hooks. Hooks are functions that start with "use" </h2>
+    <p>
+        function useBrowserInfo() {
+            return navigator.userAgent
+        }
+
+        const MyComponent() {
+            const browserInfo = useBrowserInfo()
+        }
+    </p>
+
+    <h3>Rules of Hooks</h3>
+    <ul>
+        <li>1. Only call a hook from a component or another hook, not from an even listener or callback function</li>
+        <li>2. Only call a hook from the top level, not inside a condition or loop</li>
+    </ul>
+    <p>
+        correct: 
+        function useSomeHook() {
+            useHook() // GOOD
+        }
+
+        incorrect:
+        function MyComponent() {
+            const onClick = () => {
+                useHook() // BAD
+            }
+        }
+
+        function MyComponent() {
+            if(condition) {
+                useHook() // BAD
+            }
+        }
+    </p>
 </body>
 </html>
