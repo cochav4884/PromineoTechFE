@@ -18,7 +18,7 @@ export default function SlideView({ slide }: SlideViewProps) {
         className="bg-white m-3 w-75 shadow-sm p-3 border"
         style={{
           height: slideHeight + "px",
-          color: slide?.fontColor || "black", // 🆕 use passed fontColor
+          color: slide?.fontColor, // 🆕 use passed fontColor
         }}
       >
         {slide?.text}

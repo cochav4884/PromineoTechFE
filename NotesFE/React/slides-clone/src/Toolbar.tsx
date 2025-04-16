@@ -5,16 +5,37 @@ import fontIcon from "./assets/text-height-solid.svg";
 import plusIcon from "./assets/plus-solid.svg";
 import { useState } from "react";
 
+const colors = [
+    { name: "Red", value: "red", variant: "danger" },
+    { name: "Green", value: "green", variant: "success" },
+    { name: "Black", value: "black", variant: "dark" }
+  ]
+
 type ToolbarProps = {
   addBlankSlide: () => void;
   fontColor: string; // 🆕
   setFontColor: (color: string) => void; // 🆕
+  updateSlideFontColor: (color: string, id?: number) => void
+  selectedSlide?: {
+    id: number;
+    order: number;
+    image: string;
+    fontColor: string;
+  }
 };
 
-export default function Toolbar({ addBlankSlide, fontColor, setFontColor }: ToolbarProps) {
+export default function Toolbar({ addBlankSlide, updateSlideFontColor, selectedSlide }: ToolbarProps) {
   const [isColorModalOpen, setIsColorModalOpen] = useState(false);
 
+  // Handle the closing of the modal
   const handleClose = () => setIsColorModalOpen(false);
+
+  // Handle color change by calling the updateSlideFontColor function
+  const handleColorChange = (color: string) => {
+    if (selectedSlide) { //Ensure selectedSlide is available 
+        updateSlideFontColor(color, selectedSlide.id); // Update font color of the selected slide    
+    }
+  }
 
   return (
     <>
@@ -28,25 +49,16 @@ export default function Toolbar({ addBlankSlide, fontColor, setFontColor }: Tool
           <Modal.Title>Font Color</Modal.Title> {/* 🆕 fixed typo */}
         </Modal.Header>
         <Modal.Body>
-          <Stack direction="horizontal" gap={1}>
-            <Button
-              variant={fontColor === "red" ? "danger" : "outline-danger"}
-              onClick={() => setFontColor("red")}
-            >
-              Red
-            </Button>
-            <Button
-              variant={fontColor === "green" ? "success" : "outline-success"}
-              onClick={() => setFontColor("green")}
-            >
-              Green
-            </Button>
-            <Button
-              variant={fontColor === "black" ? "dark" : "outline-dark"}
-              onClick={() => setFontColor("black")}
-            >
-              Black
-            </Button>
+        <Stack direction="horizontal" gap={1}>
+            {colors.map(({ name, value, variant }) => (
+              <Button
+                key={value}
+                variant={selectedSlide?.fontColor === value ? variant : `outline-${variant}`}
+                onClick={() => handleColorChange(value)}
+              >
+                {name}
+              </Button>
+            ))}
           </Stack>
         </Modal.Body>
         <Modal.Footer>
