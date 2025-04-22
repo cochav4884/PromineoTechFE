@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 16: Variables: Computer Property Names<title>
+</head>
+<body>
+    <h1>Variables: Computer Property Names</h1>
+    <p>
+        https://docs.google.com/presentation/d/1xwUKOlXrwswnIX9vTTZwpF1jew4OPvkOunG2GCAhvFw/edit?usp=sharing  
+    </p>
+    <h3>Setting a Property: both are the same below:</h3>
+    <p>email.unread = false</p>
+    <p>email["unread"] = false
+    <br>
+    const property = "unread";
+    email[property] = false
+    <br>
+    </p>
+    <p>
+        const updateEmail = (property, NewValue) => {
+            email[property] = newValue;
+        };
+    </p>
+
+    <h3>Creating an Object</h3>
+    <p>
+        const usersById = {
+            [user1.id]: user1,
+            [user2.id]: user2,
+        }
+    </p>
+
+    <h3>Accessing a Property</h3>
+    <p>
+        usersById[idToGetUserFor] 
+    </p>
+    <p>
+        in this class will be using this: 
+        const updateEmail = (property, NewValue) => {
+            email[property] = newValue;
+        };
+
+        to create reusable functions that can update any property of an object.
+    </p>
+</body>
+</html>
