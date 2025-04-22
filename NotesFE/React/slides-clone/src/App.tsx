@@ -1,7 +1,7 @@
 import Toolbar from './Toolbar';
 import Sidebar from './Sidebar';
 import SlideView from './SlideView';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import thumbnailImage2 from "./assets/thumbnail2.png";
 import thumbnail2Image3 from "./assets/thumbnail3.png";
 import thumbnail3Image4 from "./assets/thumbnail4.png";
@@ -53,6 +53,10 @@ export default function App() {
   const [slides, setSlides] = useState<Slide[]>(TEST_SLIDES);
   const [selectedSlideId, setSelectedSlideId] = useState(0);
   const [fontColor, setFontColor] = useState("black"); // 🆕 Lifted font color state
+
+  useEffect(() => {
+    document.title = `Slides (${slides.length})`;
+  }, [slides.length]);
 
   const selectedSlide = slides.find(s => s.id === selectedSlideId);
 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 16: React Router & Testing</title>
+</head>
+<body>
+
+    <h1>React Router & Testing</h1>
+    <ul>
+        <li>SPA vs MPA: Understand the differences between Single Page Applications and Multi-Page Applications.</li>
+        <li>React Router: Implement client-side routing with React Router, including nested routes and URL parameters.</li>
+        <li>Intergration Testing: Use React Testing Library to write and run integration tests, ensuring your application functions correctly.</li>
+        <li>Project Work: Start your final project by setting up React Router pages and integration tests.</li>
+    </ul>
+
+    <h2>UI: React UseEffect Hook</h2>
+    <p>useEffect(() => {
+        //do something
+    }, DEPENDENCY_ARRAY)</p>
+    <ul>
+        <li>https://docs.google.com/presentation/d/1ZCPmR1YPv0DW7EoqFH9idbNcnPayE2Tq8NgDdSgKbvs/edit?usp=sharing</li>
+        <li>Github Repo: https://github.com/natafaye/fesd-slides-clone</li>
+        <li>Branch: v</li>
+    </ul>
+
+    <h3>React Component</h3>
+    <p>An oftern pure, mostly declarative function that can take in props as input and returns JSX as output</p>
+    <ul>
+        <li>Pure Function: Does not have side effects, always gives the same output for the same input</li>
+        <li>Impure Function: Has side effects, does not always give the same output for the same input</li>
+    </ul>
+    <p>When you need a pure function to have a side effect, use a:</p>
+    <h3>React Effect</h3>
+    <p>A side effect of rendering that needs to run outside of the pure rendering function.</p>
+
+    <p>To attach a side effect to a pure function:
+        <p>
+            <h2>UI: React UseEffect Hook: takes two parameters:</h2>
+            <p>useEffect(() => {
+                //do something
+            }, DEPENDENCY_ARRAY)</p>
+        </p>
+        <ul>
+            <li>first parameter: "//do something" is what is ran after rendering is complete</li>
+            <li>second parameter: DEPENDENCY_ARRAY; The effect will run when the dependency array changes.</li>
+        </ul>
+
+        UseEffect Hook will only run if the dependendy array changes. If it does not change, the UseEffect Hook will not run again.
+    </p>
+    <h3>Three Options for the dependency array:</h3>
+    <ul>
+        <li>No dependency array <p>
+            <p>useEffect(() => {
+                //do something
+            })</p>
+            <p>This will run the effect after every render.</p> 
+        </p> Run on every render (we don't usually do this)</li>
+        <li>Full dependency array <p>
+            <p>useEffect(() => {
+                //do something
+            }, [DEPENDENCY1, DEPENDENCY2])</p>
+            <p>This will run the effect only when the dependencies change.</p>
+        </p> Run on first render, and later renders where some or thing has changed since the last render</li>
+
+        <li>Empty dependency array <p>
+            <p>useEffect(() => {
+                //do something
+            }, [])</p>
+            <p>This will run the effect only once, after the initial render.</p>
+        </p> Run on first render</li>
+    </ul>
+
+    <h3>If Strict Mode is being used: (should leave strict mode on) this happens when strict mode is on:</h3>
+    <p>Does some extra checks, only in development mode, to help catch bugs <br> 
+    One of those checks is to load, unload, and load again when a component first loads in.</p>
+
+    <h3>When do we use an Effect?</h3>
+    <p>For behavior triggered by rendering that isn't part of rendering, usually to sync with an external system</p>
+    <h4>Most common examples:</h4>
+    <ul>
+        <li>1. Fetching data from the backend</li>
+        <li>2. Starting a loading-in animation</li>
+        <li>3. To interface with a DOM-manipulation-based system or widget</li>
+    </ul>
+
+    <h4>Warning:</h4>
+    <p>Before you reach for useEffect, make sure you couldn't just do it in an event listener or rendering code!</p>
+    <ul>
+        <li>Are you sure it's triggered by rendering? <p>
+            If not, then it's probably triggered by a user event, so put it in the event handler instead.</p>
+        </p></li>
+        <li>Are you sure it's not part of rendering? <p>
+            If it is part of rendering, then put it directly in the rendering function instead.</p>
+        </p></li>
+    </ul>
+
+    
+</body>
+</html>
