@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 16 UI: React Inputs</title>
+</head>
+<body>
+    <h1>UI: React Inputs</h1>
+    <p>
+        https://docs.google.com/presentation/d/1z0PINzpKKybmoXE7KeuOVIS5M-xkHDgO7p01x9jwNmw/edit?usp=sharing
+    </p>
+    <P>
+        Github Repo: https://github.com/natafaye/fesd-slides-clone
+        Branch: git checkout react-inputs
+    </P>
+
+    <h2>User Interfaces:</h2>
+    <h3>React Inputs</h3>
+    <p>
+        In this lesson, we will explore how to create and manage inputs in a React application. We will cover controlled components, handling form submissions, and managing state with hooks.
+    </p>
+    <p>
+        Say you have a list of the USA states and as soon as you start typingin the search box, (example: nev) you want the list to start filtering through and only show the states that start with (nev).
+    </p>
+    <h3>Handling Inputs</h3>
+    <ul>
+        <li>1. Pick/make a peice of state to connect with the input's value</li>
+        <li>2. Update the state when the user changes the value of the input</li>
+        <li>3. Render the input with its value set to the piece of state</li>
+    </ul>
+    <h3>Example Code</h3>
+    <p>
+        <code>const [value, setValue] = useState("");</code>
+    </p>
+   
+    <h3>Resources</h3>
+    <ul>
+        <li><a href="https://reactjs.org/docs/forms.html">React Forms Documentation</a></li>
+        <li><a href="https://reactjs.org/docs/hooks-state.html">React Hooks: useState</a></li>
+    </ul>
+
+    <h3>Controlled Input</h3>
+    <p>
+        An input that is completely controlled and hooked tightly to React state. This means that the value of the input is always determined by the state, and any changes to the input will update the state accordingly.
+    </p>
+
+    <h3>Controlled Input:</h3>
+    <!-- <p>
+       const [value, setValue] = useState("")</li>
+       <input type="text"
+        title="Input field"
+        placeholder="Enter text here"
+        onChange = {() => setValue("")}
+        />
+    </p> -->
+
+    <p>
+        We do not get things by id in React. 
+    </p>
+    <p>
+        <h4>Event Ojbect:</h4>
+        <p>
+            A parameter that's given to even listeners by the browser, with infor about the event.
+        </p>
+        <h4>All Event Objects</h4>
+        <p>
+            function handleEvent(event) {
+                // Prevent the default behaviror of the event
+                event.preventDefault();
+                // The HTML element that was the target of the event
+                event.target;
+                // The type of event that was triggered (e.g., "click", "change")
+            }
+        </p>
+    </p>
+
+    <h3>Controlled Input Example:</h3>
+    const [value, setValue] = useState("");
+    <input type="text"
+        title="Input field"
+        placeholder="Enter text here"
+        onChange="{(event) => setValue(event.target.value)}"
+        value="{value}"
+    />
+</body>
+</html>
