@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 16 UI: React State & Closure</title>
+</head>
+<body>
+    <h1>UI: React State & Closure</h1>
+    <p>
+        https://docs.google.com/presentation/d/1_yMEhExs-yNCfdT9BqzFQT1xR0Q2IaQPDTtOPd2eATA/edit?usp=sharing
+    </p>
+
+    <h2>User Interfaces</h2>
+    <h3>React State & Closure</h3>
+    <p>
+        <!-- const [text, setText] = userState("old")
+        const handleClick = () => {
+            setText("new")
+            console.log(text) // "old"
+        } -->
+        <p>
+            What will handleClick log out? Why? <br>
+            <strong>Answer:</strong> "old" because the state update is asynchronous 
+            and the closure captures the initial value of `text` at the time of the 
+            function creation.
+        </p>
+    </p>
+
+    <h3>Calling a State Setter:</h3>
+    <h4>Warning</h4>
+    <p>
+        Calling a state setter will update the state for the next render, but it will not
+        immediately change the value of the state variable in the current render.
+    </p>
+
+    <h3>Closure:</h3>
+    <p>
+        A function plus all the variables that were in scope when the function was created.
+        This means that the function retains access to those variables even after they go out of scope.
+    </p>
+   
+</body>
+</html>
