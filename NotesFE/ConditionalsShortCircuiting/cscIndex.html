@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 16 Conditionals: Short Circuiting</title>
+</head>
+<body>
+    <h1>Conditionals: Short Circuiting</h1>
+    <p>
+        https://docs.google.com/presentation/d/1XNz_iiURczb2Y-kxxk0VfJTB6lSOWWkpNTba8CZQmw4/edit?usp=sharing 
+    </p>
+
+    <p>
+        let result = email && email.text
+    </p>
+
+    <h3>Truthy/Falsy</h3>
+    <p>
+        In JavaScript, any vlaue can be used as a boolean. Values that act like true are truthy, values that act like false are falsy.
+        The following values are falsy: <code>false</code>, <code>null</code>, <code>undefined</code>, <code>0</code>, <code>NaN</code>, and the empty string <code>""</code>. All other values are truthy.
+        The follwoing values are truthy: <code>true</code>, any non-zero number, any non-empty string, any object, and any array.
+    </p>
+    
+    <p>
+        if(email && email.text) {
+            //do something
+        }
+        <p>
+            If email is defined, and its text property isn't empty, then do something.
+        </p>
+    </p>
+
+    <p>
+        let result = email && email.text
+
+        <h3>And or &&</h3>
+        <p>
+            Expression: false && false => Result: false<br>
+            Expression: false && true => Result: false<br>
+            Expression: true && false => Result: false<br>
+            Expression: true && true => Result: true<br>
+        </p>
+
+        <h3>And or && (2)</h3>
+        <p>
+            Expression: falsy1 && falsy2 => Result: falsy1<br>
+            Expression: falsy1 && truthy2 => Result: falsy1<br>      
+            Expression: truthy1 && falsy2 => Result: falsy2<br>
+            Expression: truthy1 && truthy2 => Result: truthy2<br>
+        </p>
+
+        1. if the first value is falsy1, then it will result in the first value. <br>
+        2. if the first value is truthy1, then it will result in the second value.
+    </p>
+
+    <p>
+        <h4>Example:</h4>
+    let result = value1 && value2 <br>
+    <h4>is the same as:</h4>
+    let result
+    if(!value1) {
+        result = value1
+    } else {
+        result = value2
+    }
+    </p>
+
+    <p>
+        Going back to our original example:
+        <br>
+        let result = email && email.text
+        <p>
+            What does this do? <br>
+            If there's an email, set the result to the email.text. <br>
+            If the email is underfined or null, set the result to undefined or null.
+        </p>
+        This is called short-circuiting because the second part of the expression is not evaluated if the first part is falsy. <br>
+        Boolean oeprators are lazy, and will simpligy to the first value that determines the result - without even looking at the later values.
+    </p>
+    <p>
+        *NOTE: JSX will ignore undefined, null, and boolean values. They won't be displayed in the UI.
+    </p>
+    <h3>
+        Use Cases for && Short-Circuiting
+    </h3>
+
+    <ul>
+     <li>
+        Get the property value safely: <br>
+        let emailText = email && email.text; <br>
+        This will return the text if email is defined, or undefined if email is not defined.
+     </li>
+     <li>
+        Show a message conditionally: <br>
+        { showMessage && <p>{showMessage}</p> } <br>
+        This will render the paragraph only if showMessage is truthy.
+     </li>
+     <li>Validate before Using: <br>
+        box && num && box.amount / num; <br>
+        This will only perform the division if both box and num are truthy, preventing errors from undefined values.
+    </li>
+    <li>
+        Only run a function if it's defined: <br>
+        onClick && onClick(); <br>
+        This will call the onClick function only if it is defined, preventing runtime errors.
+    </li>
+    </ul>
+
+    <h3>OR or ||</h3>
+    <p>
+        Expression: false || false => Result: false<br>
+        Expression: false || true => Result: true<br>
+        Expression: true || false => Result: true<br>
+        Expression: true || true => Result: true<br>
+    </p>
+    <P>
+        Expression: falsy1 || falsy2 => Result: falsy2<br>
+        Expression: falsy1 || truthy2 => Result: truthy2<br>      
+        Expression: truthy1 || falsy2 => Result: truthy1<br>
+        Expression: truthy1 || truthy2 => Result: truthy1<br>
+    </P>
+
+    <p>
+        1. if the first value is truthy1, then it will result in the first value. <br>
+        2. if the first value is falsy1, then it will result in the second value.
+    </p>
+
+    <p>
+        <h4>Example:</h4>
+        let result = value1 || value2 <br>
+        <h4>is the same as:</h4>
+        let result
+        if(value1) {
+            result = value1
+        } else {
+            result = value2
+        }
+    </p>
+    <p>
+    Summary: <br> 
+    The && operator short circuits when it sees a falsy value, returning that value immediately without evaluating the rest of the expression. <br> 
+    The || operator short circuits when it sees a truthy value, returning that value immediately without evaluating the rest of the expression.
+    </p>
+
+    <P>
+        <h4>
+            Uses for || Short-Circuiting
+        </h4>
+        <ul>
+            <li>Use a fallback value:
+                <br>
+                let message = text || defaultText: <br>
+                This will set message to text if it's truthy, or defaultText if text is falsy.
+            </li>
+            <li>
+                Avoid extra work if unnecessary: <br>
+                isValid || validateInput(); <br>
+                This will only call validateInput if isValid is falsy, preventing unnecessary validation.
+            </li>
+            <li>
+                Have backup plans: <br>
+                let user = getUser() || getDefaultUser(); <br>
+                This will use the user from getUser if it's truthy, or fall back to getDefaultUser if getUser returns a falsy value.
+            </li>
+            <li>
+                Handle if there's an error: <br>
+                let errorMessage = error || "An unexpected error occurred."; <br>
+                This will set errorMessage to the error if it's truthy, or a default message if error is falsy.
+            </li>
+        </ul>
+    </P>
+
+    <P>
+        You do not need to use the Short-Circuiting operators in every situation. <br>
+        There is also the ternary operator, which is a more explicit way to handle conditions. <br>
+        The ternary operator is useful when you want to handle both true and false cases explicitly. <br>
+        Example: <br>
+        let result = condition ? valueIfTrue : valueIfFalse; <br>
+        This will set result to valueIfTrue if condition is truthy, or valueIfFalse if condition is falsy. <br>
+        and the Optional Chaining operator (?.) which is used to safely access nested properties without throwing an error if a property is undefined or null. <br>
+        Example: <br>
+        let result = email?.text; <br>
+        This will return the value of email.text if email is defined, or undefined if email is null or undefined. <br>
+    </P>
+</body>
+</html>
