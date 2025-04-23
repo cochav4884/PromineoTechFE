@@ -16,20 +16,20 @@ type ToolbarProps = {
   addBlankSlide: () => void;
   fontColor: string; // 🆕
   setFontColor: (color: string) => void; // 🆕
-  updateSlideFontColor: (color: string, id?: number) => void
+  updateSlide: (property: string, color: string, id?: number) => void
   selectedSlide?: Slide
 };
 
-export default function Toolbar({ addBlankSlide, updateSlideFontColor, selectedSlide }: ToolbarProps) {
+export default function Toolbar({ addBlankSlide, updateSlide, selectedSlide }: ToolbarProps) {
   const [isColorModalOpen, setIsColorModalOpen] = useState(false);
 
   // Handle the closing of the modal
   const handleClose = () => setIsColorModalOpen(false);
 
   // Handle color change by calling the updateSlideFontColor function
-  const handleColorChange = (color: string) => {
+  const handleColorChange = (fontColor: string) => {
     if (selectedSlide) { //Ensure selectedSlide is available 
-        updateSlideFontColor(color, selectedSlide.id); // Update font color of the selected slide    
+        updateSlide("fontColor", fontColor, selectedSlide.id); // Update font color of the selected slide    
     }
   }
 

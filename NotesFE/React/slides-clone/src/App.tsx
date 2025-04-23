@@ -16,35 +16,40 @@ const TEST_SLIDES = [
     order: 1,
     image: thumbnailImage2,
     text: "React Components",
-    fontColor: "green"
+    fontColor: "green",
+    speakerNotes: ""
   },
   {
     id: 1,
     order: 2,
     image: thumbnail2Image3,
     text: "React Props",
-    fontColor: "black"
+    fontColor: "black",
+    speakerNotes: ""
   },
   {
     id: 2,
     order: 3,
     image: thumbnail3Image4,
     text: "Passing Down Props",
-    fontColor: "red"
+    fontColor: "red",
+    speakerNotes: ""
   },
   {
     id: 3,
     order: 4,
     image: thumbnail4Image5,
     text: "Lifting Order Up",
-    fontColor: "black"
+    fontColor: "black",
+    speakerNotes: ""
   },
   {
     id: 4,
     order: 5,
     image: thumbnail5Image6,
     text: "Update State",
-    fontColor: "green"
+    fontColor: "green",
+    speakerNotes: ""
 
   }
 ];
@@ -66,7 +71,8 @@ export default function App() {
       order: slides.length ? Math.max(...slides.map(s => s.order)) + 1 : 1,
       image: thumbnail6Image7,
       text: "",
-      fontColor: fontColor // 🆕 new slides inherit current font color
+      fontColor: fontColor, // 🆕 new slides inherit current font color,
+      speakerNotes: ""
     };
 
     setSlides([...slides, blankSlide]);
@@ -76,7 +82,7 @@ export default function App() {
     setSlides(slides.filter(s => s.id !== idToDelete));
   };
 
-  const updateSlideFontColor = (newColor: string, idToUpdate?: number) => {
+  const updateSlide = (property: string, newValue: string, idToUpdate?: number) => {
     if(idToUpdate === undefined) {
       return 
     }
@@ -84,7 +90,7 @@ export default function App() {
     setSlides(slides.map(slide => (
       slide.id !== idToUpdate ? slide: {
         ...slide,
-        fontColor: newColor
+        [property]: newValue
       }
     )))
   }
@@ -94,7 +100,7 @@ export default function App() {
       <Toolbar 
       selectedSlide={selectedSlide}
       addBlankSlide={addBlankSlide} 
-      updateSlideFontColor={updateSlideFontColor} 
+      updateSlide={updateSlide} 
       setFontColor={setFontColor} 
       fontColor={fontColor} /> {/* 🆕 pass down */}
       <div className="d-flex flex-grow-1">
@@ -110,6 +116,7 @@ export default function App() {
       ? selectedSlide 
       : { id: -1, order: 0, image: '', text: '', fontColor }
   }
+  updateSlide={updateSlide}
 />
 
       </div>

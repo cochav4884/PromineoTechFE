@@ -3,5 +3,6 @@ export type Slide = {
     order: number,
     image: string,
     text: string,
-    fontColor: string
+    fontColor: string,
+    speakerNotes?: string
 }
