@@ -93,37 +93,37 @@
 
 // BROKEN CODE
 
-import { useState, useRef } from 'react';
+// import { useState, useRef } from 'react';
 
-export function Component() {
-  const [text, setText] = useState("old");
+// export function Component() {
+//   const [text, setText] = useState("old");
   
-  // Create a ref to store the previous state value
-  const prevTextRef = useRef(text);
+//   // Create a ref to store the previous state value
+//   const prevTextRef = useRef(text);
 
-  const handleClick = () => {
-    // Log the previous state (old) using the ref
-    console.log(prevTextRef.current); // Always logs "old" before state is updated
+//   const handleClick = () => {
+//     // Log the previous state (old) using the ref
+//     console.log(prevTextRef.current); // Always logs "old" before state is updated
     
-    // Update the state (but before it's updated, we log the old value)
-    setText("new");
+//     // Update the state (but before it's updated, we log the old value)
+//     setText("new");
 
-    // Update the ref with the new state after the update
-    prevTextRef.current = text;
-  }
+//     // Update the ref with the new state after the update
+//     prevTextRef.current = text;
+//   }
 
-  return <button onClick={handleClick}>{text}</button>;
-}
+//   return <button onClick={handleClick}>{text}</button>;
+// }
 
-// Use the Component function
-export default function App() {
-  return (
-    <div>
-      <h1>My App</h1>
-      <Component />
-    </div>
-  );
-}
+// // Use the Component function
+// export default function App() {
+//   return (
+//     <div>
+//       <h1>My App</h1>
+//       <Component />
+//     </div>
+//   );
+// }
 
 // FIXED CODE
 
@@ -149,3 +149,49 @@ export default function App() {
 //     </div>
 //   );
 // }
+
+// App.tsx
+
+export default function TextChanger() {
+  return <div>Hello World</div>;
+}
+
+
+// // Broken code example with state updates not reflecting immediately:
+
+// export function ListUpdaterComponent() {
+//   const [list, setList] = useState(["starting"]);
+
+//   const handleClick = () => {
+//     setList([...list, "first"]);
+//     setList([...list, "second"]);
+//   };
+
+//   return <button onClick={handleClick}>Click Me</button>;
+// }
+
+
+
+
+// Fixed code example with state updates reflecting immediately:
+import { useState } from 'react';
+
+export function Component() {
+  const [currentList, setList] = useState(["starting"]);
+
+  const handleClick = () => {
+    setList(currentList => [...currentList, "first"]);
+    setList(currentList => [...currentList, "second"]);
+  };
+
+  return (
+    <div>
+      <ul>
+        {currentList.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+      <button onClick={handleClick}>Click Me</button>
+    </div>
+  );
+}

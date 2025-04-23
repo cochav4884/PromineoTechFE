@@ -39,6 +39,37 @@
         A function plus all the variables that were in scope when the function was created.
         This means that the function retains access to those variables even after they go out of scope.
     </p>
+
+    <h4>Warning:</h4>
+    <p>
+        If you try to use a state variable after it's been updated, it will be the old value
+        because the function closure captures the state at the time of its creation.
+    </p>
    
+    
+    <h3>Updating a State Variable</h3>
+    <p>
+    setState((currentValue) => NEW_VALUE);
+
+    <p>
+        Replace setState with the name you picked for your function variable.
+        This paramenter((currentValue)) will have the current value of the state variable.
+        Calculate the new value here, using the parameter(NEW_VALUE) instead of the state variable.
+        This is useful when the new value depends on the previous value, ensuring you always have the most up-to-date state.
+    </p>
+    </p>
+
+    <h3>Using newly updated state: Create another variable:</h3>
+    <p>
+        const newCount = count + 1; <br>
+        setCount(newCount); <br>
+        console.log(newCount); <br>
+    </p>
+
+    <h3>Setting the same state twice: Pass in a callback function:</h3>
+    <p>
+        setCount(curCount => curCount + 1); <br>
+        setCount(curCount => curCount + 1); <br>
+    </p>
 </body>
 </html>
