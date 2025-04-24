@@ -4,11 +4,17 @@ import SearchForm from "./SearchForm";
 import "./App.css";
 
 export default function App() {
-  const [searchFilters, setSearchFilters] = useState({
+  const [searchFilters, setSearchFilters] = useState<{
+    term: string;
+    includeTerritories: boolean;
+    populationRange: string;
+    region: "West" | "Midwest" | "Northeast" | "South" | "all"; // 👈 Add this
+  }>({
     term: "",
     includeTerritories: false,
     populationRange: "all",
-  });
+    region: "all",
+  }); 
 
   const searchResults = USA_STATES.filter(
     (s) =>
@@ -21,11 +27,12 @@ export default function App() {
           s.population.count >= 5000000 &&
           s.population.count < 10000000) ||
         (searchFilters.populationRange === "0-5" &&
-          s.population.count < 5000000))
+          s.population.count < 5000000)) &&
+      (searchFilters.region === "all" || s.region === searchFilters.region)
   );
 
   return (
-    <div>
+    <main>
       <SearchForm onSubmit={setSearchFilters}></SearchForm>
       <ul>
         {searchResults.map((state) => (
@@ -35,6 +42,6 @@ export default function App() {
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 }

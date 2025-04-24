@@ -1,23 +1,28 @@
 import { ChangeEvent, useState } from "react";
 
 type Props = {
-  onSubmit: (searchFilters: {
+  onSubmit: React.Dispatch<React.SetStateAction<{
     term: string;
     includeTerritories: boolean;
     populationRange: string;
-  }) => void;
+    region: "West" | "Midwest" | "Northeast" | "South" | "all";
+  }>>; // Correct type for setSearchFilters
 };
 
 export default function SearchForm({ onSubmit }: Props) {
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<{
+    term: string;
+    includeTerritories: boolean;
+    populationRange: string;
+    region: "West" | "Midwest" | "Northeast" | "South" | "all";
+  }>({
     term: "",
     includeTerritories: false,
     populationRange: "all",
+    region: "all",
   });
 
-  const handleChange = (
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, type, checked, value } = event.target;
     setFormValues({
       ...formValues,
@@ -56,6 +61,23 @@ export default function SearchForm({ onSubmit }: Props) {
           Include Territories
         </label>
 
+        {/* ✅ Region Selector - right after territories */}
+        <label htmlFor="region">Region:</label>
+        <select
+          id="region"
+          name="region"
+          value={formValues.region}
+          onChange={(e) =>
+            setFormValues({ ...formValues, region: e.target.value as "West" | "Midwest" | "Northeast" | "South" | "all" })
+          }
+        >
+          <option value="all">All</option>
+          <option value="West">West</option>
+          <option value="Midwest">Midwest</option>
+          <option value="Northeast">Northeast</option>
+          <option value="South">South</option>
+        </select>
+
         <label>
           <input
             type="radio"
@@ -77,7 +99,7 @@ export default function SearchForm({ onSubmit }: Props) {
           />
           0–5m
         </label>
-        
+
         <label>
           <input
             type="radio"
