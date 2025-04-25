@@ -35,7 +35,7 @@ export default function SlideView({ slide, updateSlide }: SlideViewProps) {
           id="speaker-notes"
           placeholder="Enter your notes here"
           disabled={!slide || slide.id === -1}
-          value={slide?.speakerNotes === "Default notes" ? "" : slide?.speakerNotes || ""}
+          value={slide?.speakerNotes || ""}
           onChange={handleNotesChange}
         />
       </div>
