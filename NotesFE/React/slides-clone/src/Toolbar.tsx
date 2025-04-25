@@ -129,11 +129,11 @@ export default function Toolbar({
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="outline-primary" onClick={handleFontClose}>
-            Close
+          <Button variant="secondary" onClick={handleFontClose}>
+            Cancel
           </Button>
           <Button
-            variant="primary"
+            variant="success"
             onClick={() => {
               if (selectedSlide) {
                 updateSlide("fontFamily", fontFamily, selectedSlide.id);
@@ -142,7 +142,7 @@ export default function Toolbar({
               handleFontClose(); // Close modal after applying
             }}
           >
-            Apply
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
