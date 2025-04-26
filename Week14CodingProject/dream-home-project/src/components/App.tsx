@@ -90,6 +90,33 @@ const App: React.FC = () => {
     "Gothic",
   ];
 
+  const sizes: string[] = [
+    "Small",
+    "Medium",
+    "Large",
+    "Extra Large",
+    "Compact",
+    "Oversized",
+    "Standard",
+    "Mini",
+    "Maxi",
+    "Petite",
+    "Tall",
+    "Short",
+    "Wide",
+    "Narrow",
+    "Slim",
+    "Spacious",
+    "Cozy",
+    "Roomy",
+    "Generous",
+    "Ample",
+    "Vast",
+    "Expansive",
+    "Breezy",
+    "Open",
+  ];
+
   const getNextStyle = (currentStyle: string) => {
     const currentIndex = styles.indexOf(currentStyle);
     return styles[(currentIndex + 1) % styles.length]; // Wraps around to the beginning
@@ -174,7 +201,6 @@ const App: React.FC = () => {
         <div className="form-overlay">
           <form onSubmit={handleFormSubmit}>
             <h3>{selectedItem ? "Edit Item" : "Create New Item"}</h3>
-
             {/* Name */}
             <div>
               <label htmlFor="name">Name</label>
@@ -189,7 +215,6 @@ const App: React.FC = () => {
                 required
               />
             </div>
-
             {/* Style */}
             <div>
               <label htmlFor="style">Style</label>
@@ -204,12 +229,10 @@ const App: React.FC = () => {
                 required
               />
             </div>
-
             {/* Size */}
             <div>
               <label htmlFor="size">Size</label>
-              <input
-                type="text"
+              <select
                 id="size"
                 name="size"
                 value={formData.size}
@@ -217,9 +240,15 @@ const App: React.FC = () => {
                   setFormData((prev) => ({ ...prev, size: e.target.value }))
                 }
                 required
-              />
+              >
+                <option value="">-- Select a size --</option>
+                {sizes.map((sizeOption) => (
+                  <option key={sizeOption} value={sizeOption}>
+                    {sizeOption}
+                  </option>
+                ))}
+              </select>
             </div>
-
             <div className="form-buttons">
               <button type="button" onClick={cancelForm}>
                 Cancel
