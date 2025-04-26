@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { houseAccessories } from './houseAccessories';
-import { landAccessories } from './landAccessories';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import AccessoryList from './AccessoryList';
+import { houseAccessories } from '../data/houseAccessories';
+import { landAccessories } from '../data/landAccessories';
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
+import AccessoryList from '../components/AccessoryList';
 import { Button } from 'react-bootstrap'; // Using React-Bootstrap for buttons
-import './App.css';
+import '../styles/App.css';
 
 // Define the Accessory type
 type Accessory = {
@@ -19,6 +19,14 @@ const App: React.FC = () => {
   // State initialization with test data
   const [houseList, setHouseList] = useState(houseAccessories);
   const [landList, setLandList] = useState(landAccessories);
+
+  // Sidebar visibility state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar is open by default
+
+  // Toggle Sidebar visibility
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
+  };
 
   // Task 2: Add a new item for House Accessories
   const addNewHouseItem = () => {
@@ -64,8 +72,15 @@ const App: React.FC = () => {
     <div className="app-container">
       <Header />
       <div className="main-layout">
+        {/* Sidebar */}
         <Sidebar />
-        <main className="content">
+        
+        {/* Main content */}
+        <main className={`content ${isSidebarOpen ? 'content-shift' : ''}`}>
+          <button className="hamburger" onClick={toggleSidebar}>
+            ☰
+          </button>
+
           <h2>🏠 House Accessories</h2>
           <Button variant="primary" onClick={addNewHouseItem}>Add New House Item</Button>
           <AccessoryList 

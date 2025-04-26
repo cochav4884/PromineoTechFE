@@ -1,0 +1,135 @@
+/* General Styles */
+.header {
+  background-color: #4a90e2;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  width: 250px;
+  height: 100vh;
+  position: fixed; /* Keep sidebar fixed */
+  top: 0;
+  left: 0;
+  transform: translateX(-100%); /* Initially hidden to the left */
+  transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* Show sidebar when the 'open' class is added */
+}
+
+/* Sidebar Links */
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 1rem 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.sidebar a:hover {
+  color: #4a90e2;
+}
+
+/* Hamburger Button */
+.hamburger {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+}
+
+/* Layout of Main Content */
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease; /* Smooth transition for layout shift */
+}
+
+.main-layout.open {
+  margin-left: 250px; /* Push content when sidebar is visible */
+}
+
+.main-content {
+  padding: 1rem;
+  flex-grow: 1;
+}
+
+.main-content h2 {
+  margin-top: 0;
+}
+
+/* Form Overlay Styles */
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Sidebar Behavior on Small Screens */
+  .sidebar {
+    transform: translateX(-100%); /* Sidebar hidden by default */
+  }
+  
+  .sidebar.open {
+    transform: translateX(0); /* Sidebar shown when 'open' class is added */
+  }
+  
+  /* Stack content vertically on smaller screens */
+  .main-layout {
+    flex-direction: column;
+    margin-left: 0;
+  }
+
+  .hamburger {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+  }
+
+  .main-content {
+    margin-top: 60px; /* Adjust for space for the sidebar */
+  }
+}
+
+/* Content shift when the sidebar is open */
+.content-shift {
+  margin-left: 250px; /* Adjust this to match your sidebar width */
+  transition: margin-left 0.3s ease;
+}
+
