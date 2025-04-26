@@ -11,25 +11,15 @@ interface Accessory {
 interface AccessoryListProps {
   accessories: Accessory[];
   deleteItem: (id: number) => void;
-  toggleStyle: (id: number) => void;  // Make sure toggleStyle is passed as a prop
   editItem: (id: number) => void; // Ensure editItem is passed as a prop
 }
 
-const AccessoryList: React.FC<AccessoryListProps> = ({ accessories, deleteItem, toggleStyle, editItem }) => {
+const AccessoryList: React.FC<AccessoryListProps> = ({ accessories, deleteItem, editItem }) => {
   return (
     <ListGroup>
       {accessories.map((accessory) => (
         <ListGroup.Item key={accessory.id}>
           <strong>{accessory.name}</strong> - {accessory.style} ({accessory.size})
-          
-          {/* Toggle Style Button (yellow) */}
-          <Button 
-            variant="secondary" 
-            onClick={() => toggleStyle(accessory.id)} 
-            style={{ marginLeft: '10px' }}
-          >
-            Toggle Style
-          </Button>
           
           {/* Edit Button (blue) */}
           <Button 

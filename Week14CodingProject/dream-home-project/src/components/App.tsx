@@ -117,27 +117,6 @@ const App: React.FC = () => {
     "Open",
   ];
 
-  const getNextStyle = (currentStyle: string) => {
-    const currentIndex = styles.indexOf(currentStyle);
-    return styles[(currentIndex + 1) % styles.length]; // Wraps around to the beginning
-  };
-
-  const toggleStyle = (id: number) => {
-    if (activeList === "house") {
-      setHouseList((prevList) =>
-        prevList.map((item) =>
-          item.id === id ? { ...item, style: getNextStyle(item.style) } : item
-        )
-      );
-    } else {
-      setLandList((prevList) =>
-        prevList.map((item) =>
-          item.id === id ? { ...item, style: getNextStyle(item.style) } : item
-        )
-      );
-    }
-  };
-
   const saveAccessory = (newItem: Accessory) => {
     if (formType === "house") {
       setHouseList((prevList) =>
@@ -192,7 +171,6 @@ const App: React.FC = () => {
             accessories={accessories}
             deleteItem={deleteItem}
             editItem={editItem}
-            toggleStyle={toggleStyle}
           />
         </main>
       </div>
