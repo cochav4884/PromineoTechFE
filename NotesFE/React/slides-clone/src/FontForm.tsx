@@ -1,29 +1,55 @@
+import { ChangeEvent } from "react";
+import type { Slide } from "./types";
+import { useState, MouseEvent } from "react";
+
 type Props = {
-    fontFamily: string;
-    fontSize: number;
-    setFontFamily: (family: string) => void;
-    setFontSize: (size: number) => void;
-    onSave: () => void;
-    onCancel: () => void;
+  updateSlide: (property: string, value: string, id?: number) => void;
+  selectedSlide?: Slide;
+  handleClose: () => void;
+};
+
+export default function FontForm({
+  updateSlide,
+  selectedSlide,
+  handleClose,
+}: Props) {
+  const [formValues, setFormValues] = useState({
+    fontFamily: selectedSlide?.fontFamily || "Arial",
+    fontSize: selectedSlide?.fontSize || "12",
+  });
+
+  const handleChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormValues({
+      ...formValues,
+      [event.target.name]: event.target.value,
+    });
   };
-  
-  export default function FontForm({
-    fontFamily,
-    fontSize,
-    setFontFamily,
-    setFontSize,
-    onSave,
-    onCancel,
-  }: Props) {
+
+  const handleSubmit = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    updateSlide("fontFamily", formValues.fontFamily, selectedSlide?.id);
+    updateSlide(
+      "fontSize",
+      formValues.fontSize.toString(),
+      selectedSlide?.id
+    );
+    handleClose();
+  };
+
     return (
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="mb-2">
-          <label htmlFor="font-family" className="form-label">Font Family</label>
+          <label htmlFor="font-family" className="form-label">
+            Font Family
+          </label>
           <select
             id="font-family"
             className="form-select"
-            value={fontFamily}
-            onChange={(e) => setFontFamily(e.target.value)}
+            value={formValues.fontFamily}
+            name="fontFamily"
+            onChange={handleChange}
           >
             <option value="Verdana">Verdana</option>
             <option value="Arial">Arial</option>
@@ -37,41 +63,45 @@ type Props = {
             <option value="Lucida Console">Lucida Console</option>
           </select>
         </div>
-  
+
         <div className="mb-2">
-          <label htmlFor="font-size" className="form-label">Font Size</label>
+          <label htmlFor="font-size" className="form-label">
+            Font Size
+          </label>
           <select
             id="font-size"
             className="form-select"
-            value={fontSize}
-            onChange={(e) => setFontSize(Number(e.target.value))}
+            value={formValues.fontSize}
+            name="fontSize"
+            onChange={handleChange}
           >
             {[8, 9, 10, 11, 12, 14, 16, 18, 20, 22].map((size) => (
-              <option key={size} value={size}>{size}</option>
+              <option key={size} value={size}>
+                {size}
+              </option>
             ))}
           </select>
         </div>
-  
+
         <div className="text-end">
           {/* Cancel Button - Secondary Button */}
-          <button 
-            type="button" 
-            className="btn btn-secondary me-2" 
-            onClick={onCancel}
+          <button
+            type="button"
+            className="btn btn-secondary me-2"
+            onClick={handleClose}
           >
             Cancel
           </button>
-  
+
           {/* Save Button - Success Button */}
-          <button 
-            type="button" 
-            className="btn btn-success" 
-            onClick={onSave}
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={handleSubmit}
           >
             Save
           </button>
         </div>
       </form>
     );
-  }
-  
+  };

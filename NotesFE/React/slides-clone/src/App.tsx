@@ -9,7 +9,7 @@ import thumbnail4Image5 from "./assets/thumbnail5.png";
 import thumbnail5Image6 from "./assets/thumbnail6.png";
 import thumbnail6Image7 from "./assets/thumbnail7.png";
 import type { Slide } from "./types";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const TEST_SLIDES = [
   {
@@ -19,6 +19,8 @@ const TEST_SLIDES = [
     text: "React Components",
     fontColor: "green",
     speakerNotes: "",
+    fontFamily: "Arial",
+    fontSize: 12, // Ensure fontSize is always a number
   },
   {
     id: 1,
@@ -27,6 +29,8 @@ const TEST_SLIDES = [
     text: "React Props",
     fontColor: "black",
     speakerNotes: "",
+    fontFamily: "Arial",
+    fontSize: 12,
   },
   {
     id: 2,
@@ -35,6 +39,8 @@ const TEST_SLIDES = [
     text: "Passing Down Props",
     fontColor: "red",
     speakerNotes: "",
+    fontFamily: "Arial",
+    fontSize: 12,
   },
   {
     id: 3,
@@ -43,6 +49,8 @@ const TEST_SLIDES = [
     text: "Lifting Order Up",
     fontColor: "black",
     speakerNotes: "",
+    fontFamily: "Arial",
+    fontSize: 12,
   },
   {
     id: 4,
@@ -51,6 +59,8 @@ const TEST_SLIDES = [
     text: "Update State",
     fontColor: "green",
     speakerNotes: "",
+    fontFamily: "Arial",
+    fontSize: 12,
   },
 ];
 
@@ -58,6 +68,9 @@ export default function App() {
   const [slides, setSlides] = useState<Slide[]>(TEST_SLIDES);
   const [selectedSlideId, setSelectedSlideId] = useState(0);
   const [fontColor, setFontColor] = useState("black");
+  // NEW STATE FOR FONT SETTINGS
+  const [fontFamily, setFontFamily] = useState("Arial");
+  const [fontSize, setFontSize] = useState(12);
 
   useEffect(() => {
     document.title = `Slides (${slides.length})`;
@@ -73,6 +86,8 @@ export default function App() {
       text: "",
       fontColor: fontColor,
       speakerNotes: "",
+      fontFamily: "Arial",
+      fontSize: 12,
     };
 
     setSlides([...slides, blankSlide]);
@@ -83,23 +98,14 @@ export default function App() {
   };
 
   const updateSlide = useCallback(
-    (
-      property: string,
-      newValue: string,
-      idToUpdate?: number
-    ) => {
-      if (idToUpdate === undefined) {
-        return;
-      }
-
+    (property: string, newValue: string, idToUpdate?: number) => {
+      if (idToUpdate === undefined || idToUpdate === null) return;
+      console.log(
+        `Updating slide ${idToUpdate} property ${property} to ${newValue}`
+      );
       setSlides((prevSlides) =>
         prevSlides.map((slide) =>
-          slide.id !== idToUpdate
-            ? slide
-            : {
-                ...slide,
-                [property]: newValue,
-              }
+          slide.id === idToUpdate ? { ...slide, [property]: newValue } : slide
         )
       );
     },
@@ -124,6 +130,10 @@ export default function App() {
         setFontColor={setFontColor}
         fontColor={fontColor}
         handleColorChange={handleColorChange}
+        fontFamily={fontFamily} // Pass the state to Toolbar
+        fontSize={fontSize} // Pass the state to Toolbar
+        setFontFamily={setFontFamily} // Pass setter to Toolbar
+        setFontSize={setFontSize} // Pass setter to Toolbar
       />
       <div className="d-flex flex-grow-1">
         <Sidebar

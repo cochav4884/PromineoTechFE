@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { Button, Modal, Stack, Form } from "react-bootstrap";
 import ToolbarButton from "./ToolbarButton";
 import colorIcon from "./assets/palette-solid (1).svg";
 import fontIcon from "./assets/text-height-solid.svg";
 import plusIcon from "./assets/plus-solid.svg";
-import { useState } from "react";
 import type { Slide } from "./types";
 
 // Define the colors available for selection
@@ -13,38 +13,58 @@ const colors = [
   { name: "Black", value: "black", variant: "dark" },
 ];
 
-// Available font families for the user to choose from
 const fontFamilies = [
-  "Arial", "Verdana", "Georgia", "Times New Roman", "Courier New", "Tahoma", "Comic Sans MS", "Impact", "Lucida Console", "Trebuchet MS", "Palatino Linotype", "Segoe UI", "Roboto", "Open Sans", "Lato", "Montserrat", "Helvetica Neue"
+  "Arial",
+  "Verdana",
+  "Georgia",
+  "Times New Roman",
+  "Courier New",
+  "Tahoma",
+  "Comic Sans MS",
+  "Impact",
+  "Lucida Console",
+  "Trebuchet MS",
+  "Palatino Linotype",
+  "Segoe UI",
+  "Roboto",
+  "Open Sans",
+  "Lato",
+  "Montserrat",
+  "Helvetica Neue",
 ];
 
 type ToolbarProps = {
   addBlankSlide: () => void;
   fontColor: string;
-  setFontColor: (color: string) => void;
+  setFontColor: (color: string) => void;  // Correctly expecting setFontColor function
   updateSlide: (property: string, color: string, id?: number) => void;
   selectedSlide?: Slide;
   handleColorChange: (color: string) => void;
+  fontFamily: string;
+  fontSize: number;
+  setFontFamily: (font: string) => void;
+  setFontSize: (size: number) => void;
 };
 
 export default function Toolbar({
   addBlankSlide,
+  fontFamily,
+  fontSize,
+  setFontFamily,
+  setFontSize,
+  handleColorChange,
   updateSlide,
   selectedSlide,
-  handleColorChange,
 }: ToolbarProps) {
   const [isColorModalOpen, setIsColorModalOpen] = useState(false);
   const [isFontModalOpen, setIsFontModalOpen] = useState(false);
 
-  const [fontFamily, setFontFamily] = useState("Arial");
-  const [fontSize, setFontSize] = useState(12);
-
   const handleColorClose = () => setIsColorModalOpen(false);
   const handleFontClose = () => setIsFontModalOpen(false);
 
-  // Handle color change by calling the passed-in handleColorChange function
-  const onColorChange = (fontColor: string) => {
-    handleColorChange(fontColor); // Call handleColorChange passed down as a prop
+  // Define onColorChange to update the font color and trigger any additional logic
+  const onColorChange = (color: string) => {
+    handleColorChange(color); // Call the function passed from the parent (App.tsx)
   };
 
   return (
@@ -66,6 +86,8 @@ export default function Toolbar({
           title="Font Options"
         />
       </div>
+
+      {/* Font Color Modal */}
       <Modal show={isColorModalOpen} onHide={handleColorClose}>
         <Modal.Header closeButton>
           <Modal.Title>Font Color</Modal.Title>
@@ -80,7 +102,7 @@ export default function Toolbar({
                     ? variant
                     : `outline-${variant}`
                 }
-                onClick={() => onColorChange(value)} // Use the local onColorChange
+                onClick={() => onColorChange(value)} // Call onColorChange to update color
               >
                 {name}
               </Button>
@@ -101,7 +123,6 @@ export default function Toolbar({
         </Modal.Header>
         <Modal.Body>
           <div>
-            {/* Replace text input with a select dropdown for font family */}
             <Form.Group>
               <Form.Label>Font Family:</Form.Label>
               <Form.Control
@@ -117,7 +138,6 @@ export default function Toolbar({
               </Form.Control>
             </Form.Group>
 
-            {/* Font Size input remains the same */}
             <label>
               Font Size:
               <input

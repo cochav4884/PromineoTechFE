@@ -4,5 +4,7 @@ export type Slide = {
     image: string,
     text: string,
     fontColor: string,
-    speakerNotes?: string
+    speakerNotes?: string,
+    fontFamily?: string,
+    fontSize?: number
 }

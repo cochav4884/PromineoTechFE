@@ -24,6 +24,8 @@ export default function SlideView({ slide, updateSlide }: SlideViewProps) {
         style={{
           height: slideHeight + "px",
           color: slide?.fontColor || "black",
+          fontFamily: slide?.fontFamily || "Arial",
+          fontSize: slide?.fontSize ? `${slide.fontSize}px` : "16px",
         }}
       >
         {slide?.text || ""}
