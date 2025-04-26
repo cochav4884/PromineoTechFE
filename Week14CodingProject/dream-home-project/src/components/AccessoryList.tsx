@@ -24,7 +24,7 @@ const AccessoryList: React.FC<AccessoryListProps> = ({ accessories, deleteItem, 
           
           {/* Toggle Style Button (yellow) */}
           <Button 
-            variant="warning" 
+            variant="secondary" 
             onClick={() => toggleStyle(accessory.id)} 
             style={{ marginLeft: '10px' }}
           >

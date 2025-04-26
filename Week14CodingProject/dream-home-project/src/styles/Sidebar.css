@@ -1,0 +1,46 @@
+/* Sidebar Styles */
+.sidebar {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    width: 250px;
+    height: 100vh;
+    position: fixed; /* Keep sidebar fixed */
+    top: 0;
+    left: 0;
+    transform: translateX(-100%); /* Initially hidden to the left */
+    transition: transform 0.3s ease; /* Smooth transition */
+    z-index: 1000; /* Ensure sidebar is on top */
+  }
+  
+  .sidebar.open {
+    transform: translateX(0); /* Show sidebar when the 'open' class is added */
+  }
+  
+  /* Sidebar Links */
+  .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin: 1rem 0;
+  }
+  
+  .sidebar-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  
+  .sidebar-link span {
+    margin-left: 10px; /* Add space between emoji and text */
+  }
+  
+  .sidebar-link:hover {
+    color: #4a90e2; /* Change color on hover */
+  }
+  

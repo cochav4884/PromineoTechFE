@@ -7,8 +7,8 @@ import AccessoryList from '../components/AccessoryList';
 import AccessoryForm from '../components/AccessoryForm';
 import { Button } from 'react-bootstrap'; // Using React-Bootstrap for buttons
 import '../styles/App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// Define the Accessory type
 interface Accessory {
   id: number;
   name: string;
@@ -23,6 +23,7 @@ const App: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<Accessory | null>(null); // For updating items
   const [isFormVisible, setIsFormVisible] = useState(false); // Toggle the form visibility
   const [formType, setFormType] = useState<'house' | 'land' | null>(null); // Track form type
+  const [activeCategory, setActiveCategory] = useState<'house' | 'land'>('house'); // Track selected category
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
@@ -97,47 +98,58 @@ const App: React.FC = () => {
     setIsFormVisible(false); // Hide form
   };
 
+  // Function to change active category (house or land)
+  const handleCategorySelect = (category: 'house' | 'land') => {
+    setActiveCategory(category); // Update the selected category
+  };
+
   return (
     <div className="app-container">
       <Header />
       <div className="main-layout">
-        <Sidebar />
+        <Sidebar 
+          onSelectCategory={handleCategorySelect} 
+          isSidebarOpen={isSidebarOpen} 
+          toggleSidebar={toggleSidebar} 
+        />
         <main className={`content ${isSidebarOpen ? 'content-shift' : ''}`}>
           <button className="hamburger" onClick={toggleSidebar}>
             ☰
           </button>
-          <h2>🏠 House Accessories</h2>
-          <Button variant="primary" onClick={addNewHouseItem}>Add New House Item</Button>
-          <AccessoryList
-            accessories={houseList}
-            deleteItem={deleteHouseItem}
-            toggleStyle={() => {}}
-            editItem={editHouseItem} // Pass the edit function to the list
-          />
-          <h2>🌿 Land Accessories</h2>
-          <Button variant="primary" onClick={addNewLandItem}>Add New Land Item</Button>
-          <AccessoryList
-            accessories={landList}
-            deleteItem={deleteLandItem}
-            toggleStyle={() => {}}
-            editItem={editLandItem} // Pass the edit function to the list
-          />
+          
+          {activeCategory === 'house' && (
+            <>
+              <h2>🏠 House Accessories</h2>
+              <Button variant="primary" onClick={addNewHouseItem}>Add New House Item</Button>
+              <AccessoryList
+                accessories={houseList}
+                deleteItem={deleteHouseItem}
+                toggleStyle={() => {}}
+                editItem={editHouseItem}
+              />
+            </>
+          )}
+
+          {activeCategory === 'land' && (
+            <>
+              <h2>🌿 Land Accessories</h2>
+              <Button variant="primary" onClick={addNewLandItem}>Add New Land Item</Button>
+              <AccessoryList
+                accessories={landList}
+                deleteItem={deleteLandItem}
+                toggleStyle={() => {}}
+                editItem={editLandItem}
+              />
+            </>
+          )}
         </main>
 
         {isFormVisible && formType === 'house' && (
-          <AccessoryForm 
-            accessory={selectedItem} 
-            onSave={saveAccessory} 
-            onCancel={cancelForm} 
-          />
+          <AccessoryForm accessory={selectedItem} onSave={saveAccessory} onCancel={cancelForm} />
         )}
 
         {isFormVisible && formType === 'land' && (
-          <AccessoryForm 
-            accessory={selectedItem} 
-            onSave={saveAccessory} 
-            onCancel={cancelForm} 
-          />
+          <AccessoryForm accessory={selectedItem} onSave={saveAccessory} onCancel={cancelForm} />
         )}
       </div>
     </div>

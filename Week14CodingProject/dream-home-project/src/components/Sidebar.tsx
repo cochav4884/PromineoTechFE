@@ -1,18 +1,35 @@
-// Sidebar.tsx
 import React from 'react';
+import '../styles/Sidebar.css'; // Ensure the styling is correct for Sidebar
 
-const Sidebar: React.FC = () => {
+
+interface SidebarProps {
+  onSelectCategory: (category: 'house' | 'land') => void;
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onSelectCategory, isSidebarOpen, toggleSidebar }) => {
   return (
-    <div className="sidebar">
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+    <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+      <button onClick={toggleSidebar} className="toggle-sidebar-button">
+        {isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}
+      </button>
+      <nav>
+        <ul>
+          <li>
+            <button onClick={() => onSelectCategory('house')} className="sidebar-link">
+              🏠 House Accessories
+            </button>
+          </li>
+          <li>
+            <button onClick={() => onSelectCategory('land')} className="sidebar-link">
+              🌿 Land Accessories
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
 
-export default Sidebar;  // Default export of Sidebar
-
+export default Sidebar;
