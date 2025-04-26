@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { houseAccessories } from '../data/houseAccessories';
-import { landAccessories } from '../data/landAccessories';
+import { houseAccessories } from '../data/houseAccessories'; // assumed predefined
+import { landAccessories } from '../data/landAccessories';   // assumed predefined
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import AccessoryList from '../components/AccessoryList';
@@ -18,7 +18,10 @@ interface Accessory {
 const App: React.FC = () => {
   const [houseList, setHouseList] = useState(houseAccessories);
   const [landList, setLandList] = useState(landAccessories);
+
   const [selectedItem, setSelectedItem] = useState<Accessory | null>(null);
+  const [formData, setFormData] = useState({ name: '', style: '', size: '' });
+
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [formType, setFormType] = useState<'house' | 'land' | null>(null);
   const [activeList, setActiveList] = useState<'house' | 'land'>('house');
@@ -28,86 +31,84 @@ const App: React.FC = () => {
   };
 
   const addNewItem = () => {
-    // Initialize an empty new item for adding
-    setSelectedItem({ id: Date.now(), name: '', style: '', size: '' });
+    const newItem = { id: Date.now(), name: '', style: '', size: '' };
+    setSelectedItem(newItem);
+    setFormData({ name: '', style: '', size: '' });
     setFormType(activeList);
     setIsFormVisible(true);
   };
 
   const editItem = (id: number) => {
     const list = activeList === 'house' ? houseList : landList;
-    const item = list.find((item) => item.id === id) || null;
-    setSelectedItem(item);
-    setFormType(activeList);
-    setIsFormVisible(true);
+    const item = list.find((item) => item.id === id);
+    if (item) {
+      setSelectedItem(item);
+      setFormData({ name: item.name, style: item.style, size: item.size });
+      setFormType(activeList);
+      setIsFormVisible(true);
+    }
   };
 
   const deleteItem = (id: number) => {
     if (activeList === 'house') {
-      setHouseList((prev) => prev.filter((item) => item.id !== id));
+      setHouseList((prevList) => prevList.filter((item) => item.id !== id));
     } else {
-      setLandList((prev) => prev.filter((item) => item.id !== id));
+      setLandList((prevList) => prevList.filter((item) => item.id !== id));
     }
   };
 
-  const toggleStyle = (id: number) => {
-    if (activeList === 'house') {
-      setHouseList((prev) =>
-        prev.map((item) =>
-          item.id === id ? { ...item, style: item.style === 'modern' ? 'classic' : 'modern' } : item
-        )
-      );
-    } else {
-      setLandList((prev) =>
-        prev.map((item) =>
-          item.id === id ? { ...item, style: item.style === 'modern' ? 'classic' : 'modern' } : item
-        )
-      );
-    }
-  };
+  
+const toggleStyle = (id: number) => {
+  if (activeList === 'house') {
+    setHouseList((prevList) =>
+      prevList.map((item) =>
+        item.id === id ? { ...item, style: item.style === 'modern' ? 'classic' : 'modern' } : item
+      )
+    );
+  } else {
+    setLandList((prevList) =>
+      prevList.map((item) =>
+        item.id === id ? { ...item, style: item.style === 'modern' ? 'classic' : 'modern' } : item
+      )
+    );
+  }
+};
 
   const saveAccessory = (newItem: Accessory) => {
     if (formType === 'house') {
-      if (selectedItem) {
-        // Update existing item in the house list
-        setHouseList((prevList) =>
-          prevList.map((item) => (item.id === selectedItem.id ? newItem : item))
-        );
-      } else {
-        // Add new item to the house list
-        setHouseList((prevList) => [...prevList, newItem]);
-      }
+      setHouseList((prevList) =>
+        prevList.some((item) => item.id === newItem.id)
+          ? prevList.map((item) => (item.id === newItem.id ? newItem : item))
+          : [...prevList, newItem]
+      );
     } else if (formType === 'land') {
-      if (selectedItem) {
-        // Update existing item in the land list
-        setLandList((prevList) =>
-          prevList.map((item) => (item.id === selectedItem.id ? newItem : item))
-        );
-      } else {
-        // Add new item to the land list
-        setLandList((prevList) => [...prevList, newItem]);
-      }
+      setLandList((prevList) =>
+        prevList.some((item) => item.id === newItem.id)
+          ? prevList.map((item) => (item.id === newItem.id ? newItem : item))
+          : [...prevList, newItem]
+      );
     }
-    setIsFormVisible(false); // Close the form after saving
+    setIsFormVisible(false);
   };
 
   const cancelForm = () => {
-    setIsFormVisible(false); // Close the form without saving
+    setIsFormVisible(false);
   };
 
   const accessories = activeList === 'house' ? houseList : landList;
 
-  function handleFormSubmit(event: React.FormEvent<HTMLFormElement>): void {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+    if (!selectedItem) return;
+
     const newItem: Accessory = {
-      id: selectedItem ? selectedItem.id : Date.now(), // New item or edited item
-      name: formData.get('name') as string,
-      style: formData.get('style') as string,
-      size: formData.get('size') as string,
+      id: selectedItem.id,
+      name: formData.name,
+      style: formData.style,
+      size: formData.size,
     };
-      saveAccessory(newItem);
-    }
+    saveAccessory(newItem);
+  };
 
   return (
     <div className="app-container">
@@ -119,71 +120,56 @@ const App: React.FC = () => {
           <Button variant="primary" onClick={addNewItem}>
             Add New {activeList === 'house' ? 'House' : 'Land'} Item
           </Button>
-          <AccessoryList
-            accessories={accessories}
-            deleteItem={deleteItem}
-            editItem={editItem}
-            toggleStyle={toggleStyle}
-          />
+          <AccessoryList accessories={accessories} deleteItem={deleteItem} editItem={editItem} toggleStyle={toggleStyle} />
         </main>
       </div>
 
-      {/* Form for creating/editing accessories */}
       {isFormVisible && (
         <div className="form-overlay">
           <form onSubmit={handleFormSubmit}>
             <h3>{selectedItem ? 'Edit Item' : 'Create New Item'}</h3>
 
-            {/* Name Input */}
+            {/* Name */}
             <div>
               <label htmlFor="name">Name</label>
               <input
                 type="text"
                 id="name"
                 name="name"
-                value={selectedItem?.name || ''}
-                onChange={(e) =>
-                  setSelectedItem((prev) => (prev ? { ...prev, name: e.target.value } : prev))
-                }
+                value={formData.name}
+                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
                 required
               />
             </div>
 
-            {/* Style Input */}
+            {/* Style */}
             <div>
               <label htmlFor="style">Style</label>
               <input
                 type="text"
                 id="style"
                 name="style"
-                value={selectedItem?.style || ''}
-                onChange={(e) =>
-                  setSelectedItem((prev) => (prev ? { ...prev, style: e.target.value } : prev))
-                }
+                value={formData.style}
+                onChange={(e) => setFormData((prev) => ({ ...prev, style: e.target.value }))}
                 required
               />
             </div>
 
-            {/* Size Input */}
+            {/* Size */}
             <div>
               <label htmlFor="size">Size</label>
               <input
                 type="text"
                 id="size"
                 name="size"
-                value={selectedItem?.size || ''}
-                onChange={(e) =>
-                  setSelectedItem((prev) => (prev ? { ...prev, size: e.target.value } : prev))
-                }
+                value={formData.size}
+                onChange={(e) => setFormData((prev) => ({ ...prev, size: e.target.value }))}
                 required
               />
             </div>
 
-            {/* Buttons */}
             <div className="form-buttons">
-              <button type="button" onClick={cancelForm}>
-                Cancel
-              </button>
+              <button type="button" onClick={cancelForm}>Cancel</button>
               <button type="submit">Save</button>
             </div>
           </form>
