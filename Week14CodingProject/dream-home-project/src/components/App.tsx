@@ -4,7 +4,7 @@ import { landAccessories } from '../data/landAccessories';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import AccessoryList from '../components/AccessoryList';
-import AccessoryForm from '../components/AccessoryForm';
+// import AccessoryForm from '../components/AccessoryForm';
 import { Button } from 'react-bootstrap';
 import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -93,6 +93,17 @@ const App: React.FC = () => {
 
   const accessories = activeList === 'house' ? houseList : landList;
 
+  function saveForm(event: React.FormEvent<HTMLFormElement>): void {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const newItem: Accessory = {
+        id: selectedItem ? selectedItem.id : Date.now(),
+        name: formData.get('name') as string,
+        style: formData.get('style') as string,
+        size: formData.get('size') as string,
+      };
+      saveAccessory(newItem);
+    }
   return (
     <div className="app-container">
       <Header />
@@ -112,12 +123,56 @@ const App: React.FC = () => {
         </main>
       </div>
       {isFormVisible && (
-        <AccessoryForm
-          accessory={selectedItem}
-          onSave={saveAccessory}
-          onCancel={cancelForm}
+  <div className="form-overlay">
+    <form onSubmit={saveForm}>
+      <h3>{selectedItem ? "Edit Item" : "Create New Item"}</h3>
+
+      {/* Name Input */}
+      <div>
+        <label htmlFor="name">Name</label>
+        <input
+          type="text"
+          id="name"
+          value={selectedItem?.name || ''}
+          onChange={(e) => selectedItem && setSelectedItem({ ...selectedItem, name: e.target.value })}
+          required
         />
-      )}
+      </div>
+
+      {/* Style Input */}
+      <div>
+        <label htmlFor="style">Style</label>
+        <input
+          type="text"
+          id="style"
+          value={selectedItem?.style || ''}
+          onChange={(e) => selectedItem && setSelectedItem({ ...selectedItem, style: e.target.value })}
+          required
+        />
+      </div>
+
+      {/* Size Input */}
+      <div>
+        <label htmlFor="size">Size</label>
+        <input
+          type="text"
+          id="size"
+          value={selectedItem?.size || ''}
+          onChange={(e) => selectedItem && setSelectedItem({ ...selectedItem, size: e.target.value })}
+          required
+        />
+      </div>
+
+      {/* Buttons */}
+      <div className="form-buttons">
+        <button type="button" onClick={cancelForm}>Cancel</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+)}
+
+
     </div>
   );
 };
