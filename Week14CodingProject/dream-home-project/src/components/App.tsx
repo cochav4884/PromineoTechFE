@@ -4,99 +4,141 @@ import { landAccessories } from '../data/landAccessories';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import AccessoryList from '../components/AccessoryList';
+import AccessoryForm from '../components/AccessoryForm';
 import { Button } from 'react-bootstrap'; // Using React-Bootstrap for buttons
 import '../styles/App.css';
 
 // Define the Accessory type
-type Accessory = {
+interface Accessory {
   id: number;
   name: string;
   style: string;
   size: string;
-};
+}
 
 const App: React.FC = () => {
-  // State initialization with test data
   const [houseList, setHouseList] = useState(houseAccessories);
   const [landList, setLandList] = useState(landAccessories);
-
-  // Sidebar visibility state
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar is open by default
+  const [selectedItem, setSelectedItem] = useState<Accessory | null>(null); // For updating items
+  const [isFormVisible, setIsFormVisible] = useState(false); // Toggle the form visibility
+  const [formType, setFormType] = useState<'house' | 'land' | null>(null); // Track form type
 
-  // Toggle Sidebar visibility
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
   };
 
-  // Task 2: Add a new item for House Accessories
   const addNewHouseItem = () => {
-    const newItem = { id: Date.now(), name: "New House Accessory", style: "Modern", size: "Medium" };
-    setHouseList((prevList: Accessory[]) => [...prevList, newItem]);
+    setSelectedItem(null); // Clear the form for new item
+    setFormType('house'); // Set form type to 'house'
+    setIsFormVisible(true); // Show the form
   };
 
-  // Task 2: Add a new item for Land Accessories
   const addNewLandItem = () => {
-    const newItem = { id: Date.now(), name: "New Land Accessory", style: "Modern", size: "Medium" };
-    setLandList((prevList: Accessory[]) => [...prevList, newItem]);
+    setSelectedItem(null); // Clear the form for new item
+    setFormType('land'); // Set form type to 'land'
+    setIsFormVisible(true); // Show the form
   };
 
-  // Task 3: Delete an item from House Accessories
+  const editHouseItem = (id: number) => {
+    const item = houseList.find((item) => item.id === id);
+    setSelectedItem(item || null); // Set the item to edit
+    setFormType('house'); // Set form type to 'house'
+    setIsFormVisible(true); // Show the form
+  };
+
+  const editLandItem = (id: number) => {
+    const item = landList.find((item) => item.id === id);
+    setSelectedItem(item || null); // Set the item to edit
+    setFormType('land'); // Set form type to 'land'
+    setIsFormVisible(true); // Show the form
+  };
+
   const deleteHouseItem = (id: number) => {
-    setHouseList((prevList: Accessory[]) => prevList.filter((item: Accessory) => item.id !== id));
+    setHouseList((prevList) => prevList.filter((item) => item.id !== id));
   };
 
-  // Task 3: Delete an item from Land Accessories
   const deleteLandItem = (id: number) => {
-    setLandList((prevList: Accessory[]) => prevList.filter((item: Accessory) => item.id !== id));
+    setLandList((prevList) => prevList.filter((item) => item.id !== id));
   };
 
-  // Task 4: Update an item (toggle style between "Modern" and "Classic") for House Accessories
-  const toggleHouseStyle = (id: number) => {
-    setHouseList((prevList: Accessory[]) =>
-      prevList.map((item: Accessory) =>
-        item.id === id ? { ...item, style: item.style === "Modern" ? "Classic" : "Modern" } : item
-      )
-    );
+  const saveAccessory = (newItem: Accessory) => {
+    if (selectedItem) {
+      // Update an existing item
+      if (newItem.name && newItem.style && newItem.size) {
+        if (formType === 'house') {
+          setHouseList((prevList) =>
+            prevList.map((item) =>
+              item.id === selectedItem.id ? { ...item, ...newItem } : item
+            )
+          );
+        } else if (formType === 'land') {
+          setLandList((prevList) =>
+            prevList.map((item) =>
+              item.id === selectedItem.id ? { ...item, ...newItem } : item
+            )
+          );
+        }
+      }
+    } else {
+      // Add a new item
+      if (newItem.name && newItem.style && newItem.size) {
+        if (formType === 'house') {
+          setHouseList((prevList) => [...prevList, newItem]);
+        } else if (formType === 'land') {
+          setLandList((prevList) => [...prevList, newItem]);
+        }
+      }
+    }
+    setIsFormVisible(false); // Hide form after save
   };
 
-  // Task 4: Update an item (toggle style between "Modern" and "Classic") for Land Accessories
-  const toggleLandStyle = (id: number) => {
-    setLandList((prevList: Accessory[]) =>
-      prevList.map((item: Accessory) =>
-        item.id === id ? { ...item, style: item.style === "Modern" ? "Classic" : "Modern" } : item
-      )
-    );
+  const cancelForm = () => {
+    setIsFormVisible(false); // Hide form
   };
 
   return (
     <div className="app-container">
       <Header />
       <div className="main-layout">
-        {/* Sidebar */}
         <Sidebar />
-        
-        {/* Main content */}
         <main className={`content ${isSidebarOpen ? 'content-shift' : ''}`}>
           <button className="hamburger" onClick={toggleSidebar}>
             ☰
           </button>
-
           <h2>🏠 House Accessories</h2>
           <Button variant="primary" onClick={addNewHouseItem}>Add New House Item</Button>
-          <AccessoryList 
-            accessories={houseList} 
-            deleteItem={deleteHouseItem} 
-            toggleStyle={toggleHouseStyle} 
+          <AccessoryList
+            accessories={houseList}
+            deleteItem={deleteHouseItem}
+            toggleStyle={() => {}}
+            editItem={editHouseItem} // Pass the edit function to the list
           />
-
           <h2>🌿 Land Accessories</h2>
           <Button variant="primary" onClick={addNewLandItem}>Add New Land Item</Button>
-          <AccessoryList 
-            accessories={landList} 
-            deleteItem={deleteLandItem} 
-            toggleStyle={toggleLandStyle} 
+          <AccessoryList
+            accessories={landList}
+            deleteItem={deleteLandItem}
+            toggleStyle={() => {}}
+            editItem={editLandItem} // Pass the edit function to the list
           />
         </main>
+
+        {isFormVisible && formType === 'house' && (
+          <AccessoryForm 
+            accessory={selectedItem} 
+            onSave={saveAccessory} 
+            onCancel={cancelForm} 
+          />
+        )}
+
+        {isFormVisible && formType === 'land' && (
+          <AccessoryForm 
+            accessory={selectedItem} 
+            onSave={saveAccessory} 
+            onCancel={cancelForm} 
+          />
+        )}
       </div>
     </div>
   );
