@@ -208,6 +208,7 @@ const App: React.FC = () => {
                 type="text"
                 id="name"
                 name="name"
+                placeholder="Enter new item name"
                 value={formData.name}
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
@@ -218,8 +219,7 @@ const App: React.FC = () => {
             {/* Style */}
             <div>
               <label htmlFor="style">Style</label>
-              <input
-                type="text"
+              <select
                 id="style"
                 name="style"
                 value={formData.style}
@@ -227,8 +227,16 @@ const App: React.FC = () => {
                   setFormData((prev) => ({ ...prev, style: e.target.value }))
                 }
                 required
-              />
+              >
+                <option value="">-- Select a style --</option>
+                {styles.map((styleOption) => (
+                  <option key={styleOption} value={styleOption}>
+                    {styleOption}
+                  </option>
+                ))}
+              </select>
             </div>
+
             {/* Size */}
             <div>
               <label htmlFor="size">Size</label>
