@@ -9,4 +9,14 @@ export const houseAccessories = [
   { id: 8, name: "Artwork", style: "Abstract", size: "Medium" },
   { id: 9, name: "Rug", style: "Bohemian", size: "Small" },
   { id: 10, name: "Mirror", style: "Vintage", size: "Medium" },
+  { id: 11, name: "Curtains", style: "Modern", size: "Large" },
+  { id: 12, name: "Bookshelf", style: "Rustic", size: "Medium" },
+  { id: 13, name: "Coffee Table", style: "Luxury", size: "Small" },
+  { id: 14, name: "Dining Chairs", style: "Contemporary", size: "Large" },
+  { id: 15, name: "Wall Clock", style: "Industrial", size: "Medium" },
+  { id: 16, name: "Bedside Table", style: "Traditional", size: "Small" },
+  { id: 17, name: "Cushions", style: "Abstract", size: "Large" },
+  { id: 18, name: "Vase", style: "Bohemian", size: "Medium" },
+  { id: 19, name: "Wall Art", style: "Vintage", size: "Small" },
+  { id: 20, name: "Outdoor Furniture", style: "Modern", size: "Large" }
 ];

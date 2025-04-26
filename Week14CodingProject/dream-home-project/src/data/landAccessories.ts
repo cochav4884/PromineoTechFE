@@ -9,4 +9,14 @@ export const landAccessories = [
   { id: 8, name: "Gazebo", style: "Victorian", size: "Medium" },
   { id: 9, name: "Outdoor Kitchen", style: "Modern", size: "Large" },
   { id: 10, name: "Fire Pit", style: "Traditional", size: "Medium" },
+  { id: 11, name: "Flower Bed", style: "Colorful", size: "Small" },
+  { id: 12, name: "Shed", style: "Functional", size: "Medium" },
+  { id: 13, name: "Deck", style: "Wooden", size: "Large" },
+  { id: 14, name: "Pergola", style: "Rustic", size: "Medium" },
+  { id: 15, name: "Outdoor Lighting", style: "Modern", size: "Small" },
+  { id: 16, name: "Pathway", style: "Decorative", size: "Large" },
+  { id: 17, name: "Treehouse", style: "Playful", size: "Medium" },
+  { id: 18, name: "Rock Garden", style: "Natural", size: "Small" },
+  { id: 19, name: "Water Feature", style: "Serene", size: "Large" },
+  { id: 20, name: "Outdoor Seating", style: "Comfortable", size: "Medium" }
 ];
