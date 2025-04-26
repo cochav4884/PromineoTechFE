@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import AccessoryList from '../components/AccessoryList';
 import AccessoryForm from '../components/AccessoryForm';
-import { Button } from 'react-bootstrap'; // Using React-Bootstrap for buttons
+import { Button } from 'react-bootstrap';
 import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,139 +19,105 @@ interface Accessory {
 const App: React.FC = () => {
   const [houseList, setHouseList] = useState(houseAccessories);
   const [landList, setLandList] = useState(landAccessories);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Sidebar is open by default
-  const [selectedItem, setSelectedItem] = useState<Accessory | null>(null); // For updating items
-  const [isFormVisible, setIsFormVisible] = useState(false); // Toggle the form visibility
-  const [formType, setFormType] = useState<'house' | 'land' | null>(null); // Track form type
-  const [activeCategory, setActiveCategory] = useState<'house' | 'land'>('house'); // Track selected category
+  const [selectedItem, setSelectedItem] = useState<Accessory | null>(null);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  const [formType, setFormType] = useState<'house' | 'land' | null>(null);
+  const [activeList, setActiveList] = useState<'house' | 'land'>('house');
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev); // Toggle the sidebar
+  const handleSelectCategory = (category: 'house' | 'land') => {
+    setActiveList(category);
   };
 
-  const addNewHouseItem = () => {
-    setSelectedItem(null); // Clear the form for new item
-    setFormType('house'); // Set form type to 'house'
-    setIsFormVisible(true); // Show the form
+  const addNewItem = () => {
+    setSelectedItem(null);
+    setFormType(activeList);
+    setIsFormVisible(true);
   };
 
-  const addNewLandItem = () => {
-    setSelectedItem(null); // Clear the form for new item
-    setFormType('land'); // Set form type to 'land'
-    setIsFormVisible(true); // Show the form
+  const editItem = (id: number) => {
+    const list = activeList === 'house' ? houseList : landList;
+    const item = list.find((item) => item.id === id) || null;
+    setSelectedItem(item);
+    setFormType(activeList);
+    setIsFormVisible(true);
   };
 
-  const editHouseItem = (id: number) => {
-    const item = houseList.find((item) => item.id === id);
-    setSelectedItem(item || null); // Set the item to edit
-    setFormType('house'); // Set form type to 'house'
-    setIsFormVisible(true); // Show the form
+  const deleteItem = (id: number) => {
+    if (activeList === 'house') {
+      setHouseList((prev) => prev.filter((item) => item.id !== id));
+    } else {
+      setLandList((prev) => prev.filter((item) => item.id !== id));
+    }
   };
 
-  const editLandItem = (id: number) => {
-    const item = landList.find((item) => item.id === id);
-    setSelectedItem(item || null); // Set the item to edit
-    setFormType('land'); // Set form type to 'land'
-    setIsFormVisible(true); // Show the form
-  };
-
-  const deleteHouseItem = (id: number) => {
-    setHouseList((prevList) => prevList.filter((item) => item.id !== id));
-  };
-
-  const deleteLandItem = (id: number) => {
-    setLandList((prevList) => prevList.filter((item) => item.id !== id));
+  const toggleStyle = (id: number, listType: 'house' | 'land') => {
+    if (listType === 'house') {
+      setHouseList((prevList) =>
+        prevList.map((item) =>
+          item.id === id ? { ...item, style: item.style === 'Modern' ? 'Rustic' : 'Modern' } : item
+        )
+      );
+    } else if (listType === 'land') {
+      setLandList((prevList) =>
+        prevList.map((item) =>
+          item.id === id ? { ...item, style: item.style === 'Modern' ? 'Rustic' : 'Modern' } : item
+        )
+      );
+    }
   };
 
   const saveAccessory = (newItem: Accessory) => {
     if (selectedItem) {
-      // Update an existing item
-      if (newItem.name && newItem.style && newItem.size) {
-        if (formType === 'house') {
-          setHouseList((prevList) =>
-            prevList.map((item) =>
-              item.id === selectedItem.id ? { ...item, ...newItem } : item
-            )
-          );
-        } else if (formType === 'land') {
-          setLandList((prevList) =>
-            prevList.map((item) =>
-              item.id === selectedItem.id ? { ...item, ...newItem } : item
-            )
-          );
-        }
+      if (formType === 'house') {
+        setHouseList((prevList) =>
+          prevList.map((item) => (item.id === selectedItem.id ? newItem : item))
+        );
+      } else if (formType === 'land') {
+        setLandList((prevList) =>
+          prevList.map((item) => (item.id === selectedItem.id ? newItem : item))
+        );
       }
     } else {
-      // Add a new item
-      if (newItem.name && newItem.style && newItem.size) {
-        if (formType === 'house') {
-          setHouseList((prevList) => [...prevList, newItem]);
-        } else if (formType === 'land') {
-          setLandList((prevList) => [...prevList, newItem]);
-        }
+      if (formType === 'house') {
+        setHouseList((prevList) => [...prevList, newItem]);
+      } else if (formType === 'land') {
+        setLandList((prevList) => [...prevList, newItem]);
       }
     }
-    setIsFormVisible(false); // Hide form after save
+    setIsFormVisible(false);
   };
 
   const cancelForm = () => {
-    setIsFormVisible(false); // Hide form
+    setIsFormVisible(false);
   };
 
-  // Function to change active category (house or land)
-  const handleCategorySelect = (category: 'house' | 'land') => {
-    setActiveCategory(category); // Update the selected category
-  };
+  const accessories = activeList === 'house' ? houseList : landList;
 
   return (
     <div className="app-container">
       <Header />
       <div className="main-layout">
-        <Sidebar 
-          onSelectCategory={handleCategorySelect} 
-          isSidebarOpen={isSidebarOpen} 
-          toggleSidebar={toggleSidebar} 
-        />
-        <main className={`content ${isSidebarOpen ? 'content-shift' : ''}`}>
-          <button className="hamburger" onClick={toggleSidebar}>
-            ☰
-          </button>
-          
-          {activeCategory === 'house' && (
-            <>
-              <h2>🏠 House Accessories</h2>
-              <Button variant="primary" onClick={addNewHouseItem}>Add New House Item</Button>
-              <AccessoryList
-                accessories={houseList}
-                deleteItem={deleteHouseItem}
-                toggleStyle={() => {}}
-                editItem={editHouseItem}
-              />
-            </>
-          )}
-
-          {activeCategory === 'land' && (
-            <>
-              <h2>🌿 Land Accessories</h2>
-              <Button variant="primary" onClick={addNewLandItem}>Add New Land Item</Button>
-              <AccessoryList
-                accessories={landList}
-                deleteItem={deleteLandItem}
-                toggleStyle={() => {}}
-                editItem={editLandItem}
-              />
-            </>
-          )}
+        <Sidebar onSelectCategory={handleSelectCategory} />
+        <main className="content">
+          <h2>{activeList === 'house' ? '🏠 House Accessories' : '🌿 Land Accessories'}</h2>
+          <Button variant="primary" onClick={addNewItem}>
+            Add New {activeList === 'house' ? 'House' : 'Land'} Item
+          </Button>
+          <AccessoryList
+            accessories={accessories}
+            deleteItem={deleteItem}
+            toggleStyle={(id) => toggleStyle(id, activeList)}
+            editItem={editItem}
+          />
         </main>
-
-        {isFormVisible && formType === 'house' && (
-          <AccessoryForm accessory={selectedItem} onSave={saveAccessory} onCancel={cancelForm} />
-        )}
-
-        {isFormVisible && formType === 'land' && (
-          <AccessoryForm accessory={selectedItem} onSave={saveAccessory} onCancel={cancelForm} />
-        )}
       </div>
+      {isFormVisible && (
+        <AccessoryForm
+          accessory={selectedItem}
+          onSave={saveAccessory}
+          onCancel={cancelForm}
+        />
+      )}
     </div>
   );
 };

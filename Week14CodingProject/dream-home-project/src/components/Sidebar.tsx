@@ -1,19 +1,13 @@
 import React from 'react';
-import '../styles/Sidebar.css'; // Ensure the styling is correct for Sidebar
-
+import '../styles/Sidebar.css';
 
 interface SidebarProps {
   onSelectCategory: (category: 'house' | 'land') => void;
-  isSidebarOpen: boolean;
-  toggleSidebar: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ onSelectCategory, isSidebarOpen, toggleSidebar }) => {
+const Sidebar: React.FC<SidebarProps> = ({ onSelectCategory }) => {
   return (
-    <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-      <button onClick={toggleSidebar} className="toggle-sidebar-button">
-        {isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}
-      </button>
+    <div className="sidebar open">
       <nav>
         <ul>
           <li>

@@ -1,19 +1,14 @@
-/* Sidebar Styles */
 .sidebar {
     background-color: #f4f4f4;
     padding: 1rem;
     width: 250px;
     height: 100vh;
-    position: fixed; /* Keep sidebar fixed */
+    position: fixed;
     top: 0;
     left: 0;
-    transform: translateX(-100%); /* Initially hidden to the left */
-    transition: transform 0.3s ease; /* Smooth transition */
-    z-index: 1000; /* Ensure sidebar is on top */
-  }
-  
-  .sidebar.open {
-    transform: translateX(0); /* Show sidebar when the 'open' class is added */
+    transform: translateX(0);
+    transition: none;
+    z-index: 1000;
   }
   
   /* Sidebar Links */
@@ -34,13 +29,14 @@
     display: flex;
     align-items: center;
     padding: 0.5rem;
-  }
-  
-  .sidebar-link span {
-    margin-left: 10px; /* Add space between emoji and text */
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
   }
   
   .sidebar-link:hover {
-    color: #4a90e2; /* Change color on hover */
+    color: #4a90e2;
   }
   
