@@ -164,9 +164,15 @@ const App: React.FC = () => {
               ? "🏠 House Accessories"
               : "🌿 Land Accessories"}
           </h2>
-          <Button variant="primary" onClick={addNewItem}>
-            Add New {activeList === "house" ? "House" : "Land"} Item
-          </Button>
+
+          {/* Add New Item Button */}
+          <div className="button-container">
+            <Button variant="primary" onClick={addNewItem}>
+              Add New {activeList === "house" ? "House" : "Land"} Item
+            </Button>
+          </div>
+
+          {/* Accessory List */}
           <AccessoryList
             accessories={accessories}
             deleteItem={deleteItem}

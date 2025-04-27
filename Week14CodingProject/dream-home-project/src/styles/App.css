@@ -1,34 +1,77 @@
 /* General Styles */
 .header {
-  background-color: #4a90e2;
+  background-color: #4a90e2; /* Header background color */
   color: white;
   text-align: center;
   padding: 1rem;
   font-size: 1.5rem;
+  position: fixed; /* Fixed header */
+  width: 100%; /* Ensure it spans across the whole page */
+  top: 0; /* Fix it to the top */
+  z-index: 1001; /* Keep header above other content */
+  left: 0;
+}
+
+/* Set background image for the whole app */
+.app-container {
+  background-image: url("../assets/houseBluePrint 2.jpg"); /* Path to your image */
+  background-size: cover; /* Make sure the image covers the entire container */
+  background-position: center center; /* Center the image */
+  background-attachment: fixed; /* Optional: Keeps the image fixed when scrolling */
+  min-height: 100vh; /* Ensures the background takes full height */
+  padding-top: 80px; /* Adjust for fixed header height */
+}
+
+/* Layout of Main Content */
+.main-layout {
+  display: flex;
+  flex-direction: row; /* Changed to row to place sidebar and content next to each other */
+  min-height: 100vh;
+  background: rgba(255, 255, 255, 0.6); /* Semi-transparent background to show the image */
+  opacity: 0.9; /* Slightly transparent main layout */
 }
 
 /* Sidebar Styles */
 .sidebar {
   background-color: #f4f4f4;
   padding: 1rem;
-  width: 250px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+  width: 250px; /* Fixed sidebar width */
+  height: 100vh; /* Full height */
+  position: fixed; /* Make sidebar fixed */
+  top: 80px; /* Position sidebar below the header */
+  left: 0; /* Stick to the left side */
+  z-index: 1000; /* Ensure sidebar is above the content */
+  overflow-y: auto; /* Make sidebar content scrollable if too long */
+}
+
+/* Sidebar Title (e.g., House Accessories) */
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-top: 20px;
+  font-size: 1.8rem;
 }
 
 /* Sidebar Links */
 .sidebar ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar li {
-  margin: 1rem 0;
+  margin: 1.5rem 0; /* Space between links */
+  padding: 0.5rem;
+  background: rgba(214, 191, 191, 0.7);
+  border-radius: 4px;
+  transition: background 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
 }
 
+/* Sidebar Button Styling */
 .sidebar button.sidebar-link {
   background: none;
   border: none;
@@ -45,20 +88,50 @@
   color: #4a90e2;
 }
 
-/* Layout of Main Content */
-.main-layout {
-  display: flex;
-  min-height: 100vh;
-}
-
+/* Content Styling */
 .content {
-  margin-left: 250px; /* Match sidebar width */
-  padding: 1rem;
   flex-grow: 1;
+  padding: 1rem;
+  margin-left: 250px; /* Make space for the sidebar */
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.main-content h2 {
-  margin-top: 0;
+.content:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Accessory List Styles */
+.accessory-list {
+  list-style-type: none;
+  padding: 0;
+  opacity: 0.9;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.accessory-list li {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+}
+
+.accessory-list li:hover {
+  background: rgba(255, 255, 255, 1);
+  opacity: 1;
+}
+
+/* Button Container - Space from list */
+.button-container {
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1050;
 }
 
 /* Form Overlay Styles */
@@ -67,13 +140,13 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5); /* Darkened overlay behind form */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1100; /* Ensure it's above sidebar */
-  width: 50%; /* Adjust width of form container */
-  max-width: 500px; /* Limit the form's max width */
+  z-index: 1100;
+  width: 50%;
+  max-width: 500px;
 }
 
 form {
@@ -81,8 +154,8 @@ form {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%; /* Form takes full width of container */
-  max-width: 400px; /* Limit the width of the form */
+  width: 100%;
+  max-width: 400px;
   box-sizing: border-box;
 }
 
@@ -131,26 +204,35 @@ form button[type="button"] {
   background-color: #ccc;
 }
 
-/* Button hover effect */
 form button:hover {
   opacity: 0.8;
 }
 
-
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .sidebar {
-    position: relative;
+    position: relative; /* Remove fixed for mobile */
+    top: 0; /* Reset for mobile view */
     width: 100%;
     height: auto;
+    margin-bottom: 1rem; /* Prevent sidebar from sticking to the bottom */
   }
 
-  .main-layout {
-    flex-direction: column;
+  .sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .sidebar li {
+    margin: 1rem 0;
   }
 
   .content {
     margin-left: 0;
+  }
+
+  .button-container {
+    margin-left: 10px;
+    gap: 10px;
   }
 }
