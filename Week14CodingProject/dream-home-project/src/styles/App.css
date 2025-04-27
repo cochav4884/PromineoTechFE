@@ -1,225 +1,225 @@
 /* General Styles */
 .header {
   background-color: #4a90e2; /* Header background color */
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-size: 1.5rem;
-  position: fixed; /* Fixed header */
-  width: 100%; /* Ensure it spans across the whole page */
-  top: 0; /* Fix it to the top */
-  z-index: 1001; /* Keep header above other content */
+  color: white; /* Text color */
+  text-align: center; /* Center the text */
+  padding: 1rem; /* Padding for spacing */
+  font-size: 1.5rem; /* Font size */
+  position: fixed; /* Fix header to the top */
+  width: 100%; /* Ensure the header spans across the page */
+  top: 0; /* Position it at the top */
+  z-index: 1001; /* Keep the header above all other content */
   left: 0;
 }
 
 /* Set background image for the whole app */
 .app-container {
   background-image: url("../assets/houseBluePrint 2.jpg"); /* Path to your image */
-  background-size: cover; /* Make sure the image covers the entire container */
+  background-size: cover; /* Ensure the image covers the whole container */
   background-position: center center; /* Center the image */
-  background-attachment: fixed; /* Optional: Keeps the image fixed when scrolling */
-  min-height: 100vh; /* Ensures the background takes full height */
+  background-attachment: fixed; /* Keep the image fixed when scrolling */
+  min-height: 100vh; /* Make the container take full height */
   padding-top: 80px; /* Adjust for fixed header height */
 }
 
 /* Layout of Main Content */
 .main-layout {
-  display: flex;
-  flex-direction: row; /* Changed to row to place sidebar and content next to each other */
-  min-height: 100vh;
-  background: rgba(255, 255, 255, 0.6); /* Semi-transparent background to show the image */
-  opacity: 0.9; /* Slightly transparent main layout */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Arrange sidebar and content in a row */
+  min-height: 100vh; /* Ensure the content takes full height */
+  background: rgba(255, 255, 255, 0.6); /* Semi-transparent background to let image show */
+  opacity: 0.9; /* Slight transparency to blend with the background */
 }
 
 /* Sidebar Styles */
 .sidebar {
-  background-color: #f4f4f4;
-  padding: 1rem;
-  width: 250px; /* Fixed sidebar width */
+  background-color: #f4f4f4; /* Light background color */
+  padding: 1rem; /* Padding inside the sidebar */
+  width: 250px; /* Fixed width for the sidebar */
   height: 100vh; /* Full height */
-  position: fixed; /* Make sidebar fixed */
-  top: 80px; /* Position sidebar below the header */
-  left: 0; /* Stick to the left side */
-  z-index: 1000; /* Ensure sidebar is above the content */
-  overflow-y: auto; /* Make sidebar content scrollable if too long */
-  min-width: 250px; /* Prevent sidebar from shrinking below this width */
+  position: fixed; /* Fix the sidebar to the left */
+  top: 80px; /* Position the sidebar below the header */
+  left: 0; /* Stick to the left */
+  z-index: 1000; /* Ensure the sidebar stays above content */
+  overflow-y: auto; /* Allow scrolling if sidebar content overflows */
+  min-width: 250px; /* Prevent sidebar from shrinking smaller than this */
 }
 
 /* Sidebar Title (e.g., House Accessories) */
 .sidebar h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding-top: 20px;
-  font-size: 1.8rem;
+  text-align: center; /* Center the title text */
+  margin-bottom: 2rem; /* Space below the title */
+  padding-top: 20px; /* Space above the title */
+  font-size: 1.8rem; /* Font size for the title */
 }
 
 /* Sidebar Links */
 .sidebar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  list-style-type: none; /* Remove list item bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
 }
 
 .sidebar li {
-  margin: 1.5rem 0; /* Space between links */
-  padding: 0.5rem;
-  background: rgba(214, 191, 191, 0.7);
-  border-radius: 4px;
-  transition: background 0.3s ease-in-out;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  width: 100%;
-  text-align: center;
+  margin: 1.5rem 0; /* Vertical spacing between list items */
+  padding: 0.5rem; /* Padding inside list items */
+  background: rgba(214, 191, 191, 0.7); /* Light background for list items */
+  border-radius: 4px; /* Rounded corners */
+  transition: background 0.3s ease-in-out; /* Smooth background change on hover */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  cursor: pointer; /* Cursor changes to pointer on hover */
+  width: 100%; /* Ensure list items take up full width */
+  text-align: center; /* Center the text inside list items */
 }
 
 /* Sidebar Button Styling */
 .sidebar button.sidebar-link {
-  background: none;
-  border: none;
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  width: 100%;
-  text-align: left;
-  padding: 0.5rem;
-  cursor: pointer;
+  background: none; /* No background for buttons */
+  border: none; /* No border */
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Dark text color */
+  font-weight: bold; /* Make text bold */
+  width: 100%; /* Ensure buttons span full width */
+  text-align: left; /* Align text to the left */
+  padding: 0.5rem; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
 }
 
 .sidebar button.sidebar-link:hover {
-  color: #4a90e2;
+  color: #4a90e2; /* Change text color on hover */
 }
 
 /* Content Styling */
 .content {
-  flex-grow: 1;
-  padding: 1rem;
-  margin-left: 250px; /* Make space for the sidebar */
-  background: rgba(255, 255, 255, 0.7);
+  flex-grow: 1; /* Allow content to take remaining space */
+  padding: 1rem; /* Padding inside content */
+  margin-left: 250px; /* Create space for the sidebar */
+  background: rgba(255, 255, 255, 0.7); /* Semi-transparent background */
 }
 
 .content:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.5); /* Slightly darker background on hover */
 }
 
 /* Accessory List Styles */
 .accessory-list {
-  list-style-type: none;
-  padding: 0;
-  opacity: 0.9;
-  transition: opacity 0.3s ease-in-out;
+  list-style-type: none; /* Remove list item bullets */
+  padding: 0; /* Remove padding */
+  opacity: 0.9; /* Slight transparency */
+  transition: opacity 0.3s ease-in-out; /* Smooth opacity change */
 }
 
 .accessory-list li {
-  margin: 1rem 0;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 4px;
+  margin: 1rem 0; /* Vertical spacing between list items */
+  padding: 1rem; /* Padding inside list items */
+  background: rgba(255, 255, 255, 0.7); /* Light background */
+  border-radius: 4px; /* Rounded corners */
 }
 
 .accessory-list li:hover {
-  background: rgba(255, 255, 255, 1);
-  opacity: 1;
+  background: rgba(255, 255, 255, 1); /* Solid background on hover */
+  opacity: 1; /* Full opacity on hover */
 }
 
 /* Button Container - Space from list */
 .button-container {
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1050;
+  margin-left: 20px; /* Space from the left */
+  margin-top: 20px; /* Top space */
+  margin-bottom: 20px; /* Bottom space */
+  padding-left: 10px; /* Padding on the left */
+  display: flex; /* Use flexbox for buttons */
+  justify-content: flex-start; /* Align buttons to the start */
+  gap: 15px; /* Space between buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap if needed */
+  position: relative; /* Position relative for z-index */
+  z-index: 1050; /* Keep the buttons above other content */
 }
 
 /* Form Overlay Styles */
 .form-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1100;
-  width: 50%;
-  max-width: 500px;
+  position: fixed; /* Fix the overlay to the screen */
+  top: 0; /* Position it at the top */
+  right: 0; /* Position it on the right */
+  bottom: 0; /* Position it at the bottom */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1100; /* Ensure overlay stays on top */
+  width: 50%; /* Make the overlay take up half the screen */
+  max-width: 500px; /* Max width for the overlay */
 }
 
 form {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  box-sizing: border-box;
+  background: white; /* White background for the form */
+  padding: 20px; /* Padding inside the form */
+  border-radius: 8px; /* Rounded corners for the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+  width: 100%; /* Full width */
+  max-width: 400px; /* Max width of the form */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
 form h3 {
-  text-align: center;
-  margin-bottom: 20px;
+  text-align: center; /* Center the heading */
+  margin-bottom: 20px; /* Bottom margin for spacing */
 }
 
 /* Input Fields Styling */
 form div {
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* Space between form fields */
 }
 
 form label {
-  display: block;
-  margin-bottom: 5px;
+  display: block; /* Label as block to stack above inputs */
+  margin-bottom: 5px; /* Margin below label */
 }
 
 form input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%; /* Make inputs take full width */
+  padding: 8px; /* Padding inside the input fields */
+  border: 1px solid #ccc; /* Light border color */
+  border-radius: 4px; /* Rounded corners */
 }
 
 /* Form Buttons Styling */
 .form-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+  display: flex; /* Flexbox layout for buttons */
+  justify-content: space-between; /* Space between buttons */
+  margin-top: 20px; /* Top margin for spacing */
 }
 
 form button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 10px 20px; /* Padding inside buttons */
+  border: none; /* Remove button borders */
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
 }
 
 form button[type="submit"] {
-  background-color: #4a90e2;
-  color: white;
+  background-color: #4a90e2; /* Primary button color */
+  color: white; /* White text */
 }
 
 form button[type="button"] {
-  background-color: #ccc;
+  background-color: #ccc; /* Secondary button color */
 }
 
 form button:hover {
-  opacity: 0.8;
+  opacity: 0.8; /* Slightly reduce opacity on hover */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  /* Make Sidebar behave responsively for smaller screens */
+  /* Adjust Sidebar for smaller screens */
   .sidebar {
-    position: relative; /* Remove fixed positioning */
+    position: relative; /* Make sidebar scrollable */
     top: 0;
-    width: 100%; /* Sidebar takes up full width on small screens */
-    margin-bottom: 1rem; /* Adjust spacing */
+    width: 100%; /* Full width sidebar */
+    margin-bottom: 1rem; /* Bottom margin */
   }
 
-  /* Button Container - Centered and prevent overflow */
+  /* Center and prevent overflow of buttons */
   .button-container {
     gap: 10px;
     justify-content: center;
@@ -227,7 +227,7 @@ form button:hover {
   }
 
   .sidebar h2 {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* Smaller font for the sidebar title */
     margin-bottom: 1rem;
   }
 
@@ -236,39 +236,39 @@ form button:hover {
   }
 
   .content {
-    margin-left: 0; /* No space for the sidebar */
+    margin-left: 0; /* No left margin */
   }
 }
 
-/* Ensure sidebar behaves correctly for minimal width of 728px */
+/* Sidebar behavior for minimal width of 728px */
 @media (max-width: 728px) {
   .sidebar {
     position: relative; /* Remove fixed positioning */
-    width: 100%; /* Sidebar takes up full width */
+    width: 100%; /* Full width sidebar */
     margin-bottom: 1rem;
   }
 
   .content {
-    margin-left: 0; /* No margin for content */
+    margin-left: 0; /* No margin */
   }
 
   .button-container {
     gap: 10px;
-    justify-content: center; /* Ensure buttons are centered */
+    justify-content: center; /* Center buttons */
     margin-left: 0;
   }
 }
 
 @media (min-width: 769px) {
-  /* Sidebar stays fixed */
+  /* Fixed Sidebar for larger screens */
   .sidebar {
     position: fixed;
-    top: 80px;
-    height: calc(100vh - 80px); /* Sidebar remains full height */
-    min-width: 250px; /* Ensure it doesn't shrink */
+    top: 80px; /* Keep sidebar below header */
+    height: calc(100vh - 80px); /* Full height minus header */
+    min-width: 250px; /* Ensure the sidebar doesn't shrink */
   }
 
   .content {
-    margin-left: 250px; /* Keep space for the sidebar */
+    margin-left: 250px; /* Keep space for sidebar */
   }
 }
