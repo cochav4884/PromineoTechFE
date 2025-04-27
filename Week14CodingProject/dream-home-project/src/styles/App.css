@@ -42,6 +42,7 @@
   left: 0; /* Stick to the left side */
   z-index: 1000; /* Ensure sidebar is above the content */
   overflow-y: auto; /* Make sidebar content scrollable if too long */
+  min-width: 250px; /* Prevent sidebar from shrinking below this width */
 }
 
 /* Sidebar Title (e.g., House Accessories) */
@@ -210,12 +211,19 @@ form button:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  /* Make Sidebar behave responsively for smaller screens */
   .sidebar {
-    position: relative; /* Remove fixed for mobile */
-    top: 0; /* Reset for mobile view */
-    width: 100%;
-    height: auto;
-    margin-bottom: 1rem; /* Prevent sidebar from sticking to the bottom */
+    position: relative; /* Remove fixed positioning */
+    top: 0;
+    width: 100%; /* Sidebar takes up full width on small screens */
+    margin-bottom: 1rem; /* Adjust spacing */
+  }
+
+  /* Button Container - Centered and prevent overflow */
+  .button-container {
+    gap: 10px;
+    justify-content: center;
+    margin-left: 0;
   }
 
   .sidebar h2 {
@@ -228,11 +236,39 @@ form button:hover {
   }
 
   .content {
-    margin-left: 0;
+    margin-left: 0; /* No space for the sidebar */
+  }
+}
+
+/* Ensure sidebar behaves correctly for minimal width of 728px */
+@media (max-width: 728px) {
+  .sidebar {
+    position: relative; /* Remove fixed positioning */
+    width: 100%; /* Sidebar takes up full width */
+    margin-bottom: 1rem;
+  }
+
+  .content {
+    margin-left: 0; /* No margin for content */
   }
 
   .button-container {
-    margin-left: 10px;
     gap: 10px;
+    justify-content: center; /* Ensure buttons are centered */
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Sidebar stays fixed */
+  .sidebar {
+    position: fixed;
+    top: 80px;
+    height: calc(100vh - 80px); /* Sidebar remains full height */
+    min-width: 250px; /* Ensure it doesn't shrink */
+  }
+
+  .content {
+    margin-left: 250px; /* Keep space for the sidebar */
   }
 }
