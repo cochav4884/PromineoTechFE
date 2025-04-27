@@ -7,6 +7,7 @@ import AccessoryList from "../components/AccessoryList";
 import { Button } from "react-bootstrap";
 import "../styles/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect as reactUseEffect } from "react";
 
 interface Accessory {
   id: number;
@@ -16,6 +17,10 @@ interface Accessory {
 }
 
 const App: React.FC = () => {
+  useEffect(() => {
+    document.title = "Dream Home Project";
+  }, []);
+
   const [houseList, setHouseList] = useState(houseAccessories);
   const [landList, setLandList] = useState(landAccessories);
 
@@ -88,6 +93,7 @@ const App: React.FC = () => {
     "Tropical",
     "Southwestern",
     "Gothic",
+    "StyleNotSpecified",
   ];
 
   const sizes: string[] = [
@@ -115,6 +121,7 @@ const App: React.FC = () => {
     "Expansive",
     "Breezy",
     "Open",
+    "SizeNotSpecified",
   ];
 
   const saveAccessory = (newItem: Accessory) => {
@@ -255,3 +262,6 @@ const App: React.FC = () => {
 };
 
 export default App;
+function useEffect(callback: () => void, dependencies: React.DependencyList) {
+  reactUseEffect(callback, dependencies);
+}
