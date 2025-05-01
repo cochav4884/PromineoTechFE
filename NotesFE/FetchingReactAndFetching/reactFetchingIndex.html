@@ -101,6 +101,26 @@
         </ul>
     </p>
 
-    
+    <h3>No dependency array
+        useEffect(() => { // do something })</h3>
+        <p>
+            Run on every render (we don't usually do this)
+        </p>
+    </h3>
+
+    <h3>Full dependency array
+        useEffect(() => { // do something }, [DEPENDENCY_ARRAY])</h3>
+        <p>
+            Run on the first render and on later renders where some or thing has changed since the last render.
+        </p>
+    </h3>
+
+    <h3>Empty dependency array
+        
+        useEffect(() => { // do something }, [])</h3>
+        <p>
+            Run only on the first render (we usually do this)
+        </p>
+    </h3>
   </body>
 </html>
