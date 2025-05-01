@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 17: Fetching: Loading & Error Messages</title>
+  </head>
+  <body>
+    <h1>Loading & Error Messages</h1>
+
+    <h2>
+      Loading: Track if we are curretnly loading the data so we can show a
+      loading indicator
+    </h2>
+
+    <ul>
+      <li>const [loading, setLoading] = useState(false)</li>
+      <li>
+        //Before Fetching setLoading(true) //After Fetching setLoading(false)
+      </li>
+      <li>
+        { loading &&
+        <p>Loading...</p>
+        }
+      </li>
+    </ul>
+
+    <h2>
+      Error: Track if we got an error from the last fetch request so we can show
+      an error message.
+    </h2>
+
+    <ul>
+        <li>const [error, setError] = useState(false)</li>
+        <li>
+            //When fetching fails
+            setError("ERROR MESSAGE")
+            //When fetching succeeds
+            setError("")
+        </li>
+        <li>
+            { error && <p>{error}</p> }
+        </li>
+    </ul>
+
+    <p>Example:
+        const [error, setError] = useState("")
+        try {
+            const response = await fetch(some, parameters)
+            
+            // Handle bad response
+            if (!response.ok) {
+                setError("Error: " + response.statusText)
+            }
+            // Handle good response
+            else {
+                const data = await response.json()
+                setError("")
+                setData(data)
+            }
+            // Handle no response
+        } catch (error: any) {
+            setError("Error: " + error.message)
+        }
+    </p>
+
+    <p>Further Explanation:
+        const [data, setData] = useState([])
+        const [loading, setLoading] = useState(false)
+        const [error, setError] = useState("")
+
+        setLoading(true)
+        try {
+            const response = await fetch(some, parameters)
+            if (!response.ok) {
+                setError("Error: " + response.statusText)
+            }
+            const data = await response.json()
+            setError(null)
+            setData(data)
+        } catch (error: any) {
+            setError("Error: " + error.message)
+        }
+        set Loading(false)
+        return<>
+            { loading && <p>Loading...</p> }
+            { error && <p>{error}</p> }
+            { data.map(item => <div></div>) }
+
+            <ul>
+                <li>1. We make three pieces of state</li>
+                <li>2. Whenever we make a fetch request, we update all three pieces of state</li>
+                <li>3. We use the three pieces of sate to conditionally render</li>
+            </ul>
+    </p>
+
+    <h3>Handling Loading & Errors</h3>
+    <ul>
+      <li>1. Make a state variable to track the status</li>
+      <li>2. Update the state variable when we make fetch requets</li>
+      <li>3. Conditionally render based on the state variable</li>
+    </ul>
+
+    <h3>Errors</h3>
+    <h4>
+      No response
+      <p>
+        Caused by things like: Server down or User's internet down; Handled by
+        try-catch
+      </p>
+    </h4>
+    <h4>Bad Response
+        <p>
+            Caused by things like: Server error or Request error; Handled by if check
+        </p>
+    </h4>
+  </body>
+</html>

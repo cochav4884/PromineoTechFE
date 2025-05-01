@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { CartItem, Product } from "../types";
 
 type Props = {
@@ -11,14 +11,16 @@ type Props = {
 export default function ProductList({ 
     setCartItems, cartItems, products, setProducts 
 }: Props) {
-  
+  const [isloading, setIsLoading] = useState(false)
 
   // After the first render, we fetch the data and render again with the data
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true)
       const response = await fetch("http://localhost:3001/products");
       const data = await response.json();
       setProducts(data);
+      setIsLoading(false)
     };
     fetchProducts();
   }, [setProducts]); // run once after the first render
@@ -41,6 +43,7 @@ export default function ProductList({
   };
   return (
     <div className="d-flex flex-wrap gap-3">
+        { isloading && <p className="text-body-tertiary">Loading...</p>}
       {products.map((product) => (
         <div key={product.id} className="card flex-grow-1">
           {" "}
