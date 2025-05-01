@@ -1,79 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Week 17: Other Libraries & Git Branches</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Other Libraries & Git Branches</h1>
     <ul>
-        <li>Advanced Hooks: Briefly explore useReducer, useRef, useContext, useCallback, and useMemo.</li>
-        <li>State Management Libraries: Get an introduction to Redux Toolkit, TanStack Queryk and RTK Query.</li>
-        <li>UI & Component Libraries: Lean about MUI, Styled Components, React Spring, React Hook Form, and TanStack</li>
-        <li>React Frameworks: Gain a basic understanding of Next.js.</li>
-        <li>Git Branches: Learn how to manage Git braches for efficient development workflows.</li>
-        <li>Project Work: Integrate a new library into your project.</li>
+      <li>
+        Advanced Hooks: Briefly explore useReducer, useRef, useContext,
+        useCallback, and useMemo.
+      </li>
+      <li>
+        State Management Libraries: Get an introduction to Redux Toolkit,
+        TanStack Queryk and RTK Query.
+      </li>
+      <li>
+        UI & Component Libraries: Lean about MUI, Styled Components, React
+        Spring, React Hook Form, and TanStack
+      </li>
+      <li>React Frameworks: Gain a basic understanding of Next.js.</li>
+      <li>
+        Git Branches: Learn how to manage Git braches for efficient development
+        workflows.
+      </li>
+      <li>Project Work: Integrate a new library into your project.</li>
     </ul>
 
     <h2>Concepts: SPA vd MPA</h2>
     <ul>
-        <li>Single Page Application</li>
-        <li>Multiple Page Application</li>
+      <li>Single Page Application</li>
+      <li>Multiple Page Application</li>
     </ul>
 
-    <p>Server = Back-End <br>
-       Client = Front-End</p>
+    <p>
+      Server = Back-End <br />
+      Client = Front-End
+    </p>
 
-       <h3>SPA: An application with client-side rendering and client-side routing.</h3>
+    <h3>
+      SPA: An application with client-side rendering and client-side routing.
+    </h3>
     <ul>
-        <li>Single HTML page</li>
-        <li>Dynamic content loading</li>
-        <li>Client-side routing</li>
-        <li>Faster user experience</li>
-        <li>Examples: React, Angular, Vue.js</li>
+      <li>Single HTML page</li>
+      <li>First Rendering is slow</li>
+      <li>Each additional Rendering is much quicker than MPA</li>
+      <li>Dynamic content loading</li>
+      <li>Client-side routing</li>
+      <li>Faster user experience</li>
+      <li>Examples: React, Angular, Vue.js</li>
     </ul>
     <p>
-        Back-End: Hosting the application logic and data processing.<br>
-        Front-End: Rendering the user interface and handling user interactions.<br>
-        API: Facilitating communication between the front-end and back-end.<br>
-        Database: Storing and managing data for the application.<br>
+      Back-End: Hosting the application logic and data processing.<br />
+      Front-End: Rendering the user interface and handling user interactions.<br />
+      API: Facilitating communication between the front-end and back-end.<br />
+      Database: Storing and managing data for the application.<br />
     </p>
     <p>
-        Front-End: React, Angular, Vue.js<br>
-        Back-End: Node.js, Express, Django, Ruby on Rails<br>
-        HTML/CSS: Essential for structuring and styling the user interface.<br>
-        Fetching: Using APIs to retrieve data from the back-end.<br>
-        Rendering: Displaying data dynamically in the user interface.<br>
-        Listening: Handling user interactions and events.<br>
-        Routing: Managing navigation within the application.<br>
+      Front-End: React, Angular, Vue.js<br />
+      Back-End: Node.js, Express, Django, Ruby on Rails<br />
+      HTML/CSS: Essential for structuring and styling the user interface.<br />
+      Fetching: Using APIs to retrieve data from the back-end.<br />
+      Rendering: Displaying data dynamically in the user interface.<br />
+      Listening: Handling user interactions and events.<br />
+      Routing: Managing navigation within the application.<br />
+    </p>
+    <p>User: Interacts with the application through the front-end.<br /></p>
+
+    <h3>
+      MPA: An application with server-side rendering and server-side routing.
+    </h3>
+    <ul>
+      <li>Multiple HTML pages</li>
+      <li>First Rendering is faster that SPA</li>
+      <li>Each additional Rendering is slower than SPA</li>
+      <li>Server-side rendering</li>
+      <li>Traditional navigation</li>
+      <li>Slower user experience</li>
+      <li>Examples: PHP, Ruby on Rails, Django</li>
+    </ul>
+    <p>
+      Back-End: Hosting the application logic and data processing.<br />
+      Front-End: Rendering the user interface and handling user interactions.<br />
+      Rendering: Generating HTML pages on the server.<br />
+      Listening: Handling user interactions and events.<br />
+      Routing: Managing navigation between different pages.<br />
+      Database: Storing and managing data for the application.<br />
     </p>
     <p>
-        User: Interacts with the application through the front-end.<br>
+      Front-End: HTML, CSS, JavaScript<br />
+      Back-End: PHP, Ruby on Rails, Django<br />
+    </p>
+    <p>User: Interacts with the application through the front-end.<br /></p>
+
+    <h2>React</h2>
+    <p>
+      React is a JavaScript library for building user interfaces, primarily for
+      single-page applications (SPAs). It allows developers to create reusable
+      UI components and manage the state of the application efficiently. React
+      uses a virtual DOM to optimize rendering performance and provides a
+      declarative approach to building UIs.
     </p>
 
-    <h3>MPA: An application with server-side rendering and server-side routing.</h3>
+    <h3>Client-Side Rendering</h3>
+    <p>
+      Rendering on the client using fetched data from the back-end. The
+      client-side rendering process involves fetching data from the back-end,
+      and then rendering the user interface on the client side. This approach
+      allows for a more dynamic and responsive user experience, as the client
+      where the application is running can update the UI without requiring a
+      full page reload. Client-side rendering is commonly used in single-page
+      applications (SPAs) where the user interacts with the application without
+      navigating to different pages.
+    </p>
+
+    <h3>Fetching</h3>
+    <p>
+      const response = await fetch('https://api.example.com/data');<br />
+      const data = await response.json();<br />
+    </p>
+    <p>
+      Fetching is the process of retrieving data from a server or an API. In
+      React, you can use the Fetch API or libraries like Axios to make HTTP
+      requests to retrieve data from a back-end service. This data can then be
+      used to populate the user interface or perform other operations within the
+      application.
+    </p>
+
+    <h3>Client-Side Routing</h3>
+    <p>
+      Routing on the client using React Router or similar libraries. Client-side
+      routing allows you to manage navigation within a single-page application
+      (SPA) without requiring a full page reload. Libraries like React Router
+      provide a way to define routes and render different components based on
+      the current URL, enabling a seamless user experience as users navigate
+      through the application.
+    </p>
+
+    <h3>Routing: Figuring out which "page" and data to render based on the URL path</h3>
+    <p>
+        Routing in React involves mapping URL paths to specific components or
+        views within the application. This allows the application to render the
+        appropriate content based on the current URL, enabling users to navigate
+        through different sections of the application without reloading the page.
+        React Router is a popular library for implementing client-side routing in
+        React applications.
+    </p>
+
+    <h3>React Router</h3>
+    <p>
+        React Router is a library for managing client-side routing in React
+        applications. It allows developers to define routes and render different
+        components based on the current URL. React Router provides a declarative
+        way to handle navigation, making it easy to create single-page applications
+        with dynamic content loading and seamless user experiences.
+    </p>
+
+    <h2>SSR with React Meta-Frameworks</h2>
     <ul>
-        <li>Multiple HTML pages</li>
-        <li>Server-side rendering</li>
-        <li>Traditional navigation</li>
-        <li>Slower user experience</li>
-        <li>Examples: PHP, Ruby on Rails, Django</li>  
-    </ul>   
+        <li>React renders on both the server-side and the client-side</li>
+        <li>First render is SSR, later renders are CSR</li>
+        <li>Intial Render and later Renders are both fast</li>
+    </ul>
+
+    <h3>React Server Components</h3>
     <p>
-        Back-End: Hosting the application logic and data processing.<br>
-        Front-End: Rendering the user interface and handling user interactions.<br>
-        Rendering: Generating HTML pages on the server.<br>
-        Listening: Handling user interactions and events.<br>
-        Routing: Managing navigation between different pages.<br>
-        Database: Storing and managing data for the application.<br>
+        Some components are rendered on the server-side, some on the client-side.
+        React Server Components allow developers to create components that can be
+        rendered on the server, providing a way to optimize performance and reduce
+        the amount of JavaScript sent to the client. This approach enables faster
+        rendering of initial content and improves the overall user experience
+        by minimizing the amount of client-side processing required.
     </p>
-    <p>
-        Front-End: HTML, CSS, JavaScript<br>
-        Back-End: PHP, Ruby on Rails, Django<br>
-    </p>
-    <p>
-        User: Interacts with the application through the front-end.<br>
-    </p>
-</body>
+
+  </body>
 </html>
