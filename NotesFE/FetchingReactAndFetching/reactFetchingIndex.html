@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 17: Fetching: React And Fetching</title>
+  </head>
+  <body>
+    <h1>React and Fetching</h1>
+
+    <h2>How to get data from an API</h2>
+    <ul>
+      <li>
+        Go to the API documentation to gifure out what URL to fetch from and (if
+        needed) get an API key
+      </li>
+      <li>
+        Make a fetch rquest and await the response: const response = await
+        fetch(URL_TO_FETCH_FROM)
+      </li>
+      <li>
+        Parse the data from the response and await the results: const data =
+        await response.json()
+      </li>
+    </ul>
+    <p>
+      fetch(URL, OPTIONS) fetch(URL, { method: 'GET', // or 'POST', 'PUT', etc.
+      // headers and body only needed if sending data in request. headers: {
+      'Content-Type': 'application/json', // must match body. }, body:
+      JSON.stringify(data) // must match "Content-Type" header. })
+    </p>
+
+    <h3>await</h3>
+    <p>
+      The await keyword is like a lever you can pull to wait or not wait for an
+      asynchronous funtion to finsh. // await print(report1, 500) //
+      print(report1, 500) The first line will wait for the print function to
+      finish before moving on to the next line. The second line will not wait,
+      and will run immediately after the first line is called.
+    </p>
+
+    <h3>useEffect Hook</h3>
+    <p>
+      The useEffect hook is a React hook that allows you to run code after the
+      component has rendered. It is often used to fetch data from an API or to
+      set up event listeners.
+    </p>
+    <p>
+      The useEffect hook takes two arguments: a function to run after the
+      component has rendered, and an array of dependencies. The function will
+      run after the component has rendered, and will re-run if any of the
+      dependencies change.
+    </p>
+    <p>
+      The useEffect hook is called after the component has rendered, so it is
+      safe to access the DOM and make API calls. It is also called after every
+      render, so it is important to be careful with what you put in the
+      dependencies array.
+    </p>
+    <p>
+      Example of useEffect hook to fetch data from an API: useEffect(() => { //
+      do something }, DEPENDENCY_ARRAY); The effect will run when the dependency
+      array changes. If the dependency array is empty, the effect will only run
+      once, after the initial render.
+    </p>
+
+    <h4>When do we use an Effect?</h4>
+    <p>
+        For behavior triggered by rendering that isn't part of rendering, usualy to sync with an external system.
+        <br>
+        Most common examples:
+
+        <ul>
+            <li>
+                1. Fetching data from the Backend
+            </li>
+            <li>
+                2. Starting a loading-in animation
+            </li>
+            <li>
+                3. To interface with a DOM-mainpulation-based system or widget.
+            </li>
+        </ul>
+    </p>
+
+    <h4>When do we not use an Effect?</h4>
+    <p>
+        For behavior that is part of rendering, such as calculating a value to display or updating the state of a component based on user input.
+        <br>
+        Examples of when not to use an Effect:
+        <ul>
+            <li>
+                1. Calculating a value to display in the UI
+            </li>
+            <li>
+                2. Updating the state of a component based on user input
+            </li>
+            <li>
+                3. Handling events like clicks or form submissions
+            </li>
+        </ul>
+    </p>
+
+    
+  </body>
+</html>
