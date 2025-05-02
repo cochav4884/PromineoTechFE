@@ -9,27 +9,8 @@
       "id": 1,
       "productId": 1,
       "amount": 1
-    },
-    {
-      "id": "b83e",
-      "productId": 3,
-      "amount": 1
-    },
-    {
-      "id": "a615",
-      "productId": 5,
-      "amount": 1
-    },
-    {
-      "id": "5ea6",
-      "productId": 7,
-      "amount": 1
-    },
-    {
-      "id": "cb3f",
-      "productId": 10,
-      "amount": 1
     }
+    
   ],
   "products": [
     {

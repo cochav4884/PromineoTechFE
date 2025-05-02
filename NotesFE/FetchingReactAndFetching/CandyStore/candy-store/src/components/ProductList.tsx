@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { CartItem, Product } from "../types";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 type Props = {
   cartItems: CartItem[];
@@ -14,10 +15,10 @@ export default function ProductList({
   products,
   setProducts,
 }: Props) {
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [addingProductId, setAddingProductId] = useState<number | null>(null);
   const [error, setError] = useState<null | string>(null);
 
-  // After the first render, we fetch the data and render again with the data
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
@@ -27,7 +28,7 @@ export default function ProductList({
         if (!response.ok) {
           setError("Oops! There was an error: " + response.statusText);
         } else {
-          const data = await response.json();
+          const data: Product[] = await response.json();
           setProducts(data);
           setError(null);
         }
@@ -41,40 +42,67 @@ export default function ProductList({
       setIsLoading(false);
     };
     fetchProducts();
-  }, [setProducts]); // run once after the first render
+  }, [setProducts]);
+
   const addToCart = async (productId: number) => {
-    const newCartItem = {
-      productId: productId,
+    const newCartItem: CartItem = {
+      productId,
       amount: 1,
     };
-    // make the change on the backend
-    const response = await fetch("http://localhost:3001/cart", {
-      method: "POST",
-      body: JSON.stringify(newCartItem),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const newlyCreatedItem = await response.json(); // this will have an id
-    // make the change on the frontend
-    setCartItems([...cartItems, newlyCreatedItem]);
+
+    setAddingProductId(productId);
+    try {
+      const response = await fetch("http://localhost:3001/cart", {
+        method: "POST",
+        body: JSON.stringify(newCartItem),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add item to cart");
+      }
+
+      const newlyCreatedItem: CartItem = await response.json();
+      setCartItems([...cartItems, newlyCreatedItem]);
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
+    } finally {
+      setAddingProductId(null);
+    }
   };
+
   return (
     <div className="d-flex flex-wrap gap-3">
-      {isloading && <p className="text-body-tertiary">Loading...</p>}
+      {isLoading && <p className="text-body-tertiary">Loading...</p>}
       {error && <p className="text-danger">{error}</p>}
       {products.map((product) => (
         <div key={product.id} className="card flex-grow-1">
-          {" "}
-          {/* Added key prop here */}
           <div className="card-body">
             <h3 className="card-title">{product.name}</h3>
             <p className="card-text">{product.brand}</p>
             <button
               className="btn btn-success"
+              disabled={addingProductId === product.id}
               onClick={() => addToCart(product.id)}
             >
-              ${product.price.toFixed(2)}
+              {addingProductId === product.id ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  Adding...
+                </>
+              ) : (
+                `$${product.price.toFixed(2)}`
+              )}
             </button>
           </div>
         </div>
