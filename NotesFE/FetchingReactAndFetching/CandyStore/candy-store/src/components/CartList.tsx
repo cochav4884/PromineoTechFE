@@ -10,13 +10,27 @@ type Props = {
 
 export default function CartList({ cartItems, setCartItems, products }: Props) {
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(" ");
   // After the first render, we fetch the data and render again with the data
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
-      const response = await fetch("http://localhost:3001/cart");
-      const data = await response.json();
-      setCartItems(data);
+      try {
+        const response = await fetch("http://localhost:3001/cart");
+        if (!response.ok) {
+          setErrorMessage(response.statusText);
+        } else {
+          const data = await response.json();
+          setCartItems(data);
+        }
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setErrorMessage(error.message);
+        } else {
+          setErrorMessage("An unknown error occurred.");
+        }
+      }
+
       setLoading(false);
     };
     fetchProducts();
@@ -25,6 +39,8 @@ export default function CartList({ cartItems, setCartItems, products }: Props) {
     <>
       {loading ? (
         <p className="text-body-tertiary">Loading...</p>
+      ) : errorMessage.trim() ? (
+        <p className="text-danger">{errorMessage}</p>
       ) : (
         <table className="table table-striped">
           <tbody>
