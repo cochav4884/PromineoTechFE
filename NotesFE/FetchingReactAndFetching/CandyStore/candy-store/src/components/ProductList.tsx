@@ -2,25 +2,21 @@ import { useEffect, useState } from "react";
 import type { CartItem, Product } from "../types";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-type Props = {
+export interface ProductListProps {
   cartItems: CartItem[];
-  setCartItems: (newValue: CartItem[]) => void;
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
   products: Product[];
-  setProducts: (newValue: Product[]) => void;
-};
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
+}
 
-export default function ProductList({
-  setCartItems,
-  cartItems,
-  products,
-  setProducts,
-}: Props) {
-  const [isLoading, setIsLoading] = useState(false);
+export default function ProductList({ setCartItems, cartItems }: ProductListProps) {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [addingProductId, setAddingProductId] = useState<number | null>(null);
-  const [error, setError] = useState<null | string>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchProducts = async (): Promise<void> => {
       setIsLoading(true);
       try {
         const response = await fetch("http://localhost:3001/products");
@@ -44,7 +40,7 @@ export default function ProductList({
     fetchProducts();
   }, [setProducts]);
 
-  const addToCart = async (productId: number) => {
+  const addToCart = async (productId: number): Promise<void> => {
     const newCartItem: CartItem = {
       productId,
       amount: 1,
@@ -78,35 +74,38 @@ export default function ProductList({
   };
 
   return (
-    <div className="d-flex flex-wrap gap-3">
-      {isLoading && <p className="text-body-tertiary">Loading...</p>}
-      {error && <p className="text-danger">{error}</p>}
-      {products.map((product) => (
-        <div key={product.id} className="card flex-grow-1">
-          <div className="card-body">
-            <h3 className="card-title">{product.name}</h3>
-            <p className="card-text">{product.brand}</p>
-            <button
-              className="btn btn-success"
-              disabled={addingProductId === product.id}
-              onClick={() => addToCart(product.id)}
-            >
-              {addingProductId === product.id ? (
-                <>
-                  <span
-                    className="spinner-border spinner-border-sm me-2"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  Adding...
-                </>
-              ) : (
-                `$${product.price.toFixed(2)}`
-              )}
-            </button>
+    <>
+      <h2 className="display-5 mb-4">Craving Something Sweet?</h2>
+      <div className="d-flex flex-wrap gap-3">
+        {isLoading && <p className="text-body-tertiary">Loading...</p>}
+        {error && <p className="text-danger">{error}</p>}
+        {products.map((product) => (
+          <div key={product.id} className="card flex-grow-1">
+            <div className="card-body">
+              <h3 className="card-title">{product.name}</h3>
+              <p className="card-text">{product.brand}</p>
+              <button
+                className="btn btn-success"
+                disabled={addingProductId === product.id}
+                onClick={() => addToCart(product.id)}
+              >
+                {addingProductId === product.id ? (
+                  <>
+                    <span
+                      className="spinner-border spinner-border-sm me-2"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Adding...
+                  </>
+                ) : (
+                  `$${product.price.toFixed(2)}`
+                )}
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }

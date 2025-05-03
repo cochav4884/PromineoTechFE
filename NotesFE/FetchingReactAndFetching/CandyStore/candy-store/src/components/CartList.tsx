@@ -10,18 +10,19 @@ type Props = {
 
 export default function CartList({ cartItems, setCartItems, products }: Props) {
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(" ");
-  // After the first render, we fetch the data and render again with the data
+  const [errorMessage, setErrorMessage] = useState("");
+
+  // Fetch cart items from the server when this component mounts
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchCart = async () => {
       setLoading(true);
       try {
         const response = await fetch("http://localhost:3001/cart");
         if (!response.ok) {
-          setErrorMessage(response.statusText);
+          setErrorMessage("Failed to fetch cart items");
         } else {
-          const data = await response.json();
-          setCartItems(data);
+          const data: CartItem[] = await response.json();
+          setCartItems(data);  // Set fetched cart items to state
         }
       } catch (error: unknown) {
         if (error instanceof Error) {
@@ -30,13 +31,14 @@ export default function CartList({ cartItems, setCartItems, products }: Props) {
           setErrorMessage("An unknown error occurred.");
         }
       }
-
       setLoading(false);
     };
-    fetchProducts();
-  }, [setCartItems]); // run once after the first render
+    fetchCart();
+  }, [setCartItems]); // Fetch cart when component mounts or cartItems change
+
   return (
     <>
+      <h2 className="display-5 mb-4">Cart</h2>
       {loading ? (
         <p className="text-body-tertiary">Loading...</p>
       ) : errorMessage.trim() ? (
@@ -44,13 +46,17 @@ export default function CartList({ cartItems, setCartItems, products }: Props) {
       ) : (
         <table className="table table-striped">
           <tbody>
-            {cartItems.map((item) => (
-              <CartItemRow
-                key={item.id}
-                item={item}
-                products={products}
-              ></CartItemRow>
-            ))}
+            {cartItems.length > 0 ? (
+              cartItems.map((item) => (
+                <CartItemRow key={item.id} item={item} products={products} />
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3} className="text-center">
+                  Your cart is empty
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       )}
