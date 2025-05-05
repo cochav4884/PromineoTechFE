@@ -1,16 +1,16 @@
 export type CartItem = {
-  id?: number;
+  id: number;
   productId: number;
   amount: number;
 };
 
 export type Product = {
-  id: number;
+  id: string; // from db.json (string)
   name: string;
   brand: string;
   flavor: string;
   weight: number;
   price: number;
-  quantityInStock: number; // Fixed typo from "quatityInStock" to "quantityInStock"
+  quantityInStock: number;
   expirationDate: string;
 };

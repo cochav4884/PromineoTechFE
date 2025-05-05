@@ -1,60 +1,54 @@
 import { useEffect, useState } from "react";
-import { CartItem, Product } from "../types";
 import CartItemRow from "./CartItemRow";
+import { useShopContext } from "../components/hooks/useShopContext"; // Ensure this file exists at the specified path
+import { CartItem } from "../types";
 
-type Props = {
-  cartItems: CartItem[];
-  setCartItems: (newValue: CartItem[]) => void;
-  products: Product[];
-};
-
-export default function CartList({ cartItems, setCartItems, products }: Props) {
+export default function CartList() {
+  const { cartItems, setCartItems, products } = useShopContext();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Fetch cart items from the server when this component mounts
   useEffect(() => {
+    if (cartItems.length > 0) return;
     const fetchCart = async () => {
       setLoading(true);
       try {
         const response = await fetch("http://localhost:3001/cart");
-        if (!response.ok) {
-          setErrorMessage("Failed to fetch cart items");
+        if (!response.ok) throw new Error("Failed to fetch cart items");
+        const data: CartItem[] = await response.json();
+        setCartItems(data);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setErrorMessage(err.message);
         } else {
-          const data: CartItem[] = await response.json();
-          setCartItems(data);  // Set fetched cart items to state
+          setErrorMessage("An unknown error occurred");
         }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setErrorMessage(error.message);
-        } else {
-          setErrorMessage("An unknown error occurred.");
-        }
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     fetchCart();
-  }, [setCartItems]); // Fetch cart when component mounts or cartItems change
+  }, [cartItems, setCartItems]);
 
   return (
     <>
       <h2 className="display-5 mb-4">Cart</h2>
       {loading ? (
         <p className="text-body-tertiary">Loading...</p>
-      ) : errorMessage.trim() ? (
+      ) : errorMessage ? (
         <p className="text-danger">{errorMessage}</p>
       ) : (
         <table className="table table-striped">
           <tbody>
             {cartItems.length > 0 ? (
-              cartItems.map((item) => (
-                <CartItemRow key={item.id} item={item} products={products} />
+              cartItems.map((item: CartItem) => (
+              <CartItemRow key={item.id} item={item} products={products} />
               ))
             ) : (
               <tr>
-                <td colSpan={3} className="text-center">
-                  Your cart is empty
-                </td>
+              <td colSpan={3} className="text-center">
+                Your cart is empty
+              </td>
               </tr>
             )}
           </tbody>

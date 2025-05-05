@@ -1,3 +1,4 @@
+// src/main.tsx
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
@@ -10,30 +11,15 @@ import CartList from './components/CartList.tsx';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Root />, // Root component for context
     children: [
-      // ProductList should be shown at the root path
       {
-        index: true,  // Using `index: true` for the default route
-        element: (
-          <ProductList 
-            cartItems={[]} 
-            setCartItems={() => {}} 
-            products={[]} 
-            setProducts={() => {}} 
-          />
-        ),
+        index: true, // Default route (Product List)
+        element: <ProductList />, // ProductList will receive the context from Root
       },
-      // CartList should be shown at the /cart path
       {
-        path: "cart",  // Match /cart for the cart route
-        element: (
-          <CartList 
-            cartItems={[]} 
-            setCartItems={() => {}} 
-            products={[]} 
-          />
-        ),
+        path: "cart", // Cart route
+        element: <CartList />, // CartList will also get context from Root
       },
     ],
   },

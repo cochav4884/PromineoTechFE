@@ -6,7 +6,7 @@ type Props = {
 };
 
 export default function CartItemRow({ item, products }: Props) {
-  const product = products.find((p) => p.id === item.productId);
+  const product = products.find(p => Number(p.id) === item.productId);
 
   if (!product) {
     return (

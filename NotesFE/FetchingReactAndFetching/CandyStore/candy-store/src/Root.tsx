@@ -3,8 +3,8 @@ import { Outlet, Link } from "react-router-dom";
 import { CartItem, Product } from "./types";
 
 export default function Root() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]); // Cart state
-  const [products, setProducts] = useState<Product[]>([]);     // Products state
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   return (
     <div className="container">
@@ -13,7 +13,11 @@ export default function Root() {
           <Link to="/" className="nav-link">Products</Link>
         </li>
         <li className="nav-item">
-          <Link to="/cart" className="nav-link">Cart</Link>
+          <Link to="/cart" className="nav-link">
+            Cart {cartItems.length > 0 && (
+              <span className="badge bg-primary">{cartItems.length}</span>
+            )}
+          </Link>
         </li>
       </ul>
       <Outlet context={{ cartItems, setCartItems, products, setProducts }} />

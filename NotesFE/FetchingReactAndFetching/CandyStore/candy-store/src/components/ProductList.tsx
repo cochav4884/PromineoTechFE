@@ -1,70 +1,61 @@
 import { useEffect, useState } from "react";
-import type { CartItem, Product } from "../types";
+import type { Product } from "../types";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useShopContext } from "../components/hooks/useShopContext";
 
-export interface ProductListProps {
-  cartItems: CartItem[];
-  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
-  products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
-}
-
-export default function ProductList({ setCartItems, cartItems }: ProductListProps) {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+export default function ProductList() {
+  const { cartItems, setCartItems, products, setProducts } = useShopContext();
+  const [isLoading, setIsLoading] = useState(false);
   const [addingProductId, setAddingProductId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchProducts = async (): Promise<void> => {
+    if (products.length > 0) return; // don't re-fetch
+    const fetchProducts = async () => {
       setIsLoading(true);
       try {
         const response = await fetch("http://localhost:3001/products");
-
-        if (!response.ok) {
-          setError("Oops! There was an error: " + response.statusText);
+        if (!response.ok) throw new Error("Failed to load products.");
+        const data: Product[] = await response.json();
+        setProducts(data);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
         } else {
-          const data: Product[] = await response.json();
-          setProducts(data);
-          setError(null);
+          setError("An unknown error occurred.");
         }
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          setError("Oops! There was an error: " + error.message);
-        } else {
-          setError("Oops! An unknown error occurred.");
-        }
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
     fetchProducts();
-  }, [setProducts]);
+  }, [products, setProducts]);
 
-  const addToCart = async (productId: number): Promise<void> => {
-    const newCartItem: CartItem = {
-      productId,
-      amount: 1,
-    };
-
+  const addToCart = async (productId: number) => {
+    const existing = cartItems.find(i => i.productId === productId);
     setAddingProductId(productId);
     try {
-      const response = await fetch("http://localhost:3001/cart", {
-        method: "POST",
-        body: JSON.stringify(newCartItem),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add item to cart");
+      if (existing) {
+        const updated = { ...existing, amount: existing.amount + 1 };
+        const res = await fetch(`http://localhost:3001/cart/${existing.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: updated.amount }),
+        });
+        const updatedItem = await res.json();
+        setCartItems(cartItems.map(i => i.id === updatedItem.id ? updatedItem : i));
+      } else {
+        const res = await fetch("http://localhost:3001/cart", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productId, amount: 1 }),
+        });
+        const newItem = await res.json();
+        setCartItems([...cartItems, newItem]);
       }
-
-      const newlyCreatedItem: CartItem = await response.json();
-      setCartItems([...cartItems, newlyCreatedItem]);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
       } else {
         setError("An unknown error occurred.");
       }
@@ -79,28 +70,19 @@ export default function ProductList({ setCartItems, cartItems }: ProductListProp
       <div className="d-flex flex-wrap gap-3">
         {isLoading && <p className="text-body-tertiary">Loading...</p>}
         {error && <p className="text-danger">{error}</p>}
-        {products.map((product) => (
+        {products.map((product: Product) => (
           <div key={product.id} className="card flex-grow-1">
             <div className="card-body">
               <h3 className="card-title">{product.name}</h3>
               <p className="card-text">{product.brand}</p>
               <button
-                className="btn btn-success"
-                disabled={addingProductId === product.id}
-                onClick={() => addToCart(product.id)}
+          className="btn btn-success"
+          disabled={addingProductId === Number(product.id)}
+          onClick={() => addToCart(Number(product.id))}
               >
-                {addingProductId === product.id ? (
-                  <>
-                    <span
-                      className="spinner-border spinner-border-sm me-2"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                    Adding...
-                  </>
-                ) : (
-                  `$${product.price.toFixed(2)}`
-                )}
+          {addingProductId === Number(product.id)
+            ? <>Adding...</>
+            : `$${product.price.toFixed(2)}`}
               </button>
             </div>
           </div>
