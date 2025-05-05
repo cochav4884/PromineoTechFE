@@ -39,16 +39,24 @@ export default function CartList() {
         <p className="text-danger">{errorMessage}</p>
       ) : (
         <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
           <tbody>
             {cartItems.length > 0 ? (
               cartItems.map((item: CartItem) => (
-              <CartItemRow key={item.id} item={item} products={products} />
+                <CartItemRow key={item.id} item={item} products={products} />
               ))
             ) : (
               <tr>
-              <td colSpan={3} className="text-center">
-                Your cart is empty
-              </td>
+                <td colSpan={4} className="text-center">
+                  Your cart is empty
+                </td>
               </tr>
             )}
           </tbody>
