@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 17: UI: More React Router</title>
+</head>
+<body>
+    <h1>UI: More React Router</h1>
+    <ul>
+        <li>Data Loaders</li>
+        <li>Error Handling</li>
+        <li>URL Params</li>
+        <li>NavLink</li>
+    </ul>
+
+    <h3>NavLink: An alternative to Link that gets an "active" class when the link path matches the current path</h3>
+    <p><NavLink to="/about">About</NavLink>
+    This on would get an "active" class</p>
+    <p>NavLink to="/shop">Shop</NavLink></p>
+
+    <h3>Data Loaders: An alternative to using the useEffect hook to load data from an API</h3>
+    <p>const router = createBrowserRouter([
+        {
+            path: "/channel",
+            element: <ChannelPage/>,
+            loader: loader
+        }
+        ])
+    </p>
+    <p>
+        export const loader = async () => {
+            const response = await fetch(URL)
+            return await response.json()
+        }
+
+        export default function Channel Page() {
+            const data = useLoaderData()
+        }
+    </p>
+</body>
+</html>

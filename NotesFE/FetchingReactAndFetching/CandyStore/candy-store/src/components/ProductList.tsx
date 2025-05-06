@@ -1,35 +1,20 @@
 import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import type { Product } from "../types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useShopContext } from "../components/hooks/useShopContext";
 
 export default function ProductList() {
+  const fetchedProducts = useLoaderData() as Product[]; // from loader
   const { cartItems, setCartItems, products, setProducts } = useShopContext();
-  const [isLoading, setIsLoading] = useState(false);
   const [addingProductId, setAddingProductId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (products.length > 0) return; // don't re-fetch
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("http://localhost:3001/products");
-        if (!response.ok) throw new Error("Failed to load products.");
-        const data: Product[] = await response.json();
-        setProducts(data);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred.");
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchProducts();
-  }, [products, setProducts]);
+    if (products.length === 0) {
+      setProducts(fetchedProducts); // set context state
+    }
+  }, [fetchedProducts, products.length, setProducts]);
 
   const addToCart = async (productId: number) => {
     const existing = cartItems.find(i => i.productId === productId);
@@ -68,7 +53,6 @@ export default function ProductList() {
     <>
       <h2 className="display-5 mb-4">Craving Something Sweet?</h2>
       <div className="d-flex flex-wrap gap-3">
-        {isLoading && <p className="text-body-tertiary">Loading...</p>}
         {error && <p className="text-danger">{error}</p>}
         {products.map((product: Product) => (
           <div key={product.id} className="card flex-grow-1">
@@ -76,13 +60,15 @@ export default function ProductList() {
               <h3 className="card-title">{product.name}</h3>
               <p className="card-text">{product.brand}</p>
               <button
-          className="btn btn-success"
-          disabled={addingProductId === Number(product.id)}
-          onClick={() => addToCart(Number(product.id))}
+                className="btn btn-success"
+                disabled={addingProductId === Number(product.id)}
+                onClick={() => addToCart(Number(product.id))}
               >
-          {addingProductId === Number(product.id)
-            ? <>Adding...</>
-            : `$${product.price.toFixed(2)}`}
+                {addingProductId === Number(product.id) ? (
+                  <>Adding...</>
+                ) : (
+                  `$${product.price.toFixed(2)}`
+                )}
               </button>
             </div>
           </div>
