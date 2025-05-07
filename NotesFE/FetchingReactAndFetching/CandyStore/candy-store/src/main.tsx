@@ -1,5 +1,4 @@
 // src/main.tsx
-import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -9,6 +8,7 @@ import Root from "./Root";
 import ProductList from "./components/ProductList";
 import CartList from "./components/CartList";
 import ProductDetails from "./components/ProductDetails";
+import { Suspense } from "react";
 
 // Loaders
 const productListLoader = async () => {
@@ -37,7 +37,7 @@ const cartLoader = async () => {
 };
 
 // Router configuration
-const router = createBrowserRouter([
+const router = createBrowserRouter([  // No need for explicit type
   {
     path: "/",
     element: <Root />,
@@ -53,18 +53,16 @@ const router = createBrowserRouter([
         loader: cartLoader,
       },
       {
-        path: "/products/:productId",
-        element: <ProductDetails/>
+        path: "products/:productId",  // No leading slash here for nested routes
+        element: <ProductDetails />
       }
     ],
   },
 ]);
 
-// Render the app
+// Render the app with Suspense for loading
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Suspense fallback={<p>Loading...</p>}>
-      <RouterProvider router={router} />
-    </Suspense>
-  </StrictMode>
+  <Suspense fallback={<p>Loading...</p>}>
+    <RouterProvider router={router} />
+  </Suspense>
 );
