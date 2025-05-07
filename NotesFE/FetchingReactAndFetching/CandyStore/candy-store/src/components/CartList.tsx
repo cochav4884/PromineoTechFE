@@ -1,16 +1,18 @@
-// src/components/CartList.tsx
 import { useLoaderData } from "react-router-dom";
-import { useShopContext } from "../components/hooks/useShopContext";
 import CartItemRow from "./CartItemRow";
-import type { CartItem } from "../types";
+import type { CartItem, Product } from "../types";
+
+type LoaderData = {
+  cartItems: CartItem[];
+  products: Product[];
+};
 
 export default function CartList() {
-  const fetchedCartItems = useLoaderData() as CartItem[];
-  const { cartItems, setCartItems, products } = useShopContext();
+  // Using optional chaining and fallback to empty array if cartItems is undefined
+  const { cartItems, products } = useLoaderData() as LoaderData;
 
-  if (cartItems.length === 0 && fetchedCartItems.length > 0) {
-    setCartItems(fetchedCartItems);
-  }
+  // Ensure that cartItems is always an array (default to empty array if undefined)
+  const safeCartItems = cartItems ?? [];
 
   return (
     <>
@@ -25,8 +27,8 @@ export default function CartList() {
           </tr>
         </thead>
         <tbody>
-          {cartItems.length > 0 ? (
-            cartItems.map(item => (
+          {safeCartItems.length > 0 ? (
+            safeCartItems.map((item) => (
               <CartItemRow key={item.id} item={item} products={products} />
             ))
           ) : (

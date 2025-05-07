@@ -4,23 +4,38 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import Root from "./Root";
 import ProductList from "./components/ProductList";
 import CartList from "./components/CartList";
 
 // Loaders
-const productLoader = async () => {
+const productListLoader = async () => {
   const res = await fetch("http://localhost:3001/products");
   if (!res.ok) throw new Error("Failed to fetch products");
   return res.json();
 };
 
+// ✅ Updated cartLoader: Fetches both cart and product data
 const cartLoader = async () => {
-  const res = await fetch("http://localhost:3001/cart");
-  if (!res.ok) throw new Error("Failed to fetch cart items");
-  return res.json();
+  const [cartRes, productRes] = await Promise.all([
+    fetch("http://localhost:3001/cart"),
+    fetch("http://localhost:3001/products"),
+  ]);
+
+  if (!cartRes.ok || !productRes.ok) {
+    throw new Error("Failed to fetch cart or products");
+  }
+
+  const [cartItems, products] = await Promise.all([
+    cartRes.json(),
+    productRes.json(),
+  ]);
+
+  return { cartItems, products };
 };
 
+// Router configuration
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,7 +44,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <ProductList />,
-        loader: productLoader,
+        loader: productListLoader,
       },
       {
         path: "cart",
@@ -40,10 +55,9 @@ const router = createBrowserRouter([
   },
 ]);
 
-// Client-side rendering with React 18's createRoot
+// Render the app
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    {/* Wrapping RouterProvider with Suspense for async loading */}
     <Suspense fallback={<p>Loading...</p>}>
       <RouterProvider router={router} />
     </Suspense>
