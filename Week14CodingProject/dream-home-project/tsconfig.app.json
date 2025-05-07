@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "../../NotesFE/FetchingReactAndFetching/CandyStore", "../../NotesFE/FetchingReactAndFetching/Candy Store_files"]
 }
