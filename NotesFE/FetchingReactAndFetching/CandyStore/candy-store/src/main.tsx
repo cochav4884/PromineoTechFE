@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Root from "./Root";
 import ProductList from "./components/ProductList";
 import CartList from "./components/CartList";
+import ProductDetails from "./components/ProductDetails";
 
 // Loaders
 const productListLoader = async () => {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         element: <CartList />,
         loader: cartLoader,
       },
+      {
+        path: "/products/:productId",
+        element: <ProductDetails/>
+      }
     ],
   },
 ]);

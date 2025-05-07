@@ -11,8 +11,13 @@
       "amount": 3
     },
     {
-      "id": "7db3",
-      "productId": 1,
+      "id": "7ea0",
+      "productId": 7,
+      "amount": 1
+    },
+    {
+      "id": "f0e2",
+      "productId": 8,
       "amount": 1
     }
   ],

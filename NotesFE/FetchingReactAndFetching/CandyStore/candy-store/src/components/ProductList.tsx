@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import type { Product, CartItem } from "../types";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -96,6 +96,7 @@ export default function ProductList() {
             <div className="card-body">
               <h3 className="card-title">{product.name}</h3>
               <p className="card-text">{product.brand}</p>
+              <p><Link to={"/products/" + product.id}>Details</Link></p>
               <button
                 className="btn btn-success"
                 disabled={addingProductId === Number(product.id) && isAddingToCart}

@@ -38,5 +38,63 @@
             const data = useLoaderData()
         }
     </p>
+
+    <h3>URL Params: A way to put custom information in a URL</h3>
+    <p>
+        <h2>query parameters</h2>
+        <p>
+            https://www.a.com/user?name=Patrick&key=a1b2c3
+            https://www.a.com/user?name=Rachel&key=d2f5e2
+            https://www.a.com/user?name=Crystal&key=m1dy56
+        </p>
+        <h2>path parameters</h2>
+        <p>
+            https://www.a.com/user/Patrick/a1b2c3
+            https://www.a.com/user/Rachel/d2f5e2
+            https://www.a.com/user/Crystal/m1dy56
+        </p>
+
+        <h2>useParams: Allows us to access URL path parameters</h2>
+        <p>
+            const router = createBrowserRouter([
+            {
+                path: "/channels/:channelId",
+                element: <ChannelPage/>
+            }
+            ])
+        </p>
+        <p>
+            https://www.app.com/channels/23
+            export default function ChannelPage() {
+                const { channelId } = useParams()
+                // channelId will be "23"
+            }
+        </p>
+
+        <h3>use Params</h3>
+        <ul>
+            <li>
+                1. React Router matches the path to the route
+            </li>
+            <li>
+                2. Any URL params are bundled into an object 
+            </li>
+            <li>
+                3. In the componnent, the usePrams hook gives access to the params 
+            </li>
+        </ul>
+        <p>
+            https://www.app.com/genre/pop/songs/4
+            path: "/albums/:genre/songs/:songId"
+
+            {
+                genre: "pop",
+                songId: "4"
+            } <br> Note: URL Param values will always be strings
+
+            const { genre, songId } = usePrams()
+            //genre will be "pop" and songId will be "4"
+        </p>
+    </p>
 </body>
 </html>
